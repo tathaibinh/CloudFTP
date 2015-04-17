@@ -73,7 +73,6 @@ public class FileCloud implements EntryPoint {
 
     private void signInStatus(String status, String style) {
         authstatuslb.setStyleName(style);
-        authstatuslb.getElement().setPropertyString("role", "alert");
         authstatuslb.setText(status);
     }
 }
