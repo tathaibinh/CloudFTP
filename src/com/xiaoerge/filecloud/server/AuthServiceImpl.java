@@ -3,45 +3,60 @@ package com.xiaoerge.filecloud.server;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.jcraft.jsch.*;
 import com.xiaoerge.filecloud.client.AuthService;
+import com.xiaoerge.filecloud.server.model.ChannelSession;
+import com.xiaoerge.filecloud.server.model.EncryptionUtil;
+
+import javax.crypto.Cipher;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 
 public class AuthServiceImpl extends RemoteServiceServlet implements AuthService {
 
-    private JSch jsch;
-    private Session session;
-    private Channel channel;
-    private ChannelSftp channelsftp;
     private String username;
     private String password;
     private String host;
     private int port;
-    private UserInfo accountinfo;
-
-    public AuthServiceImpl() {
-        jsch = new JSch();
-        session = null;
-        accountinfo = null;
-        channel = null;
-    }
 
     @Override
-    public boolean authenticate(String hostname, String password, int port) {
-
-        String username = hostname.substring(0, hostname.indexOf('@'));
-        String host = hostname.substring(hostname.indexOf('@') + 1);
+    public String authenticate(String hostname, byte[] password, int port) {
 
         try {
-            session = jsch.getSession(username, host, port);
-            session.setUserInfo(new UserAcountInfo(password));
+            ChannelSession channelSession = ChannelSession.getInstance();
+
+            String username = hostname.substring(0, hostname.indexOf('@'));
+            String host = hostname.substring(hostname.indexOf('@') + 1);
+
+            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+            keyGen.initialize(1024);
+            KeyPair key = keyGen.generateKeyPair();
+
+            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+
+            channelSession.setKeyGen(keyGen);
+            channelSession.setKey(key);
+            channelSession.setCipher(cipher);
+
+            byte[] cipherText = EncryptionUtil.encrypt(password);
+
+            JSch jSch = new JSch();
+            Session session = jSch.getSession(username, host, port);
+            UserInfo userInfo = new UserAcountInfo(cipherText);
+            session.setUserInfo(userInfo);
             session.connect();
-            channel = session.openChannel("sftp");
+            Channel channel = session.openChannel("sftp");
             channel.connect();
-            channelsftp = (ChannelSftp) channel;
+            ChannelSftp channelsftp = (ChannelSftp) channel;
 
-            return true;
+            channelSession.setJsch(jSch);
+            channelSession.setAccountinfo(userInfo);
+            channelSession.setSession(session);
+            channelSession.setChannel(channel);
+            channelSession.setChannelsftp(channelsftp);
 
-        } catch (JSchException e) {
-            e.printStackTrace();
-            return false;
+            return key.getPublic().toString();
+
+        } catch (Exception e) {
+            return "";
         }
     }
 }
