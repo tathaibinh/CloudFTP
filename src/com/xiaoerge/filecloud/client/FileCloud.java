@@ -49,13 +49,13 @@ public class FileCloud implements EntryPoint {
             @Override
             public void onClick(ClickEvent event) {
 
-                AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
+                AsyncCallback<String> callback = new AsyncCallback<String>() {
                     public void onFailure(Throwable caught) {
                         logger.log(Level.SEVERE, "sign in error");
                     }
 
-                    public void onSuccess(Boolean result) {
-                        if (result) {
+                    public void onSuccess(String result) {
+                        if (result != null && !result.isEmpty()) {
                             signInStatus("Success", "alert alert-success");
                             logger.log(Level.SEVERE, "true");
                         }
@@ -66,7 +66,7 @@ public class FileCloud implements EntryPoint {
                     }
                 };
 
-                authServiceAsync.authenticate(hostnametf.getText(), passwordtf.getText(), 22, callback);
+                authServiceAsync.authenticate(hostnametf.getText(), passwordtf.getText().getBytes(), 22, callback);
             }
         });
     }

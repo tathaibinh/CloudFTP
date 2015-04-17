@@ -1,25 +1,32 @@
 package com.xiaoerge.filecloud.server;
 
 import com.jcraft.jsch.UserInfo;
+import com.xiaoerge.filecloud.server.model.EncryptionUtil;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by xiaoerge on 4/16/15.
  */
 public class UserAcountInfo implements UserInfo {
 
-    private String password;
-    public UserAcountInfo(String passwd) {
+    private byte[] password;
+    public UserAcountInfo(byte[] passwd) {
         password = passwd;
     }
 
     @Override
     public String getPassphrase() {
-        return password;
+        return getPassword();
     }
 
     @Override
     public String getPassword() {
-        return password;
+        try {
+            return new String(EncryptionUtil.decrypt(password), "UTF8");
+        } catch (UnsupportedEncodingException e) {
+            return "";
+        }
     }
 
     @Override
