@@ -7,8 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aed23c8c-ff3b-4c76-aa82-9f2b36645dfe" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/filecloud/client/FileCloud.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/filecloud/client/FileCloud.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/war/filecloud.html" afterPath="$PROJECT_DIR$/war/filecloud.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/filecloud/filecloud.gwt.xml" afterPath="$PROJECT_DIR$/src/com/xiaoerge/filecloud/filecloud.gwt.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="FileCloud.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,12 +47,22 @@
       <file leaf-file-name="FileCloud.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/filecloud/client/FileCloud.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2857143">
-              <caret line="58" column="72" selection-start-line="58" selection-start-column="72" selection-end-line="58" selection-end-column="72" />
+            <state vertical-scroll-proportion="0.32142857">
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
                 <element signature="e#1920#1921#0" expanded="true" />
                 <element signature="e#2009#2010#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filecloud.gwt.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/filecloud/filecloud.gwt.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -81,7 +91,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/filecloud/server/UserAcountInfo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+              <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
               <folding>
                 <element signature="e#238#239#0" expanded="true" />
                 <element signature="e#271#272#0" expanded="true" />
@@ -123,13 +133,13 @@
         <option value="$PROJECT_DIR$/war/filecloud.css" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/filecloud/client/filecloud.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/filecloud/client/LoginService.java" />
-        <option value="$PROJECT_DIR$/src/com/xiaoerge/filecloud/filecloud.gwt.xml" />
         <option value="$PROJECT_DIR$/war/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/filecloud/server/AuthServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/filecloud/client/AuthService.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/filecloud/client/AuthServiceAsync.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/filecloud/server/UserAcountInfo.java" />
         <option value="$PROJECT_DIR$/war/filecloud.html" />
+        <option value="$PROJECT_DIR$/src/com/xiaoerge/filecloud/filecloud.gwt.xml" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/filecloud/client/FileCloud.java" />
       </list>
     </option>
@@ -583,16 +593,16 @@
       <option name="number" value="Default" />
       <updated>1429220708208</updated>
       <workItem from="1429220711561" duration="7162000" />
-      <workItem from="1429235237854" duration="2126000" />
+      <workItem from="1429235237854" duration="2503000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9288000" />
+    <option name="totallyTimeSpent" value="9665000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1295" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -603,7 +613,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32935917" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935917" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.196139" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -711,14 +721,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/filecloud/filecloud.gwt.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32142857">
-          <caret line="9" column="85" selection-start-line="9" selection-start-column="85" selection-end-line="9" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jsch-0.1.52.jar!/com/jcraft/jsch/UserInfo.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15189873">
@@ -743,21 +745,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/war/filecloud.html">
+    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/filecloud/client/AuthService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.125">
-          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#iframe#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#noscript#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/filecloud/server/UserAcountInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
           <folding>
             <element signature="e#238#239#0" expanded="true" />
             <element signature="e#271#272#0" expanded="true" />
@@ -775,18 +774,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/filecloud/client/AuthService.java">
+    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/filecloud/filecloud.gwt.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/war/filecloud.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.125">
+          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#iframe#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#noscript#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/filecloud/client/FileCloud.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2857143">
-          <caret line="58" column="72" selection-start-line="58" selection-start-column="72" selection-end-line="58" selection-end-column="72" />
+        <state vertical-scroll-proportion="0.32142857">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
             <element signature="e#1920#1921#0" expanded="true" />
             <element signature="e#2009#2010#0" expanded="true" />
