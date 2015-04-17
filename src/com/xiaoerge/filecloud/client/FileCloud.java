@@ -27,10 +27,23 @@ public class FileCloud implements EntryPoint {
 
     public void onModuleLoad() {
 
-        signinBt = Button.wrap(Document.get().getElementById("signinbt"));
-        hostnametf = TextBox.wrap(Document.get().getElementById("hostnametf"));
-        passwordtf = TextBox.wrap(Document.get().getElementById("passwordtf"));
+        signinBt = new Button();
+        hostnametf = new TextBox();
+        passwordtf = new PasswordTextBox();
         authstatuslb = Label.wrap(Document.get().getElementById("authstatuslb"));
+
+        hostnametf.setStyleName("form-control");
+        hostnametf.getElement().setPropertyString("placeholder", "User@host.com");
+
+        passwordtf.setStyleName("form-control");
+        passwordtf.getElement().setPropertyString("placeholder", "Password");
+
+        signinBt.setText("Sign in");
+        signinBt.setStyleName("btn btn-lg btn-primary btn-block");
+
+        RootPanel.get("loginform").add(hostnametf);
+        RootPanel.get("loginform").add(passwordtf);
+        RootPanel.get("loginform").add(signinBt);
 
         signinBt.addClickHandler(new ClickHandler() {
             @Override
@@ -43,19 +56,24 @@ public class FileCloud implements EntryPoint {
 
                     public void onSuccess(Boolean result) {
                         if (result) {
-                            authstatuslb.setText("True");
+                            signInStatus("Success", "alert alert-success");
                             logger.log(Level.SEVERE, "true");
                         }
                         else {
-                            authstatuslb.setText("False");
+                            signInStatus("Failure", "alert alert-danger");
                             logger.log(Level.SEVERE, "false");
                         }
                     }
                 };
 
-                authServiceAsync.authenticate(hostnametf.getText(), passwordtf.getText().toCharArray(), 22, callback);
-                logger.log(Level.SEVERE, "begin");
+                authServiceAsync.authenticate(hostnametf.getText(), passwordtf.getText(), 22, callback);
             }
         });
+    }
+
+    private void signInStatus(String status, String style) {
+        authstatuslb.setStyleName(style);
+        authstatuslb.getElement().setPropertyString("role", "alert");
+        authstatuslb.setText(status);
     }
 }

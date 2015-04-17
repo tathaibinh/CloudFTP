@@ -24,13 +24,14 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
     }
 
     @Override
-    public boolean authenticate(String hostname, char[] password, int port) {
+    public boolean authenticate(String hostname, String password, int port) {
 
         String username = hostname.substring(0, hostname.indexOf('@'));
         String host = hostname.substring(hostname.indexOf('@') + 1);
 
         try {
             session = jsch.getSession(username, host, port);
+            session.setUserInfo(new UserAcountInfo(password));
             session.connect();
             channel = session.openChannel("sftp");
             channel.connect();
