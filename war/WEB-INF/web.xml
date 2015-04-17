@@ -10,11 +10,11 @@
     </welcome-file-list>
 
     <servlet>
-        <servlet-name>com.xiaoerge.filecloud.filecloud filecloudService</servlet-name>
+        <servlet-name>authService</servlet-name>
         <servlet-class>com.xiaoerge.filecloud.server.AuthServiceImpl</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>com.xiaoerge.filecloud.filecloud filecloudService</servlet-name>
-        <url-pattern>/filecloud/filecloudService</url-pattern>
+        <servlet-name>authService</servlet-name>
+        <url-pattern>/filecloud/authservice</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -3,6 +3,8 @@
   <component name="FacetManager">
     <facet type="gwt" name="GWT">
       <configuration>
+        <setting name="compilerMaxHeapSize" value="1024" />
+        <setting name="gwtScriptOutputStyle" value="DETAILED" />
         <setting name="gwtSdkUrl" value="file://$USER_HOME$/Applications/gwt2.7" />
         <setting name="webFacet" value="Web" />
       </configuration>
@@ -28,5 +30,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="AppEngine Dev" level="application_server_libraries" />
     <orderEntry type="library" name="gwt-user" level="project" />
+    <orderEntry type="library" name="jsch-0.1.52" level="project" />
   </component>
 </module>

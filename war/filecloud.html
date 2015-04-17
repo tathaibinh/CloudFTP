@@ -8,7 +8,7 @@
     <link type="text/css" rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
 
     <link type="text/css" rel="stylesheet" href="filecloud.css">
-    <script type="text/javascript" language="javascript" src="littleastrogwt/littleastrogwt.nocache.js"></script>
+    <script type="text/javascript" language="javascript" src="filecloud/filecloud.nocache.js"></script>
 </head>
 <body>
 
@@ -23,10 +23,11 @@
 
 <div class="container">
 
+    <div id="authstatuslb" role="alert"></div>
     <form class="form-signin">
         <h2 class="form-signin-heading">SSH Sign in</h2>
-        <label for="usernametf" class="sr-only">Username</label>
-        <input type="text" id="usernametf" class="form-control" placeholder="Username" required autofocus>
+        <label for="hostnametf" class="sr-only">Hostname</label>
+        <input type="text" id="hostnametf" class="form-control" placeholder="User@host.com" required autofocus>
         <label for="passwordtf" class="sr-only">Password</label>
         <input type="password" id="passwordtf" class="form-control" placeholder="Password" required>
         <div class="checkbox">
