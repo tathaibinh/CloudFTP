@@ -10,6 +10,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.xiaoerge.filecloud.client.model.FileEntry;
 
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -103,12 +104,12 @@ public class FileCloud implements EntryPoint {
     }
 
     private void ls() {
-        AsyncCallback<FileEntry[]> callback = new AsyncCallback<FileEntry[]>() {
+        AsyncCallback<Vector<FileEntry>> callback = new AsyncCallback<Vector<FileEntry>>() {
             public void onFailure(Throwable caught) {
                 logger.log(Level.SEVERE, "ls error");
             }
 
-            public void onSuccess(FileEntry[] result) {
+            public void onSuccess(Vector<FileEntry> result) {
                 if (result != null) {
                     for (FileEntry fileEntry : result) {
                         Label label = new Label();
