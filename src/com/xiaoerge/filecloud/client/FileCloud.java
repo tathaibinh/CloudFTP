@@ -3,6 +3,9 @@ package com.xiaoerge.filecloud.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.jsonp.client.JsonpRequestBuilder;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -21,79 +24,62 @@ public class FileCloud implements EntryPoint {
 
     private static Logger logger = Logger.getLogger(FileCloud.class.getName());
 
-    private AuthServiceAsync authServiceAsync = GWT.create(AuthService.class);
-    private ShellServiceAsync shellServiceAsync = GWT.create(ShellService.class);
-
-    private Button signinBt;
-    private TextBox hostnametf, passwordtf;
-    private Label authstatuslb;
+//    private AuthServiceAsync authServiceAsync = GWT.create(AuthService.class);
+//    private ShellServiceAsync shellServiceAsync = GWT.create(ShellService.class);
 
     public void onModuleLoad() {
 
-        signinBt = new Button();
-        hostnametf = new TextBox();
-        passwordtf = new PasswordTextBox();
-        authstatuslb = Label.wrap(Document.get().getElementById("authstatuslb"));
+        AuthServiceAsync authServiceAsync = GWT.create(AuthService.class);
+        HandlerManager handlerManager = new HandlerManager(null);
+        AppController appViewer = new AppController(authServiceAsync, handlerManager);
+        appViewer.go(RootPanel.get());
 
-        hostnametf.setStyleName("form-control");
-        hostnametf.getElement().setPropertyString("placeholder", "User@host.com");
+//        signinBt.addClickHandler(new ClickHandler() {
+//            @Override
+//            public void onClick(ClickEvent event) {
+//
+//                AsyncCallback<String> callback = new AsyncCallback<String>() {
+//                    public void onFailure(Throwable caught) {
+//                        logger.log(Level.SEVERE, "sign in error");
+//                    }
+//
+//                    public void onSuccess(String result) {
+//                        if (result != null && !result.isEmpty()) {
+//                            signInStatus("Success", "alert alert-success");
+//                            logger.log(Level.SEVERE, "true");
+//                            ls();
+//                        } else {
+//                            signInStatus("Failure", "alert alert-danger");
+//                            logger.log(Level.SEVERE, "false");
+//                        }
+//                    }
+//                };
+//
+//                authServiceAsync.authenticate(hostnametf.getText(), passwordtf.getText().getBytes(), 22, callback);
+//            }
+//        });
 
-        passwordtf.setStyleName("form-control");
-        passwordtf.getElement().setPropertyString("placeholder", "Password");
-
-        signinBt.setText("Sign in");
-        signinBt.setStyleName("btn btn-lg btn-primary btn-block");
-
-        RootPanel.get("loginform").add(hostnametf);
-        RootPanel.get("loginform").add(passwordtf);
-        RootPanel.get("loginform").add(signinBt);
-
-        signinBt.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-
-                AsyncCallback<String> callback = new AsyncCallback<String>() {
-                    public void onFailure(Throwable caught) {
-                        logger.log(Level.SEVERE, "sign in error");
-                    }
-
-                    public void onSuccess(String result) {
-                        if (result != null && !result.isEmpty()) {
-                            signInStatus("Success", "alert alert-success");
-                            logger.log(Level.SEVERE, "true");
-                            ls();
-                        } else {
-                            signInStatus("Failure", "alert alert-danger");
-                            logger.log(Level.SEVERE, "false");
-                        }
-                    }
-                };
-
-                authServiceAsync.authenticate(hostnametf.getText(), passwordtf.getText().getBytes(), 22, callback);
-            }
-        });
-
-        AsyncCallback<String> callback = new AsyncCallback<String>() {
-            @Override
-            public void onFailure(Throwable caught) {
-
-            }
-
-            @Override
-            public void onSuccess(String result) {
-                if (result != null && !result.isEmpty()) {
-                    signInStatus("Success", "alert alert-success");
-                    logger.log(Level.SEVERE, "true");
-                    ls();
-                }
-            }
-        };
-        authServiceAsync.authenticateSession(callback);
+//        AsyncCallback<String> callback = new AsyncCallback<String>() {
+//            @Override
+//            public void onFailure(Throwable caught) {
+//
+//            }
+//
+//            @Override
+//            public void onSuccess(String result) {
+//                if (result != null && !result.isEmpty()) {
+//                    signInStatus("Success", "alert alert-success");
+//                    logger.log(Level.SEVERE, "true");
+//                    ls();
+//                }
+//            }
+//        };
+//        authServiceAsync.authenticateSession(callback);
     }
 
     private void signInStatus(String status, String style) {
-        authstatuslb.setStyleName(style);
-        authstatuslb.setText(status);
+//        authstatuslb.setStyleName(style);
+//        authstatuslb.setText(status);
     }
 
     private void setCookie() {
@@ -104,23 +90,23 @@ public class FileCloud implements EntryPoint {
     }
 
     private void ls() {
-        AsyncCallback<Vector<FileEntry>> callback = new AsyncCallback<Vector<FileEntry>>() {
-            public void onFailure(Throwable caught) {
-                logger.log(Level.SEVERE, "ls error");
-            }
-
-            public void onSuccess(Vector<FileEntry> result) {
-                if (result != null) {
-                    for (FileEntry fileEntry : result) {
-                        Label label = new Label();
-                        label.setText(fileEntry.getFileName());
-                        label.setStyleName("list-group-item");
-                        RootPanel.get("lsPanel").add(label);
-                    }
-                }
-            }
-        };
-
-        shellServiceAsync.ls(".", callback);
+//        AsyncCallback<Vector<FileEntry>> callback = new AsyncCallback<Vector<FileEntry>>() {
+//            public void onFailure(Throwable caught) {
+//                logger.log(Level.SEVERE, "ls error");
+//            }
+//
+//            public void onSuccess(Vector<FileEntry> result) {
+//                if (result != null) {
+//                    for (FileEntry fileEntry : result) {
+//                        Label label = new Label();
+//                        label.setText(fileEntry.getFileName());
+//                        label.setStyleName("list-group-item");
+//                        RootPanel.get("lsPanel").add(label);
+//                    }
+//                }
+//            }
+//        };
+//
+//        shellServiceAsync.ls(".", callback);
     }
 }

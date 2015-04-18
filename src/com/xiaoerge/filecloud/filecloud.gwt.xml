@@ -7,8 +7,6 @@
 
     <entry-point class='com.xiaoerge.filecloud.client.FileCloud'/>
 
-    <servlet path='/authservice' class='com.xiaoerge.filecloud.server.AuthServiceImpl'/>
-
     <source path='client'/>
     <source path='shared'/>
 
