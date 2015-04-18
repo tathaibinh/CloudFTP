@@ -13,8 +13,16 @@
         <servlet-name>authService</servlet-name>
         <servlet-class>com.xiaoerge.filecloud.server.AuthServiceImpl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>shellService</servlet-name>
+        <servlet-class>com.xiaoerge.filecloud.server.ShellServiceImpl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>authService</servlet-name>
         <url-pattern>/filecloud/authservice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>shellService</servlet-name>
+        <url-pattern>/filecloud/shellservice</url-pattern>
     </servlet-mapping>
 </web-app>
