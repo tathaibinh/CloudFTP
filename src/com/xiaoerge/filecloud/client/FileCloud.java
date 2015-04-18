@@ -58,8 +58,7 @@ public class FileCloud implements EntryPoint {
                         if (result != null && !result.isEmpty()) {
                             signInStatus("Success", "alert alert-success");
                             logger.log(Level.SEVERE, "true");
-                        }
-                        else {
+                        } else {
                             signInStatus("Failure", "alert alert-danger");
                             logger.log(Level.SEVERE, "false");
                         }
@@ -69,6 +68,22 @@ public class FileCloud implements EntryPoint {
                 authServiceAsync.authenticate(hostnametf.getText(), passwordtf.getText().getBytes(), 22, callback);
             }
         });
+
+        AsyncCallback<String> callback = new AsyncCallback<String>() {
+            @Override
+            public void onFailure(Throwable caught) {
+
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                if (result != null && !result.isEmpty()) {
+                    signInStatus("Success", "alert alert-success");
+                    logger.log(Level.SEVERE, "true");
+                }
+            }
+        };
+        authServiceAsync.authenticateSession(callback);
     }
 
     private void signInStatus(String status, String style) {

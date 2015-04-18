@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface AuthService extends RemoteService {
 
     public String authenticate(String host, byte[] passwd, int port);
+    public String authenticateSession();
 
     public static class App {
         private static AuthServiceAsync ourInstance = GWT.create(AuthService.class);

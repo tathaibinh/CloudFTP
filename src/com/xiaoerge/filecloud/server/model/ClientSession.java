@@ -2,7 +2,6 @@ package com.xiaoerge.filecloud.server.model;
 
 import com.jcraft.jsch.*;
 
-import javax.crypto.*;
 import javax.crypto.Cipher;
 import java.security.*;
 import java.security.KeyPair;
@@ -10,9 +9,9 @@ import java.security.KeyPair;
 /**
  * Created by xiaoerge on 4/17/15.
  */
-public class ChannelSession
+public class ClientSession
 {
-    private static ChannelSession channelSession = new ChannelSession();
+    private static ClientSession clientSession = new ClientSession();
     private JSch jsch;
     private Session session;
     private Channel channel;
@@ -23,7 +22,7 @@ public class ChannelSession
     private java.security.KeyPair key;
     private javax.crypto.Cipher cipher;
 
-    private ChannelSession() {
+    private ClientSession() {
         jsch = new JSch();
         session = null;
         accountinfo = null;
@@ -33,10 +32,10 @@ public class ChannelSession
         cipher = null;
     }
 
-    public static ChannelSession getInstance() {
-        if (channelSession == null)
-            return new ChannelSession();
-        return channelSession;
+    public static ClientSession getInstance() {
+        if (clientSession == null)
+            return new ClientSession();
+        return clientSession;
     }
 
     public JSch getJsch() {

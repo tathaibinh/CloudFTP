@@ -3,15 +3,18 @@ package com.xiaoerge.filecloud.server;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.jcraft.jsch.*;
 import com.xiaoerge.filecloud.client.AuthService;
-import com.xiaoerge.filecloud.server.model.ChannelSession;
+import com.xiaoerge.filecloud.server.model.ClientSession;
 import com.xiaoerge.filecloud.server.model.EncryptionUtil;
 
 import javax.crypto.Cipher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 
 public class AuthServiceImpl extends RemoteServiceServlet implements AuthService {
 
+    private static String PUBLIC_KEY = "PUBLIC_KEY";
     private String username;
     private String password;
     private String host;
@@ -21,7 +24,7 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
     public String authenticate(String hostname, byte[] password, int port) {
 
         try {
-            ChannelSession channelSession = ChannelSession.getInstance();
+            ClientSession clientSession = ClientSession.getInstance();
 
             String username = hostname.substring(0, hostname.indexOf('@'));
             String host = hostname.substring(hostname.indexOf('@') + 1);
@@ -32,9 +35,9 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
 
             Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 
-            channelSession.setKeyGen(keyGen);
-            channelSession.setKey(key);
-            channelSession.setCipher(cipher);
+            clientSession.setKeyGen(keyGen);
+            clientSession.setKey(key);
+            clientSession.setCipher(cipher);
 
             byte[] cipherText = EncryptionUtil.encrypt(password);
 
@@ -47,16 +50,39 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
             channel.connect();
             ChannelSftp channelsftp = (ChannelSftp) channel;
 
-            channelSession.setJsch(jSch);
-            channelSession.setAccountinfo(userInfo);
-            channelSession.setSession(session);
-            channelSession.setChannel(channel);
-            channelSession.setChannelsftp(channelsftp);
+            clientSession.setJsch(jSch);
+            clientSession.setAccountinfo(userInfo);
+            clientSession.setSession(session);
+            clientSession.setChannel(channel);
+            clientSession.setChannelsftp(channelsftp);
+
+            storeSessionKey(key.getPublic().toString());
 
             return key.getPublic().toString();
 
         } catch (Exception e) {
             return "";
         }
+    }
+
+    @Override
+    public String authenticateSession() {
+        HttpServletRequest httpServletRequest = this.getThreadLocalRequest();
+        HttpSession session = httpServletRequest.getSession();
+        return (String) session.getAttribute(PUBLIC_KEY);
+    }
+
+    private void storeSessionKey(String publicKey)
+    {
+        HttpServletRequest httpServletRequest = this.getThreadLocalRequest();
+        HttpSession session = httpServletRequest.getSession();
+        session.setAttribute(PUBLIC_KEY, publicKey);
+    }
+
+    private void deleteSessionKey()
+    {
+        HttpServletRequest httpServletRequest = this.getThreadLocalRequest();
+        HttpSession session = httpServletRequest.getSession();
+        session.removeAttribute(PUBLIC_KEY);
     }
 }
