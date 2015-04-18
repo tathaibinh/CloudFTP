@@ -3,16 +3,13 @@ package com.xiaoerge.filecloud.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.user.client.Cookies;
+import com.google.gwt.jsonp.client.JsonpRequestBuilder;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.DOM;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.xiaoerge.filecloud.client.model.FileEntry;
 
-import javax.security.auth.callback.TextInputCallback;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,10 +18,10 @@ import java.util.logging.Logger;
  */
 public class FileCloud implements EntryPoint {
 
+    private static Logger logger = Logger.getLogger(FileCloud.class.getName());
+
     private AuthServiceAsync authServiceAsync = GWT.create(AuthService.class);
     private ShellServiceAsync shellServiceAsync = GWT.create(ShellService.class);
-
-    private Logger logger = Logger.getLogger(this.getClass().getName());
 
     private Button signinBt;
     private TextBox hostnametf, passwordtf;
@@ -106,16 +103,16 @@ public class FileCloud implements EntryPoint {
     }
 
     private void ls() {
-        AsyncCallback<String[]> callback = new AsyncCallback<String[]>() {
+        AsyncCallback<FileEntry[]> callback = new AsyncCallback<FileEntry[]>() {
             public void onFailure(Throwable caught) {
                 logger.log(Level.SEVERE, "ls error");
             }
 
-            public void onSuccess(String[] result) {
+            public void onSuccess(FileEntry[] result) {
                 if (result != null) {
-                    for (String s : result) {
+                    for (FileEntry fileEntry : result) {
                         Label label = new Label();
-                        label.setText(s);
+                        label.setText(fileEntry.getFileName());
                         label.setStyleName("list-group-item");
                         RootPanel.get("lsPanel").add(label);
                     }

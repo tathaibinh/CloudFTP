@@ -4,6 +4,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import com.xiaoerge.filecloud.client.ShellService;
+import com.xiaoerge.filecloud.client.model.FileEntry;
 import com.xiaoerge.filecloud.server.model.ClientSession;
 
 import java.util.Vector;
@@ -14,16 +15,25 @@ import java.util.Vector;
 public class ShellServiceImpl extends RemoteServiceServlet implements ShellService {
 
     @Override
-    public String[] ls(String path) {
+    public FileEntry[] ls(String path) {
         ClientSession clientSession = ClientSession.getInstance();
         ChannelSftp channelSftp = clientSession.getChannelsftp();
 
         try {
             Vector<ChannelSftp.LsEntry> lsEntries = channelSftp.ls(path);
-            String[] entries = new String[lsEntries.size()];
+            FileEntry[] entries = new FileEntry[lsEntries.size()];
             for (int i = 0; i < lsEntries.size(); i++)
             {
-                entries[i] = lsEntries.get(i).getFilename();
+                String fileName = lsEntries.get(i).getFilename();
+
+                //hiddne file,  don't show for now
+                if (fileName.startsWith(".")) {
+                    continue;
+                }
+
+                FileEntry fileEntry = new FileEntry();
+                fileEntry.setFileName(fileName);
+                entries[i] = fileEntry;
             }
             return entries;
         } catch (SftpException e) {
