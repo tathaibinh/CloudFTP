@@ -58,18 +58,17 @@ public class LoginPresenter implements Presenter {
 
                     public void onSuccess(String result) {
                         if (result != null && !result.isEmpty()) {
+                            CommonUtil.hideLoadingAnimation(display.getLoginStatusLabel());
                             display.getLoginStatusLabel().setText("Success");
                             display.getLoginStatusLabel().setStyleName("alert alert-success");
                             logger.log(Level.INFO, "Log in success");
-
-                            CommonUtil.hideLoadingAnimation(display.getLoginStatusLabel());
                             eventBus.fireEvent(new LogoutEvent());
 
                         } else {
+                            CommonUtil.hideLoadingAnimation(display.getLoginStatusLabel());
                             display.getLoginStatusLabel().setText("Failure");
                             display.getLoginStatusLabel().setStyleName("alert alert-danger");
                             logger.log(Level.SEVERE, "log in failure");
-                            CommonUtil.hideLoadingAnimation(display.getLoginStatusLabel());
                         }
                     }
                 };

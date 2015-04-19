@@ -22,7 +22,7 @@ public class FileCloud implements EntryPoint {
         AuthServiceAsync authServiceAsync = GWT.create(AuthService.class);
         HandlerManager handlerManager = new HandlerManager(null);
         AppController appViewer = new AppController(authServiceAsync, handlerManager);
-        appViewer.refresh(RootPanel.get());
+        appViewer.refresh(RootPanel.get("container"));
 
 //        AsyncCallback<String> callback = new AsyncCallback<String>() {
 //            @Override

@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class CommonUtil
 {
     public static void showLoadingAnimation(Widget widget) {
-        widget.getElement().setInnerHTML("<i class=\"fa fa-refresh fa-spin\"></i>");
+        widget.getElement().setInnerHTML("<i class=\"fa fa-refresh fa-spin fa-3x\"></i>");
     }
     public static void hideLoadingAnimation(Widget widget) {
         widget.getElement().setInnerHTML("");
