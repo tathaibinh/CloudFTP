@@ -2,19 +2,9 @@ package com.xiaoerge.filecloud.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.jsonp.client.JsonpRequestBuilder;
 import com.google.gwt.user.client.ui.*;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.xiaoerge.filecloud.client.model.FileEntry;
 
-import java.util.Vector;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -32,32 +22,7 @@ public class FileCloud implements EntryPoint {
         AuthServiceAsync authServiceAsync = GWT.create(AuthService.class);
         HandlerManager handlerManager = new HandlerManager(null);
         AppController appViewer = new AppController(authServiceAsync, handlerManager);
-        appViewer.go(RootPanel.get());
-
-//        signinBt.addClickHandler(new ClickHandler() {
-//            @Override
-//            public void onClick(ClickEvent event) {
-//
-//                AsyncCallback<String> callback = new AsyncCallback<String>() {
-//                    public void onFailure(Throwable caught) {
-//                        logger.log(Level.SEVERE, "sign in error");
-//                    }
-//
-//                    public void onSuccess(String result) {
-//                        if (result != null && !result.isEmpty()) {
-//                            signInStatus("Success", "alert alert-success");
-//                            logger.log(Level.SEVERE, "true");
-//                            ls();
-//                        } else {
-//                            signInStatus("Failure", "alert alert-danger");
-//                            logger.log(Level.SEVERE, "false");
-//                        }
-//                    }
-//                };
-//
-//                authServiceAsync.authenticate(hostnametf.getText(), passwordtf.getText().getBytes(), 22, callback);
-//            }
-//        });
+        appViewer.refresh(RootPanel.get());
 
 //        AsyncCallback<String> callback = new AsyncCallback<String>() {
 //            @Override

@@ -1,71 +1,70 @@
 package com.xiaoerge.filecloud.client.view;
 
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.filecloud.client.presenter.LoginPresenter;
-
-import java.util.List;
 
 /**
  * Created by xiaoerge on 4/18/15.
  */
 public class LoginView extends Composite implements LoginPresenter.Display {
 
-    private Button signinBt;
-    private TextBox hostnametf;
-    private PasswordTextBox passwordtf;
-    private Label authstatuslb;
-    private Label titleLabel;
+    private Button loginBt;
+    private TextBox hostnameTf;
+    private PasswordTextBox passwordTf;
+    private Label loginStatusLb;
+    private Label titleLb;
 
     public LoginView() {
-        signinBt = new Button();
-        hostnametf = new TextBox();
-        passwordtf = new PasswordTextBox();
-        authstatuslb = new Label();
-        titleLabel = new Label();
 
-        hostnametf.setStyleName("form-control");
-        hostnametf.getElement().setPropertyString("placeholder", "User@host.com");
+        VerticalPanel verticalPanel = new VerticalPanel();
+        initWidget(verticalPanel);
+        verticalPanel.setStyleName("form-signin");
 
-        passwordtf.setStyleName("form-control");
-        passwordtf.getElement().setPropertyString("placeholder", "Password");
+        loginBt = new Button();
+        hostnameTf = new TextBox();
+        passwordTf = new PasswordTextBox();
+        loginStatusLb = new Label();
+        titleLb = new Label();
 
-        signinBt.setText("Sign in");
-        signinBt.setStyleName("btn btn-lg btn-primary btn-block");
+        hostnameTf.setStyleName("form-control");
+        hostnameTf.getElement().setPropertyString("placeholder", "User@host.com");
 
-        authstatuslb.getElement().setPropertyString("role", "alert");
+        passwordTf.setStyleName("form-control");
+        passwordTf.getElement().setPropertyString("placeholder", "Password");
 
-        titleLabel.setStyleName("h2 form-signin-heading");
-        titleLabel.getElement().setInnerText("SSH Sign in");
+        loginBt.setText("Sign in");
+        loginBt.setStyleName("btn btn-lg btn-primary btn-block");
 
-        RootPanel.get("loginform").add(authstatuslb);
-        RootPanel.get("loginform").add(titleLabel);
-        RootPanel.get("loginform").add(hostnametf);
-        RootPanel.get("loginform").add(passwordtf);
-        RootPanel.get("loginform").add(signinBt);
+        loginStatusLb.getElement().setPropertyString("role", "alert");
+
+        titleLb.setStyleName("h2 form-signin-heading");
+        titleLb.getElement().setInnerText("SSH Sign in");
+
+        verticalPanel.add(loginStatusLb);
+        verticalPanel.add(titleLb);
+        verticalPanel.add(hostnameTf);
+        verticalPanel.add(passwordTf);
+        verticalPanel.add(loginBt);
     }
 
     @Override
     public Button getLoginButton() {
-        return signinBt;
+        return loginBt;
     }
 
     @Override
     public TextBox getHostnameTextBox() {
-        return hostnametf;
+        return hostnameTf;
     }
 
     @Override
     public PasswordTextBox getPasswordTextBox() {
-        return passwordtf;
+        return passwordTf;
     }
 
     @Override
     public Label getLoginStatusLabel() {
-        return authstatuslb;
+        return loginStatusLb;
     }
 
     @Override

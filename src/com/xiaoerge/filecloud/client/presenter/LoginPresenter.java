@@ -2,14 +2,13 @@ package com.xiaoerge.filecloud.client.presenter;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.filecloud.client.AuthServiceAsync;
-import com.xiaoerge.filecloud.client.event.LoginEvent;
+import com.xiaoerge.filecloud.client.event.LogoutEvent;
+import com.xiaoerge.filecloud.client.shared.CommonUtil;
 
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,18 +28,18 @@ public class LoginPresenter implements Presenter {
     }
 
     private final AuthServiceAsync authServiceAsync;
-    private final HandlerManager handlerManager;
+    private final HandlerManager eventBus;
     private final Display display;
 
-    public LoginPresenter(AuthServiceAsync authServiceAsync, HandlerManager handlerManager, Display display) {
+    public LoginPresenter(AuthServiceAsync authServiceAsync, HandlerManager eventBus, Display display) {
         this.authServiceAsync = authServiceAsync;
-        this.handlerManager = handlerManager;
+        this.eventBus = eventBus;
         this.display = display;
         bind();
     }
 
     @Override
-    public void go(HasWidgets widgets) {
+    public void refresh(HasWidgets widgets) {
         widgets.clear();
         widgets.add(display.asWidget());
     }
@@ -49,6 +48,9 @@ public class LoginPresenter implements Presenter {
         display.getLoginButton().addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
+
+                CommonUtil.showLoadingAnimation(display.getLoginStatusLabel());
+
                 AsyncCallback<String> callback = new AsyncCallback<String>() {
                     public void onFailure(Throwable caught) {
                         logger.log(Level.SEVERE, "sign in error");
@@ -58,11 +60,16 @@ public class LoginPresenter implements Presenter {
                         if (result != null && !result.isEmpty()) {
                             display.getLoginStatusLabel().setText("Success");
                             display.getLoginStatusLabel().setStyleName("alert alert-success");
-                            logger.log(Level.SEVERE, "true");
+                            logger.log(Level.INFO, "Log in success");
+
+                            CommonUtil.hideLoadingAnimation(display.getLoginStatusLabel());
+                            eventBus.fireEvent(new LogoutEvent());
+
                         } else {
                             display.getLoginStatusLabel().setText("Failure");
                             display.getLoginStatusLabel().setStyleName("alert alert-danger");
-                            logger.log(Level.SEVERE, "false");
+                            logger.log(Level.SEVERE, "log in failure");
+                            CommonUtil.hideLoadingAnimation(display.getLoginStatusLabel());
                         }
                     }
                 };

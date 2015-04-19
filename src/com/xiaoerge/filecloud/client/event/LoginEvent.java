@@ -9,11 +9,11 @@ import com.google.web.bindery.event.shared.Event;
  */
 public class LoginEvent extends GwtEvent<LoginEventHandler> {
 
-    public static Type<LoginEventHandler> handlerType = new Type<LoginEventHandler>();
+    public static Type<LoginEventHandler> TYPE = new Type<LoginEventHandler>();
 
     @Override
     public Type<LoginEventHandler> getAssociatedType() {
-        return handlerType;
+        return TYPE;
     }
 
     @Override
