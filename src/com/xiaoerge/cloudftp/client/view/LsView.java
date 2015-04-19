@@ -1,5 +1,6 @@
 package com.xiaoerge.cloudftp.client.view;
 
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 import com.xiaoerge.cloudftp.client.presenter.LoginPresenter;
@@ -12,25 +13,20 @@ import java.util.Vector;
  */
 public class LsView extends Composite implements LsPresenter.Display {
 
-    private ListBox listBox;
+    private VerticalPanel listPanel;
     private Vector<FileEntry> fileEntries;
 
     public LsView() {
-        listBox = new ListBox();
+        listPanel = new VerticalPanel();
+        initWidget(listPanel);
+
         fileEntries = new Vector<>();
-
-        VerticalPanel verticalPanel = new VerticalPanel();
-        verticalPanel.add(listBox);
+        listPanel.setStyleName("list-group");
     }
 
     @Override
-    public ListBox getFileList() {
-        return listBox;
-    }
-
-    @Override
-    public Widget asWidget() {
-        return this;
+    public Vector<FileEntry> getItems() {
+        return fileEntries;
     }
 
     @Override
@@ -39,9 +35,16 @@ public class LsView extends Composite implements LsPresenter.Display {
         refresh();
     }
 
+    @Override
+    public Widget asWidget() {
+        return this;
+    }
+
     private void refresh() {
         for (FileEntry fileEntry : fileEntries) {
-            listBox.addItem(fileEntry.getFileName());
+            Label label = new Label(fileEntry.getFileName());
+            label.setStyleName("list-group-item");
+            listPanel.add(label);
         }
     }
 }

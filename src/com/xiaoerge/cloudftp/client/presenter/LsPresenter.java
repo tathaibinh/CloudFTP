@@ -15,9 +15,9 @@ import java.util.Vector;
 public class LsPresenter implements Presenter {
 
     public interface Display {
-        ListBox getFileList();
-        Widget asWidget();
+        Vector<FileEntry> getItems();
         void setItems(Vector<FileEntry> fileEntries);
+        Widget asWidget();
     }
 
     private final ShellServiceAsync shellServiceAsync;
@@ -29,6 +29,7 @@ public class LsPresenter implements Presenter {
         this.shellServiceAsync = shellServiceAsync;
         this.eventBus = eventBus;
         this.display = display;
+        //todo  don't hardcode
         this.path = ".";
         bind();
     }

@@ -26,4 +26,6 @@ public class LsEvent extends GwtEvent<LsEventHandler> {
     protected void dispatch(LsEventHandler handler) {
         handler.onLs(this);
     }
+
+    public String getPath() { return path; }
 }
