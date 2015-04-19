@@ -84,12 +84,12 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         });
     }
 
-    private void doLogin() {
+    private synchronized void doLogin() {
         logger.log(Level.SEVERE, "loading login view");
         History.newItem("login");
     }
 
-    private void doLogout() {
+    private synchronized void doLogout() {
         logger.log(Level.SEVERE, "loading logout view");
         History.newItem("logout");
     }

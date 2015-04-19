@@ -23,6 +23,7 @@ public class LoginPresenter implements Presenter {
         Button getLoginButton();
         TextBox getHostnameTextBox();
         PasswordTextBox getPasswordTextBox();
+        TextBox getPortTf();
         Label getLoginStatusLabel();
         Widget asWidget();
     }
@@ -73,8 +74,11 @@ public class LoginPresenter implements Presenter {
                     }
                 };
 
-                authServiceAsync.authenticate(display.getHostnameTextBox().getText(),
-                        display.getPasswordTextBox().getText().getBytes(), 22, callback);
+                synchronized (this) {
+                    authServiceAsync.authenticate(display.getHostnameTextBox().getText(),
+                            display.getPasswordTextBox().getText().getBytes(),
+                            Integer.parseInt(display.getPortTf().getText()), callback);
+                }
             }
         });
     }

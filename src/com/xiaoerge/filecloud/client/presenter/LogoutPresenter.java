@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.filecloud.client.AuthServiceAsync;
 import com.xiaoerge.filecloud.client.event.LoginEvent;
 import com.xiaoerge.filecloud.client.event.LogoutEvent;
+import com.xiaoerge.filecloud.client.shared.CommonUtil;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

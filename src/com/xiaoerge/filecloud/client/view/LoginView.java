@@ -9,22 +9,22 @@ import com.xiaoerge.filecloud.client.presenter.LoginPresenter;
 public class LoginView extends Composite implements LoginPresenter.Display {
 
     private Button loginBt;
-    private TextBox hostnameTf;
+    private TextBox hostnameTf, portTf;
     private PasswordTextBox passwordTf;
     private Label loginStatusLb;
-    private Label titleLb;
 
     public LoginView() {
 
-        VerticalPanel verticalPanel = new VerticalPanel();
-        initWidget(verticalPanel);
-        verticalPanel.setStyleName("form-signin");
+        VerticalPanel horizontalPanel = new VerticalPanel();
+
+        initWidget(horizontalPanel);
+        horizontalPanel.setStyleName("form-signin");
 
         loginBt = new Button();
         hostnameTf = new TextBox();
+        portTf = new TextBox();
         passwordTf = new PasswordTextBox();
         loginStatusLb = new Label();
-        titleLb = new Label();
 
         hostnameTf.setStyleName("form-control");
         hostnameTf.getElement().setPropertyString("placeholder", "User@host.com");
@@ -32,19 +32,20 @@ public class LoginView extends Composite implements LoginPresenter.Display {
         passwordTf.setStyleName("form-control");
         passwordTf.getElement().setPropertyString("placeholder", "Password");
 
+        portTf.setStyleName("form-control");
+        portTf.setText(Integer.toString(22));
+        portTf.getElement().setPropertyString("placeholder", "22");
+
         loginBt.setText("Sign in");
         loginBt.setStyleName("btn btn-lg btn-primary btn-block");
 
         loginStatusLb.getElement().setPropertyString("role", "alert");
 
-        titleLb.setStyleName("h2 form-signin-heading");
-        titleLb.getElement().setInnerText("SSH Sign in");
-
-        verticalPanel.add(loginStatusLb);
-        verticalPanel.add(titleLb);
-        verticalPanel.add(hostnameTf);
-        verticalPanel.add(passwordTf);
-        verticalPanel.add(loginBt);
+        horizontalPanel.add(hostnameTf);
+        horizontalPanel.add(portTf);
+        horizontalPanel.add(passwordTf);
+        horizontalPanel.add(loginBt);
+        horizontalPanel.add(loginStatusLb);
     }
 
     @Override
@@ -61,6 +62,9 @@ public class LoginView extends Composite implements LoginPresenter.Display {
     public PasswordTextBox getPasswordTextBox() {
         return passwordTf;
     }
+
+    @Override
+    public TextBox getPortTf() { return portTf; }
 
     @Override
     public Label getLoginStatusLabel() {
