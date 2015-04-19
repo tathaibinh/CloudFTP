@@ -1,13 +1,18 @@
 package com.xiaoerge.cloudftp.server.shared;
 
 import javax.crypto.Cipher;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import java.security.KeyPair;
+import java.util.Objects;
+import java.util.logging.Logger;
 
 /**
  * Created by xiaoerge on 4/17/15.
  */
 public class EncryptionUtil
 {
+    private static Logger logger = Logger.getLogger(EncryptionUtil.class.getName());
     private static EncryptionUtil encryptionUtil;
 
     private static synchronized EncryptionUtil getEncryptionUtil() {
@@ -21,7 +26,7 @@ public class EncryptionUtil
         return encryptionUtil;
     }
 
-    public static byte[] encrypt(byte[] plainText) {
+    public static synchronized byte[] encrypt(byte[] plainText) {
         try {
             KeyPair key = ClientSession.getInstance().getKey();
             Cipher cipher = ClientSession.getInstance().getCipher();
@@ -32,7 +37,7 @@ public class EncryptionUtil
             return null;
         }
     }
-    public static byte[] decrypt(byte[] cipherText) {
+    public static synchronized byte[] decrypt(byte[] cipherText) {
         try {
             KeyPair key = ClientSession.getInstance().getKey();
             Cipher cipher = ClientSession.getInstance().getCipher();

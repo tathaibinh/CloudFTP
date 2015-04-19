@@ -3,6 +3,7 @@ package com.xiaoerge.cloudftp.server;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.jcraft.jsch.*;
 import com.xiaoerge.cloudftp.client.AuthService;
+import com.xiaoerge.cloudftp.server.model.UserModel;
 import com.xiaoerge.cloudftp.server.shared.ClientSession;
 import com.xiaoerge.cloudftp.server.shared.EncryptionUtil;
 
@@ -43,7 +44,7 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
 
             JSch jSch = new JSch();
             Session session = jSch.getSession(username, host, port);
-            UserInfo userInfo = new UserAcountInfo(cipherText);
+            UserInfo userInfo = new UserModel(cipherText);
             session.setUserInfo(userInfo);
             session.connect();
             Channel channel = session.openChannel("sftp");
