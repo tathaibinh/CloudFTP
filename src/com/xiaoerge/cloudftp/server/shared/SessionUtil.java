@@ -12,18 +12,6 @@ import java.util.logging.Logger;
 public class SessionUtil
 {
     private static Logger logger = Logger.getLogger(SessionUtil.class.getName());
-    private static SessionUtil sessionUtil;
-
-    private static synchronized SessionUtil getSessionUtil() {
-        if (sessionUtil == null) {
-            try {
-                return new SessionUtil();
-            } catch (Exception e) {
-                return null;
-            }
-        }
-        return sessionUtil;
-    }
 
     public static synchronized void saveToSession(HttpSession session, String key, Objects value) {
         session.setAttribute(key, value);

@@ -20,8 +20,9 @@ public class CloudFTP implements EntryPoint {
     public void onModuleLoad() {
 
         AuthServiceAsync authServiceAsync = GWT.create(AuthService.class);
+        ShellServiceAsync shellServiceAsync = GWT.create(ShellService.class);
         HandlerManager handlerManager = new HandlerManager(null);
-        AppController appViewer = new AppController(authServiceAsync, handlerManager);
+        AppController appViewer = new AppController(authServiceAsync, shellServiceAsync, handlerManager);
         appViewer.refresh(RootPanel.get("container"));
 
 //        AsyncCallback<String> callback = new AsyncCallback<String>() {
@@ -40,11 +41,6 @@ public class CloudFTP implements EntryPoint {
 //            }
 //        };
 //        authServiceAsync.authenticateSession(callback);
-    }
-
-    private void signInStatus(String status, String style) {
-//        authstatuslb.setStyleName(style);
-//        authstatuslb.setText(status);
     }
 
     private void setCookie() {

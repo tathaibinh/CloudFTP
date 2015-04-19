@@ -1,4 +1,4 @@
-package com.xiaoerge.cloudftp.server.shared;
+package com.xiaoerge.cloudftp.server.model;
 
 import com.jcraft.jsch.*;
 
@@ -9,9 +9,9 @@ import java.security.KeyPair;
 /**
  * Created by xiaoerge on 4/17/15.
  */
-public class ClientSession
+public class SessionModel
 {
-    private static ClientSession clientSession = new ClientSession();
+    private static SessionModel sessionModel = new SessionModel();
     private JSch jsch;
     private Session session;
     private Channel channel;
@@ -22,7 +22,7 @@ public class ClientSession
     private java.security.KeyPair key;
     private javax.crypto.Cipher cipher;
 
-    private ClientSession() {
+    private SessionModel() {
         jsch = new JSch();
         session = null;
         accountinfo = null;
@@ -32,10 +32,10 @@ public class ClientSession
         cipher = null;
     }
 
-    public static synchronized ClientSession getInstance() {
-        if (clientSession == null)
-            return new ClientSession();
-        return clientSession;
+    public static synchronized SessionModel getInstance() {
+        if (sessionModel == null)
+            return new SessionModel();
+        return sessionModel;
     }
 
     public JSch getJsch() {
@@ -100,5 +100,18 @@ public class ClientSession
 
     public void setCipher(Cipher cipher) {
         this.cipher = cipher;
+    }
+
+    public void dispose() {
+        channelsftp.disconnect();
+        channel.disconnect();
+        session.disconnect();
+        accountinfo = null;
+        jsch = null;
+        keyGen = null;
+        key = null;
+        cipher = null;
+
+        sessionModel = null;
     }
 }

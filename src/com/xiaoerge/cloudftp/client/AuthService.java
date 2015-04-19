@@ -7,5 +7,5 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface AuthService extends RemoteService {
 
     public byte[] authenticate(String host, byte[] passwd, int port);
-    public String authenticateSession();
+    public byte[] authenticateSession();
 }

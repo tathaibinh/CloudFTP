@@ -4,7 +4,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.jcraft.jsch.*;
 import com.xiaoerge.cloudftp.client.AuthService;
 import com.xiaoerge.cloudftp.server.model.UserModel;
-import com.xiaoerge.cloudftp.server.shared.ClientSession;
+import com.xiaoerge.cloudftp.server.model.SessionModel;
 import com.xiaoerge.cloudftp.server.shared.EncryptionUtil;
 
 import javax.crypto.Cipher;
@@ -25,7 +25,7 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
     public byte[] authenticate(String hostname, byte[] password, int port) {
 
         try {
-            ClientSession clientSession = ClientSession.getInstance();
+            SessionModel sessionModel = SessionModel.getInstance();
 
             String username = hostname.substring(0, hostname.indexOf('@'));
             String host = hostname.substring(hostname.indexOf('@') + 1);
@@ -36,9 +36,9 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
 
             Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 
-            clientSession.setKeyGen(keyGen);
-            clientSession.setKey(key);
-            clientSession.setCipher(cipher);
+            sessionModel.setKeyGen(keyGen);
+            sessionModel.setKey(key);
+            sessionModel.setCipher(cipher);
 
             byte[] cipherText = EncryptionUtil.encrypt(password);
 
@@ -51,13 +51,13 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
             channel.connect();
             ChannelSftp channelsftp = (ChannelSftp) channel;
 
-            clientSession.setJsch(jSch);
-            clientSession.setAccountinfo(userInfo);
-            clientSession.setSession(session);
-            clientSession.setChannel(channel);
-            clientSession.setChannelsftp(channelsftp);
+            sessionModel.setJsch(jSch);
+            sessionModel.setAccountinfo(userInfo);
+            sessionModel.setSession(session);
+            sessionModel.setChannel(channel);
+            sessionModel.setChannelsftp(channelsftp);
 
-            storeSessionKey(key.getPublic().toString());
+            storeSessionKey(key.getPublic().toString().getBytes());
 
             return key.getPublic().getEncoded();
 
@@ -67,13 +67,13 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
     }
 
     @Override
-    public String authenticateSession() {
+    public byte[] authenticateSession() {
         HttpServletRequest httpServletRequest = this.getThreadLocalRequest();
         HttpSession session = httpServletRequest.getSession();
-        return (String) session.getAttribute(PUBLIC_KEY);
+        return ((String) session.getAttribute(PUBLIC_KEY)).getBytes();
     }
 
-    private void storeSessionKey(String publicKey)
+    private void storeSessionKey(byte[] publicKey)
     {
         HttpServletRequest httpServletRequest = this.getThreadLocalRequest();
         HttpSession session = httpServletRequest.getSession();

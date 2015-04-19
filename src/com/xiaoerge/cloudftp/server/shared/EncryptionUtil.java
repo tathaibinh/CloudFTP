@@ -1,10 +1,9 @@
 package com.xiaoerge.cloudftp.server.shared;
 
+import com.xiaoerge.cloudftp.server.model.SessionModel;
+
 import javax.crypto.Cipher;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpSession;
 import java.security.KeyPair;
-import java.util.Objects;
 import java.util.logging.Logger;
 
 /**
@@ -13,23 +12,11 @@ import java.util.logging.Logger;
 public class EncryptionUtil
 {
     private static Logger logger = Logger.getLogger(EncryptionUtil.class.getName());
-    private static EncryptionUtil encryptionUtil;
-
-    private static synchronized EncryptionUtil getEncryptionUtil() {
-        if (encryptionUtil == null) {
-            try {
-                return new EncryptionUtil();
-            } catch (Exception e) {
-                return null;
-            }
-        }
-        return encryptionUtil;
-    }
 
     public static synchronized byte[] encrypt(byte[] plainText) {
         try {
-            KeyPair key = ClientSession.getInstance().getKey();
-            Cipher cipher = ClientSession.getInstance().getCipher();
+            KeyPair key = SessionModel.getInstance().getKey();
+            Cipher cipher = SessionModel.getInstance().getCipher();
             cipher.init(Cipher.ENCRYPT_MODE, key.getPublic());
             return cipher.doFinal(plainText);
         } catch (Exception e) {
@@ -39,8 +26,8 @@ public class EncryptionUtil
     }
     public static synchronized byte[] decrypt(byte[] cipherText) {
         try {
-            KeyPair key = ClientSession.getInstance().getKey();
-            Cipher cipher = ClientSession.getInstance().getCipher();
+            KeyPair key = SessionModel.getInstance().getKey();
+            Cipher cipher = SessionModel.getInstance().getCipher();
             cipher.init(Cipher.DECRYPT_MODE, key.getPrivate());
             return cipher.doFinal(cipherText);
         } catch (Exception e) {

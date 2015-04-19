@@ -5,7 +5,7 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import com.xiaoerge.cloudftp.client.ShellService;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
-import com.xiaoerge.cloudftp.server.shared.ClientSession;
+import com.xiaoerge.cloudftp.server.model.SessionModel;
 
 import java.util.Vector;
 import java.util.logging.Logger;
@@ -19,8 +19,8 @@ public class ShellServiceImpl extends RemoteServiceServlet implements ShellServi
 
     @Override
     public Vector<FileEntry> ls(String path) {
-        ClientSession clientSession = ClientSession.getInstance();
-        ChannelSftp channelSftp = clientSession.getChannelsftp();
+        SessionModel sessionModel = SessionModel.getInstance();
+        ChannelSftp channelSftp = sessionModel.getChannelsftp();
 
         try {
             Vector<ChannelSftp.LsEntry> lsEntries = channelSftp.ls(path);

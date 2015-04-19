@@ -16,10 +16,10 @@ public class LoginView extends Composite implements LoginPresenter.Display {
 
     public LoginView() {
 
-        VerticalPanel horizontalPanel = new VerticalPanel();
+        VerticalPanel verticalPanel = new VerticalPanel();
 
-        initWidget(horizontalPanel);
-        horizontalPanel.setStyleName("form-signin");
+        initWidget(verticalPanel);
+        verticalPanel.setStyleName("form-signin");
 
         loginBt = new Button();
         hostnameTf = new TextBox();
@@ -46,12 +46,12 @@ public class LoginView extends Composite implements LoginPresenter.Display {
 
         loginStatusLb.getElement().setPropertyString("role", "alert");
 
-        horizontalPanel.add(titleLabel);
-        horizontalPanel.add(hostnameTf);
-        horizontalPanel.add(passwordTf);
-        horizontalPanel.add(portTf);
-        horizontalPanel.add(loginBt);
-        horizontalPanel.add(loginStatusLb);
+        verticalPanel.add(titleLabel);
+        verticalPanel.add(hostnameTf);
+        verticalPanel.add(passwordTf);
+        verticalPanel.add(portTf);
+        verticalPanel.add(loginBt);
+        verticalPanel.add(loginStatusLb);
     }
 
     @Override

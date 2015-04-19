@@ -21,6 +21,6 @@ public class SavePublicKeyEvent extends GwtEvent<SavePublicKeyEventHandler> {
 
     @Override
     protected void dispatch(SavePublicKeyEventHandler handler) {
-        handler.onSavePublicKey(key);
+        handler.onSavePublicKey(this);
     }
 }
