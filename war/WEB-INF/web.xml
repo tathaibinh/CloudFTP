@@ -6,23 +6,23 @@
            version="3.0">
 
     <welcome-file-list>
-        <welcome-file>FileCloud.html</welcome-file>
+        <welcome-file>CloudFTP.html</welcome-file>
     </welcome-file-list>
 
     <servlet>
         <servlet-name>authService</servlet-name>
-        <servlet-class>com.xiaoerge.filecloud.server.AuthServiceImpl</servlet-class>
+        <servlet-class>com.xiaoerge.cloudftp.server.AuthServiceImpl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>shellService</servlet-name>
-        <servlet-class>com.xiaoerge.filecloud.server.ShellServiceImpl</servlet-class>
+        <servlet-class>com.xiaoerge.cloudftp.server.ShellServiceImpl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>authService</servlet-name>
-        <url-pattern>/filecloud/authservice</url-pattern>
+        <url-pattern>/cloudftp/authservice</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>shellService</servlet-name>
-        <url-pattern>/filecloud/shellservice</url-pattern>
+        <url-pattern>/cloudftp/shellservice</url-pattern>
     </servlet-mapping>
 </web-app>
