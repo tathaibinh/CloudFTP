@@ -29,7 +29,7 @@ public class LoginView extends Composite implements LoginPresenter.Display {
         titleLabel = new Label();
 
         titleLabel.setStyleName("h2 form-signin-heading");
-        titleLabel.getElement().setInnerText("Sign in");
+        titleLabel.setText("Sign in");
 
         hostnameTf.setStyleName("form-control");
         hostnameTf.getElement().setPropertyString("placeholder", "User@host.com");
@@ -46,6 +46,7 @@ public class LoginView extends Composite implements LoginPresenter.Display {
 
         loginStatusLb.getElement().setPropertyString("role", "alert");
 
+        horizontalPanel.add(titleLabel);
         horizontalPanel.add(hostnameTf);
         horizontalPanel.add(passwordTf);
         horizontalPanel.add(portTf);

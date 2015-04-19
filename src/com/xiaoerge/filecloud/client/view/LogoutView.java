@@ -29,7 +29,7 @@ public class LogoutView extends Composite implements LogoutPresenter.Display {
         logoutStatusLabel.getElement().setPropertyString("role", "alert");
 
         titleLabel.setStyleName("h2 form-signin-heading");
-        titleLabel.getElement().setInnerText("Sign out");
+        titleLabel.setText("Sign out");
 
         verticalPanel.add(titleLabel);
         verticalPanel.add(logoutBt);
