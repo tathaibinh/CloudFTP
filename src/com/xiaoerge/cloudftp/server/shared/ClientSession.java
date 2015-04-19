@@ -1,4 +1,4 @@
-package com.xiaoerge.cloudftp.server.model;
+package com.xiaoerge.cloudftp.server.shared;
 
 import com.jcraft.jsch.*;
 
@@ -32,7 +32,7 @@ public class ClientSession
         cipher = null;
     }
 
-    public static ClientSession getInstance() {
+    public static synchronized ClientSession getInstance() {
         if (clientSession == null)
             return new ClientSession();
         return clientSession;

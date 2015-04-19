@@ -1,4 +1,4 @@
-package com.xiaoerge.cloudftp.client.event;
+package com.xiaoerge.cloudftp.client.event.foreground;
 
 
 import com.google.gwt.event.shared.EventHandler;

@@ -1,7 +1,7 @@
 package com.xiaoerge.cloudftp.server;
 
 import com.jcraft.jsch.UserInfo;
-import com.xiaoerge.cloudftp.server.model.EncryptionUtil;
+import com.xiaoerge.cloudftp.server.shared.EncryptionUtil;
 
 import java.io.UnsupportedEncodingException;
 

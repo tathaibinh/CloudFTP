@@ -6,7 +6,8 @@ import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.cloudftp.client.AuthServiceAsync;
-import com.xiaoerge.cloudftp.client.event.LogoutEvent;
+import com.xiaoerge.cloudftp.client.event.background.SavePublicKeyEvent;
+import com.xiaoerge.cloudftp.client.event.foreground.LogoutEvent;
 import com.xiaoerge.cloudftp.client.shared.CommonUtil;
 
 import java.util.logging.Level;
@@ -52,17 +53,20 @@ public class LoginPresenter implements Presenter {
 
                 CommonUtil.showLoadingAnimation(display.getLoginStatusLabel());
 
-                AsyncCallback<String> callback = new AsyncCallback<String>() {
+                AsyncCallback<byte[]> callback = new AsyncCallback<byte[]>() {
                     public void onFailure(Throwable caught) {
                         logger.log(Level.SEVERE, "sign in error");
                     }
 
-                    public void onSuccess(String result) {
-                        if (result != null && !result.isEmpty()) {
+                    public void onSuccess(byte[] result) {
+                        if (result.length > 0) {
                             CommonUtil.hideLoadingAnimation(display.getLoginStatusLabel());
                             display.getLoginStatusLabel().setText("Success");
                             display.getLoginStatusLabel().setStyleName("alert alert-success");
                             logger.log(Level.INFO, "Log in success");
+
+                            //todo save session
+                            eventBus.fireEvent(new SavePublicKeyEvent(result));
                             eventBus.fireEvent(new LogoutEvent());
 
                         } else {

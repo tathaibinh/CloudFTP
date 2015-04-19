@@ -5,7 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.cloudftp.client.AuthServiceAsync;
-import com.xiaoerge.cloudftp.client.event.LoginEvent;
+import com.xiaoerge.cloudftp.client.event.foreground.LoginEvent;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

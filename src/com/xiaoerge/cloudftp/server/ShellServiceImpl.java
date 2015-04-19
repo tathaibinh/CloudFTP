@@ -5,7 +5,7 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import com.xiaoerge.cloudftp.client.ShellService;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
-import com.xiaoerge.cloudftp.server.model.ClientSession;
+import com.xiaoerge.cloudftp.server.shared.ClientSession;
 
 import java.util.Vector;
 import java.util.logging.Logger;

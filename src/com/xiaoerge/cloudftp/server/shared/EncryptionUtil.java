@@ -1,4 +1,4 @@
-package com.xiaoerge.cloudftp.server.model;
+package com.xiaoerge.cloudftp.server.shared;
 
 import javax.crypto.Cipher;
 import java.security.KeyPair;
@@ -10,7 +10,7 @@ public class EncryptionUtil
 {
     private static EncryptionUtil encryptionUtil;
 
-    private static EncryptionUtil getEncryptionUtil() {
+    private static synchronized EncryptionUtil getEncryptionUtil() {
         if (encryptionUtil == null) {
             try {
                 return new EncryptionUtil();

@@ -4,11 +4,14 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.xiaoerge.cloudftp.client.event.LoginEvent;
-import com.xiaoerge.cloudftp.client.event.LoginEventHandler;
-import com.xiaoerge.cloudftp.client.event.LogoutEvent;
-import com.xiaoerge.cloudftp.client.event.LogoutEventHandler;
+import com.xiaoerge.cloudftp.client.event.background.SavePublicKeyEvent;
+import com.xiaoerge.cloudftp.client.event.background.SavePublicKeyEventHandler;
+import com.xiaoerge.cloudftp.client.event.foreground.LoginEvent;
+import com.xiaoerge.cloudftp.client.event.foreground.LoginEventHandler;
+import com.xiaoerge.cloudftp.client.event.foreground.LogoutEvent;
+import com.xiaoerge.cloudftp.client.event.foreground.LogoutEventHandler;
 import com.xiaoerge.cloudftp.client.presenter.LoginPresenter;
 import com.xiaoerge.cloudftp.client.presenter.LogoutPresenter;
 import com.xiaoerge.cloudftp.client.presenter.Presenter;
@@ -82,6 +85,12 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
                 doLogout();
             }
         });
+        handlerManager.addHandler(SavePublicKeyEvent.TYPE, new SavePublicKeyEventHandler() {
+            @Override
+            public void onSavePublicKey(byte[] key) {
+                doSavePublicKey(key);
+            }
+        });
     }
 
     private synchronized void doLogin() {
@@ -92,5 +101,10 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
     private synchronized void doLogout() {
         logger.log(Level.SEVERE, "loading logout view");
         History.newItem("logout");
+    }
+
+    private synchronized void doSavePublicKey(byte[] key) {
+        //todo logic
+        logger.log(Level.SEVERE, "saving public key");
     }
 }

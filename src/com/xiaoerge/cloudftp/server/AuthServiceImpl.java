@@ -3,8 +3,8 @@ package com.xiaoerge.cloudftp.server;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.jcraft.jsch.*;
 import com.xiaoerge.cloudftp.client.AuthService;
-import com.xiaoerge.cloudftp.server.model.ClientSession;
-import com.xiaoerge.cloudftp.server.model.EncryptionUtil;
+import com.xiaoerge.cloudftp.server.shared.ClientSession;
+import com.xiaoerge.cloudftp.server.shared.EncryptionUtil;
 
 import javax.crypto.Cipher;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
     private int port;
 
     @Override
-    public String authenticate(String hostname, byte[] password, int port) {
+    public byte[] authenticate(String hostname, byte[] password, int port) {
 
         try {
             ClientSession clientSession = ClientSession.getInstance();
@@ -58,10 +58,10 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
 
             storeSessionKey(key.getPublic().toString());
 
-            return key.getPublic().toString();
+            return key.getPublic().getEncoded();
 
         } catch (Exception e) {
-            return "";
+            return new byte[0];
         }
     }
 
