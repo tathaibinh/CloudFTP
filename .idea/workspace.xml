@@ -7,19 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bae0dc6-cbc1-4aff-b732-d700ebef81cf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/event/foreground/CdEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/event/foreground/CdEventHandler.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/event/foreground/LsEvent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/event/foreground/LsEventHandler.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LsPresenter.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/CdPresenter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/LsView.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/CdView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AppController.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AppController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/model/FileEntry.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/model/FileEntry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LoginPresenter.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LoginPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/ShellService.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/ShellService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/ShellServiceAsync.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/ShellServiceAsync.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/CdView.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/CdView.java" />
     </list>
     <ignored path="FileCloud.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -117,8 +105,8 @@
       <file leaf-file-name="CdView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/CdView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44444445">
-              <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.4074074">
+              <caret line="76" column="52" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
               <folding>
                 <element signature="e#923#924#0" expanded="true" />
                 <element signature="e#957#958#0" expanded="true" />
@@ -935,12 +923,12 @@
       <workItem from="1429363220852" duration="4599000" />
       <workItem from="1429372379175" duration="20339000" />
       <workItem from="1429455934765" duration="248000" />
-      <workItem from="1429456208765" duration="22782000" />
+      <workItem from="1429456208765" duration="23222000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53265000" />
+    <option name="totallyTimeSpent" value="53705000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1295" height="744" extended-state="6" />
@@ -955,7 +943,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3287037" sideWeight="0.49719775" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.49719775" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24979983" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1457,8 +1445,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/CdView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44444445">
-          <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.4074074">
+          <caret line="76" column="52" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
           <folding>
             <element signature="e#923#924#0" expanded="true" />
             <element signature="e#957#958#0" expanded="true" />

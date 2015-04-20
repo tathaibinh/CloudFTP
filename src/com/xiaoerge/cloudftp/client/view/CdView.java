@@ -72,13 +72,17 @@ public class CdView extends Composite implements CdPresenter.Display {
             HTML folderIcon = new HTML("<i class=\"fa fa-folder-o\"></i>");
 
             if (fileEntry.isDir()) {
-                flexTable.setWidget((i+1), 0, folderIcon);
+                flexTable.setWidget((i + 1), 0, folderIcon);
+                Button button = new Button(fileEntry.getFileName());
+                button.setStyleName("btn btn-link");
+                flexTable.setWidget((i + 1), 1, button);
             }
             else {
-                flexTable.setWidget((i+1), 0, fileIcon);
+                flexTable.setWidget((i + 1), 0, fileIcon);
+                flexTable.setText((i + 1), 1, fileEntry.getFileName());
             }
 
-            flexTable.setText((i + 1), 1, fileEntry.getFileName());
+
             flexTable.setText((i + 1), 2, "Placeholder");
             flexTable.setText((i + 1), 3, "Placeholder");
             flexTable.setText((i + 1), 4, "Placeholder");
