@@ -18,24 +18,25 @@ public class ShellServiceImpl extends RemoteServiceServlet implements ShellServi
     private static Logger logger = Logger.getLogger(ShellServiceImpl.class.getName());
 
     @Override
-    public Vector<FileEntry> ls(String path) {
+    public Vector<FileEntry> cd(String path) {
         SessionModel sessionModel = SessionModel.getInstance();
         ChannelSftp channelSftp = sessionModel.getChannelsftp();
 
         try {
-            Vector<ChannelSftp.LsEntry> lsEntries = channelSftp.ls(path);
+            channelSftp.cd(path);
+            Vector<ChannelSftp.LsEntry> lsEntries = channelSftp.ls(channelSftp.pwd());
             Vector<FileEntry> entries = new Vector<>();
-            for (int i = 0; i < lsEntries.size(); i++)
-            {
-                String fileName = lsEntries.get(i).getFilename();
+            for (ChannelSftp.LsEntry lsEntry : lsEntries) {
+                String fileName = lsEntry.getFilename();
 
                 //hiddne file
-                if (fileName.startsWith(".")) {
-                    continue;
-                }
+//                if (fileName.startsWith(".")) {
+//                    continue;
+//                }
 
                 FileEntry fileEntry = new FileEntry();
                 fileEntry.setFileName(fileName);
+                fileEntry.setIsDir(lsEntry.getAttrs().isDir());
                 entries.add(fileEntry);
             }
             return entries;

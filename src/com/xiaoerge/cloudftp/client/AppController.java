@@ -8,17 +8,15 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.xiaoerge.cloudftp.client.event.background.SavePublicKeyEvent;
 import com.xiaoerge.cloudftp.client.event.background.SavePublicKeyEventHandler;
 import com.xiaoerge.cloudftp.client.event.foreground.*;
-import com.xiaoerge.cloudftp.client.model.FileEntry;
-import com.xiaoerge.cloudftp.client.presenter.LsPresenter;
+import com.xiaoerge.cloudftp.client.presenter.CdPresenter;
 import com.xiaoerge.cloudftp.client.presenter.LoginPresenter;
 import com.xiaoerge.cloudftp.client.presenter.LogoutPresenter;
 import com.xiaoerge.cloudftp.client.presenter.Presenter;
 import com.xiaoerge.cloudftp.client.shared.StateConstants;
 import com.xiaoerge.cloudftp.client.view.LoginView;
 import com.xiaoerge.cloudftp.client.view.LogoutView;
-import com.xiaoerge.cloudftp.client.view.LsView;
+import com.xiaoerge.cloudftp.client.view.CdView;
 
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -68,7 +66,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
                 presenter = new LogoutPresenter(authServiceAsync, eventBus, new LogoutView());
             }
             else if (token.equals(StateConstants.LIST_DIRECTORY)) {
-                presenter = new LsPresenter(shellServiceAsync, eventBus, new LsView());
+                presenter = new CdPresenter(shellServiceAsync, eventBus, new CdView());
             }
 
             if (presenter != null) {
@@ -98,10 +96,10 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
                 doSavePublicKey();
             }
         });
-        eventBus.addHandler(LsEvent.TYPE, new LsEventHandler() {
+        eventBus.addHandler(CdEvent.TYPE, new CdEventHandler() {
             @Override
-            public void onLs(LsEvent lsEvent) {
-                doLs(lsEvent.getPath());
+            public void onLs(CdEvent cdEvent) {
+                doLs();
             }
         });
     }
@@ -121,8 +119,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         logger.log(Level.SEVERE, "saving public key");
     }
 
-    private synchronized void doLs(String path) {
-        //todo logic
+    private synchronized void doLs() {
         logger.log(Level.SEVERE, "ls directory");
         History.newItem(StateConstants.LIST_DIRECTORY);
     }

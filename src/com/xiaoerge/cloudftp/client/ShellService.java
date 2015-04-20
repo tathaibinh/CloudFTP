@@ -11,5 +11,5 @@ import java.util.Vector;
  */
 @RemoteServiceRelativePath("shellservice")
 public interface ShellService extends RemoteService{
-    public abstract Vector<FileEntry> ls(String path);
+    public abstract Vector<FileEntry> cd(String path);
 }

@@ -7,8 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.cloudftp.client.AuthServiceAsync;
 import com.xiaoerge.cloudftp.client.event.background.SavePublicKeyEvent;
-import com.xiaoerge.cloudftp.client.event.foreground.LogoutEvent;
-import com.xiaoerge.cloudftp.client.event.foreground.LsEvent;
+import com.xiaoerge.cloudftp.client.event.foreground.CdEvent;
 import com.xiaoerge.cloudftp.client.shared.CommonUtil;
 
 import java.util.logging.Level;
@@ -68,7 +67,7 @@ public class LoginPresenter implements Presenter {
 
                             //todo save session
                             eventBus.fireEvent(new SavePublicKeyEvent(result));
-                            eventBus.fireEvent(new LsEvent("."));
+                            eventBus.fireEvent(new CdEvent());
 
                         } else {
                             CommonUtil.hideLoadingAnimation(display.getLoginStatusLabel());

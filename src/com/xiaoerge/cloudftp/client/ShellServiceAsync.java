@@ -6,5 +6,6 @@ import com.xiaoerge.cloudftp.client.model.FileEntry;
 import java.util.Vector;
 
 public interface ShellServiceAsync {
-    void ls(String path, AsyncCallback<Vector<FileEntry>> async);
+
+    void cd(String path, AsyncCallback<Vector<FileEntry>> async);
 }

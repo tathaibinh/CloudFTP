@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class FileEntry implements Serializable{
 
     private String fileName;
+    private boolean isDir;
 
     public FileEntry() {
     }
@@ -18,5 +19,13 @@ public class FileEntry implements Serializable{
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public boolean isDir() {
+        return isDir;
+    }
+
+    public void setIsDir(boolean isDir) {
+        this.isDir = isDir;
     }
 }
