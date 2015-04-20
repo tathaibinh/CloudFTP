@@ -101,7 +101,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         eventBus.addHandler(LsEvent.TYPE, new LsEventHandler() {
             @Override
             public void onLs(LsEvent lsEvent) {
-                doLs();
+                doLs(lsEvent.getPath());
             }
         });
     }
@@ -121,7 +121,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         logger.log(Level.SEVERE, "saving public key");
     }
 
-    private synchronized void doLs() {
+    private synchronized void doLs(String path) {
         //todo logic
         logger.log(Level.SEVERE, "ls directory");
         History.newItem(StateConstants.LIST_DIRECTORY);

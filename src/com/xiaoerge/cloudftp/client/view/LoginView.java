@@ -29,7 +29,7 @@ public class LoginView extends Composite implements LoginPresenter.Display {
         titleLabel = new Label();
 
         titleLabel.setStyleName("h2 form-signin-heading");
-        titleLabel.setText("Sign in");
+        titleLabel.setText("SSH Sign in");
 
         hostnameTf.setStyleName("form-control");
         hostnameTf.getElement().setPropertyString("placeholder", "User@host.com");

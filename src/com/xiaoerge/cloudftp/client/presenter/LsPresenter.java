@@ -1,5 +1,7 @@
 package com.xiaoerge.cloudftp.client.presenter;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -18,19 +20,18 @@ public class LsPresenter implements Presenter {
         Vector<FileEntry> getItems();
         void setItems(Vector<FileEntry> fileEntries);
         Widget asWidget();
+        TextBox getPathTf();
+        Button getLsBt();
     }
 
     private final ShellServiceAsync shellServiceAsync;
     private final HandlerManager eventBus;
     private final Display display;
-    private final String path;
 
     public LsPresenter(ShellServiceAsync shellServiceAsync, HandlerManager eventBus, Display display) {
         this.shellServiceAsync = shellServiceAsync;
         this.eventBus = eventBus;
         this.display = display;
-        //todo  don't hardcode
-        this.path = ".";
         bind();
     }
 
@@ -41,15 +42,23 @@ public class LsPresenter implements Presenter {
     }
 
     private void bind() {
-        AsyncCallback<Vector<FileEntry>> callback = new AsyncCallback<Vector<FileEntry>>() {
+        display.getLsBt().addClickHandler(new ClickHandler() {
             @Override
-            public void onFailure(Throwable caught) {}
+            public void onClick(ClickEvent event) {
+                if (!display.getPathTf().getText().isEmpty()) {
+                    AsyncCallback<Vector<FileEntry>> callback = new AsyncCallback<Vector<FileEntry>>() {
+                        @Override
+                        public void onFailure(Throwable caught) {
+                        }
 
-            @Override
-            public void onSuccess(Vector<FileEntry> result) {
-                display.setItems(result);
+                        @Override
+                        public void onSuccess(Vector<FileEntry> result) {
+                            display.setItems(result);
+                        }
+                    };
+                    shellServiceAsync.ls(display.getPathTf().getText(), callback);
+                }
             }
-        };
-        shellServiceAsync.ls(path, callback);
+        });
     }
 }
