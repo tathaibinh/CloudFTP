@@ -8,7 +8,11 @@ import java.io.Serializable;
 public class FileEntry implements Serializable{
 
     private String fileName;
+    private String longName;
+    private String sizeString;
+    private String permissionString;
     private boolean isDir;
+    private boolean isLink;
 
     public FileEntry() {
     }
@@ -27,5 +31,37 @@ public class FileEntry implements Serializable{
 
     public void setIsDir(boolean isDir) {
         this.isDir = isDir;
+    }
+
+    public String getLongName() {
+        return longName;
+    }
+
+    public void setLongName(String longName) {
+        this.longName = longName;
+    }
+
+    public String getSizeString() {
+        return sizeString;
+    }
+
+    public void setSizeString(String sizeString) {
+        this.sizeString = sizeString;
+    }
+
+    public String getPermissionString() {
+        return permissionString;
+    }
+
+    public void setPermissionString(String permissionString) {
+        this.permissionString = permissionString;
+    }
+
+    public boolean isLink() {
+        return isLink;
+    }
+
+    public void setIsLink(boolean isLink) {
+        this.isLink = isLink;
     }
 }

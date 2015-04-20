@@ -62,7 +62,7 @@ public class CdView extends Composite implements CdPresenter.Display {
         flexTable.clear();
         flexTable.setWidget(0, 0, pathTf);
         flexTable.setWidget(0, 1, cdBt);
-        flexTable.getFlexCellFormatter().setColSpan(0, 0, 4);
+        flexTable.getFlexCellFormatter().setColSpan(0, 0, 3);
 
         for (int i = 0; i < fileEntries.size(); i++) {
             FileEntry fileEntry = fileEntries.get(i);
@@ -79,13 +79,25 @@ public class CdView extends Composite implements CdPresenter.Display {
             }
             else {
                 flexTable.setWidget((i + 1), 0, fileIcon);
-                flexTable.setText((i + 1), 1, fileEntry.getFileName());
+                Label label = new Label(fileEntry.getFileName());
+                flexTable.setWidget((i + 1), 1, label);
+            }
+
+            if (fileEntry.isDir()) {
+                flexTable.setWidget((i + 1), 0, folderIcon);
+                Button button = new Button(fileEntry.getFileName());
+                button.setStyleName("btn btn-link");
+                flexTable.setWidget((i + 1), 1, button);
+            }
+            else {
+                flexTable.setWidget((i + 1), 0, fileIcon);
+                Label label = new Label(fileEntry.getFileName());
+                flexTable.setWidget((i + 1), 1, label);
             }
 
 
-            flexTable.setText((i + 1), 2, "Placeholder");
-            flexTable.setText((i + 1), 3, "Placeholder");
-            flexTable.setText((i + 1), 4, "Placeholder");
+            flexTable.setText((i + 1), 2, fileEntry.getPermissionString());
+            flexTable.setText((i + 1), 3, fileEntry.getSizeString());
 
             flexTable.getRowFormatter().setStyleName((i+1), style);
         }

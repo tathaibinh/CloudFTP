@@ -6,6 +6,7 @@ import com.jcraft.jsch.SftpException;
 import com.xiaoerge.cloudftp.client.ShellService;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 import com.xiaoerge.cloudftp.server.model.SessionModel;
+import org.apache.commons.io.FileUtils;
 
 import java.util.Vector;
 import java.util.logging.Logger;
@@ -27,16 +28,14 @@ public class ShellServiceImpl extends RemoteServiceServlet implements ShellServi
             Vector<ChannelSftp.LsEntry> lsEntries = channelSftp.ls(channelSftp.pwd());
             Vector<FileEntry> entries = new Vector<>();
             for (ChannelSftp.LsEntry lsEntry : lsEntries) {
-                String fileName = lsEntry.getFilename();
-
-                //hiddne file
-//                if (fileName.startsWith(".")) {
-//                    continue;
-//                }
 
                 FileEntry fileEntry = new FileEntry();
-                fileEntry.setFileName(fileName);
+                fileEntry.setFileName(lsEntry.getFilename());
+                fileEntry.setLongName(lsEntry.getLongname());
+                fileEntry.setPermissionString(lsEntry.getAttrs().getPermissionsString());
+                fileEntry.setSizeString(FileUtils.byteCountToDisplaySize(lsEntry.getAttrs().getSize()));
                 fileEntry.setIsDir(lsEntry.getAttrs().isDir());
+                fileEntry.setIsLink(lsEntry.getAttrs().isLink());
                 entries.add(fileEntry);
             }
             return entries;

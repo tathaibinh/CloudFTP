@@ -31,5 +31,6 @@
     <orderEntry type="library" scope="PROVIDED" name="AppEngine Dev" level="application_server_libraries" />
     <orderEntry type="library" name="gwt-user" level="project" />
     <orderEntry type="library" name="jsch-0.1.52" level="project" />
+    <orderEntry type="library" name="commons-io-2.4" level="project" />
   </component>
 </module>
