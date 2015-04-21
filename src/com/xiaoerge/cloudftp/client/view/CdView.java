@@ -54,11 +54,14 @@ public class CdView extends Composite implements CdPresenter.Display {
     }
 
     @Override
+    public FlexTable getListTable() { return flexTable; }
+
+    @Override
     public Button getCdBt() {
         return cdBt;
     }
-
     private void refresh() {
+        flexTable.removeAllRows();
         flexTable.clear();
         flexTable.setWidget(0, 0, pathTf);
         flexTable.setWidget(0, 1, cdBt);
@@ -94,7 +97,6 @@ public class CdView extends Composite implements CdPresenter.Display {
                 Label label = new Label(fileEntry.getFileName());
                 flexTable.setWidget((i + 1), 1, label);
             }
-
 
             flexTable.setText((i + 1), 2, fileEntry.getPermissionString());
             flexTable.setText((i + 1), 3, fileEntry.getSizeString());
