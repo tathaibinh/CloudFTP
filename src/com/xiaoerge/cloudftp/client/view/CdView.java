@@ -1,9 +1,14 @@
 package com.xiaoerge.cloudftp.client.view;
 
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 import com.xiaoerge.cloudftp.client.presenter.CdPresenter;
 
+import java.awt.*;
 import java.util.Vector;
 
 /**
@@ -25,7 +30,7 @@ public class CdView extends Composite implements CdPresenter.Display {
 
         initWidget(flexTable);
 
-        flexTable.setStyleName("table table-responsive table-bordered");
+        flexTable.setStyleName("table table-responsive table-bordered table-hover");
         pathTf.setStyleName("form-control");
         cdBt.setStyleName("btn btn-primary");
 
@@ -71,8 +76,8 @@ public class CdView extends Composite implements CdPresenter.Display {
             FileEntry fileEntry = fileEntries.get(i);
 
             String style = fileEntry.getFileName().startsWith(".") ? "active" : "";
-            HTML fileIcon = new HTML("<i class=\"fa fa-file-o\"></i>");
-            HTML folderIcon = new HTML("<i class=\"fa fa-folder-o\"></i>");
+            HTML fileIcon = new HTML("<i class=\"fa fa-file-o fa-2x\"></i>");
+            HTML folderIcon = new HTML("<i class=\"fa fa-folder-o fa-2x\"></i>");
 
             if (fileEntry.isDir()) {
                 flexTable.setWidget((i + 1), 0, folderIcon);
@@ -90,11 +95,13 @@ public class CdView extends Composite implements CdPresenter.Display {
                 flexTable.setWidget((i + 1), 0, folderIcon);
                 Button button = new Button(fileEntry.getFileName());
                 button.setStyleName("btn btn-link");
+                button.getElement().getStyle().setCursor(Style.Cursor.POINTER);
                 flexTable.setWidget((i + 1), 1, button);
             }
             else {
                 flexTable.setWidget((i + 1), 0, fileIcon);
                 Label label = new Label(fileEntry.getFileName());
+                label.getElement().getStyle().setCursor(Style.Cursor.POINTER);
                 flexTable.setWidget((i + 1), 1, label);
             }
 

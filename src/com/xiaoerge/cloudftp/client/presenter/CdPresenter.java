@@ -3,12 +3,10 @@ package com.xiaoerge.cloudftp.client.presenter;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.cloudftp.client.ShellServiceAsync;
-import com.xiaoerge.cloudftp.client.event.foreground.CdEvent;
-import com.xiaoerge.cloudftp.client.event.foreground.CdEventHandler;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 
 import java.util.Vector;
@@ -46,6 +44,10 @@ public class CdPresenter implements Presenter {
     public void refresh(HasWidgets widgets) {
         widgets.clear();
         widgets.add(display.asWidget());
+
+        //initial folder
+        display.getPathTf().setText(".");
+        display.getCdBt().click();
     }
 
     private void bind() {
@@ -75,22 +77,28 @@ public class CdPresenter implements Presenter {
                 }
             }
         });
-
-        //default show current path
-        display.getPathTf().setText(".");
-        display.getCdBt().click();
     }
 
     private void bindCellClick() {
         Vector<FileEntry> items = display.getItems();
         for (int i = 0; i < items.size(); i++) {
+            final Widget widget = display.getListTable().getWidget((i+1), 1);
             if (items.get(i).isDir()){
-                final Button button = (Button) display.getListTable().getWidget((i+1), 1);
+                final Button button = (Button) widget;
                 button.addClickHandler(new ClickHandler() {
                     @Override
                     public void onClick(ClickEvent event) {
                         display.getPathTf().setText(button.getText());
                         display.getCdBt().click();
+                    }
+                });
+            }
+            else {
+                final Label label = (Label) widget;
+                label.addClickHandler(new ClickHandler() {
+                    @Override
+                    public void onClick(ClickEvent event) {
+                        Window.alert(label.getText());
                     }
                 });
             }

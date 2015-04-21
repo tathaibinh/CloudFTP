@@ -13,9 +13,9 @@ import com.xiaoerge.cloudftp.client.presenter.LoginPresenter;
 import com.xiaoerge.cloudftp.client.presenter.LogoutPresenter;
 import com.xiaoerge.cloudftp.client.presenter.Presenter;
 import com.xiaoerge.cloudftp.client.shared.StateConstants;
+import com.xiaoerge.cloudftp.client.view.CdView;
 import com.xiaoerge.cloudftp.client.view.LoginView;
 import com.xiaoerge.cloudftp.client.view.LogoutView;
-import com.xiaoerge.cloudftp.client.view.CdView;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
