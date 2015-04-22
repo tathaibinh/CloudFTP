@@ -1,10 +1,16 @@
 package com.xiaoerge.cloudftp.client.presenter;
 
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.Label;
 
 /**
  * Created by xiaoerge on 4/18/15.
  */
 public interface Presenter {
-    public abstract void refresh(final HasWidgets widgets);
+    void refresh(final HasWidgets widgets);
+
+    interface CommonDisplay {
+        Label getStatusLb();
+        Label getProgressLb();
+    }
 }

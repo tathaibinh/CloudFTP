@@ -19,13 +19,18 @@ public class LoginPresenter implements Presenter {
 
     private static Logger logger = Logger.getLogger(LoginPresenter.class.getName());
 
-    public interface Display {
+    public interface Display extends Presenter.CommonDisplay {
         Button getLoginButton();
         TextBox getHostnameTextBox();
         PasswordTextBox getPasswordTextBox();
         TextBox getPortTf();
-        Label getLoginStatusLabel();
         Widget asWidget();
+
+        @Override
+        Label getStatusLb();
+
+        @Override
+        Label getProgressLb();
     }
 
     private final AuthServiceAsync authServiceAsync;
@@ -71,7 +76,7 @@ public class LoginPresenter implements Presenter {
     }
 
     private void doLogin() {
-        CommonUtil.showLoadingAnimation(display.getLoginStatusLabel());
+        CommonUtil.showLoadingAnimation(display.getStatusLb());
 
         AsyncCallback<byte[]> callback = new AsyncCallback<byte[]>() {
             public void onFailure(Throwable caught) {
@@ -80,9 +85,9 @@ public class LoginPresenter implements Presenter {
 
             public void onSuccess(byte[] result) {
                 if (result.length > 0) {
-                    CommonUtil.hideLoadingAnimation(display.getLoginStatusLabel());
-                    display.getLoginStatusLabel().setText("Success");
-                    display.getLoginStatusLabel().setStyleName("alert alert-success");
+                    CommonUtil.hideLoadingAnimation(display.getStatusLb());
+                    display.getStatusLb().setText("Success");
+                    display.getStatusLb().setStyleName("alert alert-success");
                     logger.log(Level.INFO, "Log in success");
 
                     //todo save session
@@ -90,9 +95,9 @@ public class LoginPresenter implements Presenter {
                     eventBus.fireEvent(new CdEvent());
 
                 } else {
-                    CommonUtil.hideLoadingAnimation(display.getLoginStatusLabel());
-                    display.getLoginStatusLabel().setText("Failure");
-                    display.getLoginStatusLabel().setStyleName("alert alert-danger");
+                    CommonUtil.hideLoadingAnimation(display.getStatusLb());
+                    display.getStatusLb().setText("Failure");
+                    display.getStatusLb().setStyleName("alert alert-danger");
                     logger.log(Level.SEVERE, "log in failure");
                 }
             }

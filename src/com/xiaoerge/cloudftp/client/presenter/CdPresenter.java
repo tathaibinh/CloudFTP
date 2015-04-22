@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.cloudftp.client.ShellServiceAsync;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
+import com.xiaoerge.cloudftp.client.shared.CommonUtil;
 
 import java.util.Vector;
 import java.util.logging.Level;
@@ -20,13 +21,19 @@ public class CdPresenter implements Presenter {
 
     private static Logger logger = Logger.getLogger(CdPresenter.class.getName());
 
-    public interface Display {
+    public interface Display extends Presenter.CommonDisplay {
         Vector<FileEntry> getItems();
         void setItems(Vector<FileEntry> fileEntries);
         Widget asWidget();
         TextBox getPathTf();
         Button getCdBt();
         FlexTable getListTable();
+
+        @Override
+        Label getStatusLb();
+
+        @Override
+        Label getProgressLb();
     }
 
     private final ShellServiceAsync shellServiceAsync;
@@ -59,10 +66,15 @@ public class CdPresenter implements Presenter {
         display.getCdBt().addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
+
+                CommonUtil.showLoadingAnimation(display.getProgressLb());
+
                 if (!display.getPathTf().getText().isEmpty()) {
                     AsyncCallback<Vector<FileEntry>> callback = new AsyncCallback<Vector<FileEntry>>() {
                         @Override
                         public void onFailure(Throwable caught) {
+                            display.getStatusLb().setText(caught.getMessage());
+                            CommonUtil.hideLoadingAnimation(display.getProgressLb());
                             logger.log(Level.SEVERE, "error cd");
                         }
 
@@ -76,6 +88,7 @@ public class CdPresenter implements Presenter {
                                 showCwd();
                                 bindCellClick();
                             }
+                            CommonUtil.hideLoadingAnimation(display.getProgressLb());
                         }
                     };
                     shellServiceAsync.cd(display.getPathTf().getText(), callback);
@@ -88,7 +101,7 @@ public class CdPresenter implements Presenter {
         AsyncCallback<String> callback = new AsyncCallback<String>() {
             @Override
             public void onFailure(Throwable caught) {
-
+                display.getStatusLb().setText(caught.getMessage());
             }
 
             @Override

@@ -9,8 +9,7 @@ import com.xiaoerge.cloudftp.client.presenter.LogoutPresenter;
 public class LogoutView extends Composite implements LogoutPresenter.Display {
 
     private Button logoutBt;
-    private Label logoutStatusLabel;
-    private Label titleLabel;
+    private Label titleLb, progressLb, statusLb;
 
     public LogoutView() {
 
@@ -19,20 +18,20 @@ public class LogoutView extends Composite implements LogoutPresenter.Display {
         verticalPanel.setStyleName("form-signin");
 
         logoutBt = new Button();
-        logoutStatusLabel = new Label();
-        titleLabel = new Label();
+        statusLb = new Label();
+        titleLb = new Label();
 
         logoutBt.setText("Yes");
         logoutBt.setStyleName("btn btn-lg btn-danger btn-block");
 
-        logoutStatusLabel.getElement().setPropertyString("role", "alert");
+        statusLb.getElement().setPropertyString("role", "alert");
 
-        titleLabel.setStyleName("h2 form-signin-heading");
-        titleLabel.setText("Sign out");
+        statusLb.setStyleName("h2 form-signin-heading");
+        statusLb.setText("Sign out");
 
-        verticalPanel.add(titleLabel);
+        verticalPanel.add(titleLb);
         verticalPanel.add(logoutBt);
-        verticalPanel.add(logoutStatusLabel);
+        verticalPanel.add(statusLb);
     }
 
     @Override
@@ -42,11 +41,21 @@ public class LogoutView extends Composite implements LogoutPresenter.Display {
 
     @Override
     public Label getLogoutStatusLabel() {
-        return logoutStatusLabel;
+        return statusLb;
     }
 
     @Override
     public Widget asWidget() {
         return this;
+    }
+
+    @Override
+    public Label getStatusLb() {
+        return statusLb;
+    }
+
+    @Override
+    public Label getProgressLb() {
+        return progressLb;
     }
 }

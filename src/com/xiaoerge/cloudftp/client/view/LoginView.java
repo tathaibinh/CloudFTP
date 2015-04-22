@@ -11,8 +11,7 @@ public class LoginView extends Composite implements LoginPresenter.Display {
     private Button loginBt;
     private TextBox hostnameTf, portTf;
     private PasswordTextBox passwordTf;
-    private Label loginStatusLb;
-    private Label titleLabel;
+    private Label titleLb, progressLb, statusLb;
 
     public LoginView() {
 
@@ -25,11 +24,12 @@ public class LoginView extends Composite implements LoginPresenter.Display {
         hostnameTf = new TextBox();
         portTf = new TextBox();
         passwordTf = new PasswordTextBox();
-        loginStatusLb = new Label();
-        titleLabel = new Label();
+        progressLb = new Label();
+        titleLb = new Label();
+        statusLb = new Label();
 
-        titleLabel.setStyleName("h2 form-signin-heading");
-        titleLabel.setText("SSH Sign in");
+        titleLb.setStyleName("h2 form-signin-heading");
+        titleLb.setText("SSH Sign in");
 
         hostnameTf.setStyleName("form-control");
         hostnameTf.getElement().setPropertyString("placeholder", "User@host.com");
@@ -44,14 +44,15 @@ public class LoginView extends Composite implements LoginPresenter.Display {
         loginBt.setText("Sign in");
         loginBt.setStyleName("btn btn-lg btn-primary btn-block");
 
-        loginStatusLb.getElement().setPropertyString("role", "alert");
+        progressLb.getElement().setPropertyString("role", "alert");
 
-        verticalPanel.add(titleLabel);
+        verticalPanel.add(titleLb);
         verticalPanel.add(hostnameTf);
         verticalPanel.add(passwordTf);
         verticalPanel.add(portTf);
         verticalPanel.add(loginBt);
-        verticalPanel.add(loginStatusLb);
+        verticalPanel.add(progressLb);
+        verticalPanel.add(statusLb);
     }
 
     @Override
@@ -73,12 +74,17 @@ public class LoginView extends Composite implements LoginPresenter.Display {
     public TextBox getPortTf() { return portTf; }
 
     @Override
-    public Label getLoginStatusLabel() {
-        return loginStatusLb;
+    public Widget asWidget() {
+        return this;
     }
 
     @Override
-    public Widget asWidget() {
-        return this;
+    public Label getStatusLb() {
+        return statusLb;
+    }
+
+    @Override
+    public Label getProgressLb() {
+        return progressLb;
     }
 }

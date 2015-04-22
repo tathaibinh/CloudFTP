@@ -21,10 +21,16 @@ public class LogoutPresenter implements Presenter {
     private final HandlerManager eventBus;
     private final Display display;
 
-    public interface Display {
+    public interface Display extends Presenter.CommonDisplay {
         Button getLogoutButton();
         Label getLogoutStatusLabel();
         Widget asWidget();
+
+        @Override
+        Label getStatusLb();
+
+        @Override
+        Label getProgressLb();
     }
 
     public LogoutPresenter(AuthServiceAsync authServiceAsync, HandlerManager eventBus, Display display) {

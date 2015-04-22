@@ -20,6 +20,7 @@ public class CdView extends Composite implements CdPresenter.Display {
     private TextBox pathTf;
     private Button cdBt;
     private FlexTable flexTable;
+    private Label statusLb, progressLb;
 
     public CdView() {
 
@@ -27,6 +28,8 @@ public class CdView extends Composite implements CdPresenter.Display {
         fileEntries = new Vector<>();
         pathTf = new TextBox();
         cdBt = new Button("Show");
+        statusLb = new Label();
+        progressLb = new Label();
 
         initWidget(flexTable);
 
@@ -62,15 +65,31 @@ public class CdView extends Composite implements CdPresenter.Display {
     public FlexTable getListTable() { return flexTable; }
 
     @Override
+    public Label getStatusLb() {
+        return statusLb;
+    }
+
+    @Override
+    public Label getProgressLb() {
+        return progressLb;
+    }
+
+    @Override
     public Button getCdBt() {
         return cdBt;
     }
+
     private void refresh() {
         flexTable.removeAllRows();
         flexTable.clear();
-        flexTable.setWidget(0, 0, pathTf);
-        flexTable.setWidget(0, 1, cdBt);
+        flexTable.setWidget(0, 0, statusLb);
+        flexTable.setWidget(0, 1, progressLb);
+        flexTable.setWidget(1, 0, pathTf);
+        flexTable.setWidget(1, 1, cdBt);
         flexTable.getFlexCellFormatter().setColSpan(0, 0, 3);
+        flexTable.getFlexCellFormatter().setColSpan(1, 0, 3);
+
+        int rowOffset = 2;
 
         for (int i = 0; i < fileEntries.size(); i++) {
             FileEntry fileEntry = fileEntries.get(i);
@@ -80,35 +99,35 @@ public class CdView extends Composite implements CdPresenter.Display {
             HTML folderIcon = new HTML("<i class=\"fa fa-folder-o fa-2x\"></i>");
 
             if (fileEntry.isDir()) {
-                flexTable.setWidget((i + 1), 0, folderIcon);
+                flexTable.setWidget((i + rowOffset), 0, folderIcon);
                 Button button = new Button(fileEntry.getFileName());
                 button.setStyleName("btn btn-link");
-                flexTable.setWidget((i + 1), 1, button);
+                flexTable.setWidget((i + rowOffset), 1, button);
             }
             else {
-                flexTable.setWidget((i + 1), 0, fileIcon);
+                flexTable.setWidget((i + rowOffset), 0, fileIcon);
                 Label label = new Label(fileEntry.getFileName());
-                flexTable.setWidget((i + 1), 1, label);
+                flexTable.setWidget((i + rowOffset), 1, label);
             }
 
             if (fileEntry.isDir()) {
-                flexTable.setWidget((i + 1), 0, folderIcon);
+                flexTable.setWidget((i + rowOffset), 0, folderIcon);
                 Button button = new Button(fileEntry.getFileName());
                 button.setStyleName("btn btn-link");
                 button.getElement().getStyle().setCursor(Style.Cursor.POINTER);
-                flexTable.setWidget((i + 1), 1, button);
+                flexTable.setWidget((i + rowOffset), 1, button);
             }
             else {
-                flexTable.setWidget((i + 1), 0, fileIcon);
+                flexTable.setWidget((i + rowOffset), 0, fileIcon);
                 Label label = new Label(fileEntry.getFileName());
                 label.getElement().getStyle().setCursor(Style.Cursor.POINTER);
-                flexTable.setWidget((i + 1), 1, label);
+                flexTable.setWidget((i + rowOffset), 1, label);
             }
 
-            flexTable.setText((i + 1), 2, fileEntry.getPermissionString());
-            flexTable.setText((i + 1), 3, fileEntry.getSizeString());
+            flexTable.setText((i + rowOffset), 2, fileEntry.getPermissionString());
+            flexTable.setText((i + rowOffset), 3, fileEntry.getSizeString());
 
-            flexTable.getRowFormatter().setStyleName((i+1), style);
+            flexTable.getRowFormatter().setStyleName((i + rowOffset), style);
         }
     }
 }
