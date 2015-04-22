@@ -73,6 +73,7 @@ public class CdPresenter implements Presenter {
                             } else {
                                 display.setItems(result);
 
+                                showCwd();
                                 bindCellClick();
                             }
                         }
@@ -81,6 +82,21 @@ public class CdPresenter implements Presenter {
                 }
             }
         });
+    }
+
+    private void showCwd() {
+        AsyncCallback<String> callback = new AsyncCallback<String>() {
+            @Override
+            public void onFailure(Throwable caught) {
+
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                display.getPathTf().setText(result);
+            }
+        };
+        shellServiceAsync.pwd(callback);
     }
 
     private void bindCellClick() {
@@ -92,7 +108,6 @@ public class CdPresenter implements Presenter {
                 button.addClickHandler(new ClickHandler() {
                     @Override
                     public void onClick(ClickEvent event) {
-                        display.getPathTf().setText(button.getText());
                         display.getCdBt().click();
                     }
                 });

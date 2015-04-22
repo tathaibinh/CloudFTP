@@ -8,4 +8,6 @@ import java.util.Vector;
 public interface ShellServiceAsync {
 
     void cd(String path, AsyncCallback<Vector<FileEntry>> async);
+
+    void pwd(AsyncCallback<String> async);
 }

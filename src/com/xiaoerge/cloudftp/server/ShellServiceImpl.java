@@ -46,4 +46,9 @@ public class ShellServiceImpl extends RemoteServiceServlet implements ShellServi
             return null;
         }
     }
+
+    @Override
+    public String pwd() {
+        return BashProfile.getInstance().getCwd();
+    }
 }
