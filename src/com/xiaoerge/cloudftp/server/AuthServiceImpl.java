@@ -3,8 +3,8 @@ package com.xiaoerge.cloudftp.server;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.jcraft.jsch.*;
 import com.xiaoerge.cloudftp.client.AuthService;
-import com.xiaoerge.cloudftp.server.model.UserModel;
-import com.xiaoerge.cloudftp.server.model.SessionModel;
+import com.xiaoerge.cloudftp.server.global.UserProfile;
+import com.xiaoerge.cloudftp.server.global.SessionProfile;
 import com.xiaoerge.cloudftp.server.shared.EncryptionUtil;
 
 import javax.crypto.Cipher;
@@ -25,7 +25,7 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
     public byte[] authenticate(String hostname, byte[] password, int port) {
 
         try {
-            SessionModel sessionModel = SessionModel.getInstance();
+            SessionProfile sessionProfile = SessionProfile.getInstance();
 
             String username = hostname.substring(0, hostname.indexOf('@'));
             String host = hostname.substring(hostname.indexOf('@') + 1);
@@ -36,26 +36,26 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
 
             Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 
-            sessionModel.setKeyGen(keyGen);
-            sessionModel.setKey(key);
-            sessionModel.setCipher(cipher);
+            sessionProfile.setKeyGen(keyGen);
+            sessionProfile.setKey(key);
+            sessionProfile.setCipher(cipher);
 
             byte[] cipherText = EncryptionUtil.encrypt(password);
 
             JSch jSch = new JSch();
             Session session = jSch.getSession(username, host, port);
-            UserInfo userInfo = new UserModel(cipherText);
+            UserInfo userInfo = new UserProfile(cipherText);
             session.setUserInfo(userInfo);
             session.connect();
             Channel channel = session.openChannel("sftp");
             channel.connect();
             ChannelSftp channelsftp = (ChannelSftp) channel;
 
-            sessionModel.setJsch(jSch);
-            sessionModel.setAccountinfo(userInfo);
-            sessionModel.setSession(session);
-            sessionModel.setChannel(channel);
-            sessionModel.setChannelsftp(channelsftp);
+            sessionProfile.setJsch(jSch);
+            sessionProfile.setAccountinfo(userInfo);
+            sessionProfile.setSession(session);
+            sessionProfile.setChannel(channel);
+            sessionProfile.setChannelsftp(channelsftp);
 
             storeSessionKey(key.getPublic().toString().getBytes());
 

@@ -33,10 +33,14 @@ public class CdPresenter implements Presenter {
     private final HandlerManager eventBus;
     private final Display display;
 
+    private String cwd;
+
     public CdPresenter(ShellServiceAsync shellServiceAsync, HandlerManager eventBus, Display display) {
         this.shellServiceAsync = shellServiceAsync;
         this.eventBus = eventBus;
         this.display = display;
+
+        cwd = ".";
         bind();
     }
 
@@ -46,7 +50,7 @@ public class CdPresenter implements Presenter {
         widgets.add(display.asWidget());
 
         //initial folder
-        display.getPathTf().setText(".");
+        display.getPathTf().setText(cwd);
         display.getCdBt().click();
     }
 

@@ -1,4 +1,4 @@
-package com.xiaoerge.cloudftp.server.model;
+package com.xiaoerge.cloudftp.server.global;
 
 import com.jcraft.jsch.*;
 
@@ -9,9 +9,9 @@ import java.security.KeyPair;
 /**
  * Created by xiaoerge on 4/17/15.
  */
-public class SessionModel
+public class SessionProfile
 {
-    private static SessionModel sessionModel = new SessionModel();
+    private static SessionProfile sessionProfile = new SessionProfile();
     private JSch jsch;
     private Session session;
     private Channel channel;
@@ -22,7 +22,7 @@ public class SessionModel
     private java.security.KeyPair key;
     private javax.crypto.Cipher cipher;
 
-    private SessionModel() {
+    private SessionProfile() {
         jsch = new JSch();
         session = null;
         accountinfo = null;
@@ -32,10 +32,10 @@ public class SessionModel
         cipher = null;
     }
 
-    public static synchronized SessionModel getInstance() {
-        if (sessionModel == null)
-            return new SessionModel();
-        return sessionModel;
+    public static synchronized SessionProfile getInstance() {
+        if (sessionProfile == null)
+            return new SessionProfile();
+        return sessionProfile;
     }
 
     public JSch getJsch() {
@@ -112,6 +112,6 @@ public class SessionModel
         key = null;
         cipher = null;
 
-        sessionModel = null;
+        sessionProfile = null;
     }
 }

@@ -1,6 +1,6 @@
 package com.xiaoerge.cloudftp.server.shared;
 
-import com.xiaoerge.cloudftp.server.model.SessionModel;
+import com.xiaoerge.cloudftp.server.global.SessionProfile;
 
 import javax.crypto.Cipher;
 import java.security.KeyPair;
@@ -15,8 +15,8 @@ public class EncryptionUtil
 
     public static synchronized byte[] encrypt(byte[] plainText) {
         try {
-            KeyPair key = SessionModel.getInstance().getKey();
-            Cipher cipher = SessionModel.getInstance().getCipher();
+            KeyPair key = SessionProfile.getInstance().getKey();
+            Cipher cipher = SessionProfile.getInstance().getCipher();
             cipher.init(Cipher.ENCRYPT_MODE, key.getPublic());
             return cipher.doFinal(plainText);
         } catch (Exception e) {
@@ -26,8 +26,8 @@ public class EncryptionUtil
     }
     public static synchronized byte[] decrypt(byte[] cipherText) {
         try {
-            KeyPair key = SessionModel.getInstance().getKey();
-            Cipher cipher = SessionModel.getInstance().getCipher();
+            KeyPair key = SessionProfile.getInstance().getKey();
+            Cipher cipher = SessionProfile.getInstance().getCipher();
             cipher.init(Cipher.DECRYPT_MODE, key.getPrivate());
             return cipher.doFinal(cipherText);
         } catch (Exception e) {

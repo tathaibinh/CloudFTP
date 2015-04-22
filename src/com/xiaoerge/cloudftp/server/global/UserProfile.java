@@ -1,4 +1,4 @@
-package com.xiaoerge.cloudftp.server.model;
+package com.xiaoerge.cloudftp.server.global;
 
 import com.jcraft.jsch.UserInfo;
 import com.xiaoerge.cloudftp.server.shared.EncryptionUtil;
@@ -8,10 +8,10 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by xiaoerge on 4/16/15.
  */
-public class UserModel implements UserInfo {
+public class UserProfile implements UserInfo {
 
     private byte[] password;
-    public UserModel(byte[] passwd) {
+    public UserProfile(byte[] passwd) {
         password = passwd;
     }
 
