@@ -1,6 +1,8 @@
 package com.xiaoerge.cloudftp.server;
 
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 import com.jcraft.jsch.*;
 import com.xiaoerge.cloudftp.client.AuthService;
 import com.xiaoerge.cloudftp.server.global.UserProfile;
@@ -8,12 +10,13 @@ import com.xiaoerge.cloudftp.server.global.SessionProfile;
 import com.xiaoerge.cloudftp.server.shared.EncryptionUtil;
 
 import javax.crypto.Cipher;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 
-public class AuthServiceImpl extends RemoteServiceServlet implements AuthService {
+public class AuthServiceImpl extends XsrfProtectedServiceServlet implements AuthService {
 
     private static String PUBLIC_KEY = "PUBLIC_KEY";
     private String username;
@@ -64,6 +67,11 @@ public class AuthServiceImpl extends RemoteServiceServlet implements AuthService
         } catch (Exception e) {
             return new byte[0];
         }
+    }
+
+    @Override
+    public String getSessionId() {
+        return this.getThreadLocalRequest().getRequestedSessionId();
     }
 
     @Override

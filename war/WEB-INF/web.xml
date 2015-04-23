@@ -9,6 +9,11 @@
         <welcome-file>CloudFTP.html</welcome-file>
     </welcome-file-list>
 
+    <context-param>
+        <param-name>gwt.xsrf.session_cookie_name</param-name>
+        <param-value>JSESSIONID</param-value>
+    </context-param>
+
     <servlet>
         <servlet-name>authService</servlet-name>
         <servlet-class>com.xiaoerge.cloudftp.server.AuthServiceImpl</servlet-class>
@@ -17,6 +22,7 @@
         <servlet-name>shellService</servlet-name>
         <servlet-class>com.xiaoerge.cloudftp.server.ShellServiceImpl</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>authService</servlet-name>
         <url-pattern>/cloudftp/authservice</url-pattern>
@@ -25,4 +31,13 @@
         <servlet-name>shellService</servlet-name>
         <url-pattern>/cloudftp/shellservice</url-pattern>
     </servlet-mapping>
+
+    <!--<servlet>-->
+        <!--<servlet-name>xsrf</servlet-name>-->
+        <!--<servlet-class>com.google.gwt.user.server.rpc.XsrfTokenServiceServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>xsrf</servlet-name>-->
+        <!--<url-pattern>/cloudftp/xsrf</url-pattern>-->
+    <!--</servlet-mapping>-->
 </web-app>

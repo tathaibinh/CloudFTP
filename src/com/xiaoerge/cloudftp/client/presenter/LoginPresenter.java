@@ -1,9 +1,12 @@
 package com.xiaoerge.cloudftp.client.presenter;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.rpc.*;
 import com.google.gwt.user.client.ui.*;
+import com.xiaoerge.cloudftp.client.AuthService;
 import com.xiaoerge.cloudftp.client.AuthServiceAsync;
 import com.xiaoerge.cloudftp.client.event.background.SavePublicKeyEvent;
 import com.xiaoerge.cloudftp.client.event.foreground.CdEvent;
@@ -58,7 +61,7 @@ public class LoginPresenter implements Presenter {
                         !display.getHostnameTextBox().getText().isEmpty() &&
                         !display.getPortTf().getText().isEmpty() &&
                         event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-                    doLogin();
+                    doXsrfLogin();
                 }
             }
         });
@@ -69,15 +72,62 @@ public class LoginPresenter implements Presenter {
                 if (!display.getPasswordTextBox().getText().isEmpty() &&
                         !display.getHostnameTextBox().getText().isEmpty() &&
                         !display.getPortTf().getText().isEmpty()) {
-                    doLogin();
+                    doXsrfLogin();
+                }
+            }
+        });
+    }
+
+    private void doXsrfLogin() {
+        CommonUtil.showLoadingAnimation(display.getStatusLb());
+
+        //todo https://groups.google.com/forum/#!topic/google-web-toolkit/ShVHH3kVbTQ
+
+        AsyncCallback<String> stringAsyncCallback = new AsyncCallback<String>() {
+            @Override
+            public void onFailure(Throwable caught) {
+
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                Cookies.setCookie("JSESSIONID", result);
+            }
+        };
+        authServiceAsync.getSessionId(stringAsyncCallback);
+
+
+        XsrfTokenServiceAsync xsrf = GWT.create(XsrfTokenService.class);
+        ((ServiceDefTarget)xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "authservice");
+        xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+
+            public void onSuccess(XsrfToken token) {
+
+                AuthServiceAsync rpc = GWT.create(AuthService.class);
+                ((HasRpcToken) rpc).setRpcToken(token);
+
+                doLogin();
+            }
+
+            public void onFailure(Throwable caught) {
+                try {
+                    throw caught;
+                } catch (RpcTokenException e) {
+                    // Can be thrown for several reasons:
+                    //   - duplicate session cookie, which may be a sign of a cookie
+                    //     overwrite attack
+                    //   - XSRF token cannot be generated because session cookie isn't
+                    //     present
+                    e.printStackTrace();
+                } catch (Throwable e) {
+                    // unexpected
+                    e.printStackTrace();
                 }
             }
         });
     }
 
     private void doLogin() {
-        CommonUtil.showLoadingAnimation(display.getStatusLb());
-
         AsyncCallback<byte[]> callback = new AsyncCallback<byte[]>() {
             public void onFailure(Throwable caught) {
                 logger.log(Level.SEVERE, "sign in error");

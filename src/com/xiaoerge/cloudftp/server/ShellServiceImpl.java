@@ -1,6 +1,7 @@
 package com.xiaoerge.cloudftp.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import com.xiaoerge.cloudftp.client.ShellService;
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
 /**
  * Created by xiaoerge on 4/17/15.
  */
-public class ShellServiceImpl extends RemoteServiceServlet implements ShellService {
+public class ShellServiceImpl extends XsrfProtectedServiceServlet implements ShellService {
 
     private static Logger logger = Logger.getLogger(ShellServiceImpl.class.getName());
 

@@ -10,6 +10,7 @@
           <element id="library" level="project" name="jsch-0.1.52" />
           <element id="library" level="project" name="gwt-user" />
           <element id="file-copy" path="$USER_HOME$/Applications/gwt2.7/gwt-servlet.jar" />
+          <element id="library" level="project" name="commons-io-2.4" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="CloudFTP/web/Web" />
