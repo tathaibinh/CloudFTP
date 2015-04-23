@@ -34,6 +34,12 @@ public class BashUtil
             }
         };
         shellServiceAsync.pwd(callback);
-        return pwd[0];
+
+        if (pwd[0].endsWith("/")) {
+            return pwd[0];
+        }
+        else {
+            return pwd[0].concat("/");
+        }
     }
 }

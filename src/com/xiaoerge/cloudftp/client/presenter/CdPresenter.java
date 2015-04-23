@@ -68,14 +68,14 @@ public class CdPresenter implements Presenter {
             @Override
             public void onClick(ClickEvent event) {
 
-                CommonUtil.showLoadingAnimation(display.getProgressLb());
+                //CommonUtil.showLoadingAnimation(display.getProgressLb());
 
                 if (!display.getPathTf().getText().isEmpty()) {
                     AsyncCallback<Vector<FileEntry>> callback = new AsyncCallback<Vector<FileEntry>>() {
                         @Override
                         public void onFailure(Throwable caught) {
                             display.getStatusLb().setText(caught.getMessage());
-                            CommonUtil.hideLoadingAnimation(display.getProgressLb());
+                            //CommonUtil.hideLoadingAnimation(display.getProgressLb());
                             logger.log(Level.SEVERE, "error cd");
                         }
 
@@ -89,7 +89,7 @@ public class CdPresenter implements Presenter {
                                 showCwd();
                                 bindCellClick();
                             }
-                            CommonUtil.hideLoadingAnimation(display.getProgressLb());
+                            //CommonUtil.hideLoadingAnimation(display.getProgressLb());
                         }
                     };
                     shellServiceAsync.cd(display.getPathTf().getText(), callback);
@@ -122,15 +122,7 @@ public class CdPresenter implements Presenter {
                 button.addClickHandler(new ClickHandler() {
                     @Override
                     public void onClick(ClickEvent event) {
-                        //todo check /  for linux
-                        String nextPath = BashUtil.pwd();
-                        if (BashUtil.pwd().endsWith("/")) {
-                            nextPath += button.getText();
-                        }
-                        else {
-                            nextPath = (nextPath) + '/' + button.getText();
-                        }
-                        display.getPathTf().setText(nextPath);
+                        display.getPathTf().setText(BashUtil.pwd().concat(button.getText()));
                         display.getCdBt().click();
                     }
                 });
