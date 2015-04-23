@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.cloudftp.client.ShellServiceAsync;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
+import com.xiaoerge.cloudftp.client.shared.BashUtil;
 import com.xiaoerge.cloudftp.client.shared.CommonUtil;
 
 import java.util.Vector;
@@ -115,12 +116,21 @@ public class CdPresenter implements Presenter {
     private void bindCellClick() {
         Vector<FileEntry> items = display.getItems();
         for (int i = 0; i < items.size(); i++) {
-            final Widget widget = display.getListTable().getWidget((i+1), 1);
+            final Widget widget = display.getListTable().getWidget((i+2), 1);
             if (items.get(i).isDir()){
                 final Button button = (Button) widget;
                 button.addClickHandler(new ClickHandler() {
                     @Override
                     public void onClick(ClickEvent event) {
+                        //todo check /  for linux
+                        String nextPath = BashUtil.pwd();
+                        if (BashUtil.pwd().endsWith("/")) {
+                            nextPath += button.getText();
+                        }
+                        else {
+                            nextPath = (nextPath) + '/' + button.getText();
+                        }
+                        display.getPathTf().setText(nextPath);
                         display.getCdBt().click();
                     }
                 });

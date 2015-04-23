@@ -94,21 +94,8 @@ public class CdView extends Composite implements CdPresenter.Display {
         for (int i = 0; i < fileEntries.size(); i++) {
             FileEntry fileEntry = fileEntries.get(i);
 
-            String style = fileEntry.getFileName().startsWith(".") ? "active" : "";
             HTML fileIcon = new HTML("<i class=\"fa fa-file-o fa-2x\"></i>");
             HTML folderIcon = new HTML("<i class=\"fa fa-folder-o fa-2x\"></i>");
-
-            if (fileEntry.isDir()) {
-                flexTable.setWidget((i + rowOffset), 0, folderIcon);
-                Button button = new Button(fileEntry.getFileName());
-                button.setStyleName("btn btn-link");
-                flexTable.setWidget((i + rowOffset), 1, button);
-            }
-            else {
-                flexTable.setWidget((i + rowOffset), 0, fileIcon);
-                Label label = new Label(fileEntry.getFileName());
-                flexTable.setWidget((i + rowOffset), 1, label);
-            }
 
             if (fileEntry.isDir()) {
                 flexTable.setWidget((i + rowOffset), 0, folderIcon);
@@ -126,8 +113,6 @@ public class CdView extends Composite implements CdPresenter.Display {
 
             flexTable.setText((i + rowOffset), 2, fileEntry.getPermissionString());
             flexTable.setText((i + rowOffset), 3, fileEntry.getSizeString());
-
-            flexTable.getRowFormatter().setStyleName((i + rowOffset), style);
         }
     }
 }

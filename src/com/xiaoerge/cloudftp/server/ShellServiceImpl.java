@@ -27,6 +27,7 @@ public class ShellServiceImpl extends RemoteServiceServlet implements ShellServi
         try {
             channelSftp.cd(path);
             BashProfile.getInstance().setCwd(channelSftp.pwd());
+
             Vector<ChannelSftp.LsEntry> lsEntries = channelSftp.ls(channelSftp.pwd());
             Vector<FileEntry> entries = new Vector<>();
             for (ChannelSftp.LsEntry lsEntry : lsEntries) {
@@ -43,7 +44,7 @@ public class ShellServiceImpl extends RemoteServiceServlet implements ShellServi
             return entries;
         } catch (SftpException e) {
             e.printStackTrace();
-            return null;
+            return new Vector<>();
         }
     }
 
