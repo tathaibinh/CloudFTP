@@ -11,7 +11,7 @@
 
     <context-param>
         <param-name>gwt.xsrf.session_cookie_name</param-name>
-        <param-value>JSESSIONID</param-value>
+        <param-value>CLOUDFTPSESSIONID</param-value>
     </context-param>
 
     <servlet>
@@ -32,12 +32,12 @@
         <url-pattern>/cloudftp/shellservice</url-pattern>
     </servlet-mapping>
 
-    <!--<servlet>-->
-        <!--<servlet-name>xsrf</servlet-name>-->
-        <!--<servlet-class>com.google.gwt.user.server.rpc.XsrfTokenServiceServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>xsrf</servlet-name>-->
-        <!--<url-pattern>/cloudftp/xsrf</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <servlet>
+        <servlet-name>xsrf</servlet-name>
+        <servlet-class>com.google.gwt.user.server.rpc.XsrfTokenServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>xsrf</servlet-name>
+        <url-pattern>/cloudftp/xsrf</url-pattern>
+    </servlet-mapping>
 </web-app>
