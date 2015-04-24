@@ -19,7 +19,7 @@ public class CloudFTP implements EntryPoint {
 
     public void onModuleLoad() {
 
-        //todo use different id
+        //todo use cryptographic safe string
         double sid = System.currentTimeMillis() * Random.nextDouble();
         Cookies.setCookie("CLOUDFTPSESSIONID", Double.toString(sid), null, null, "/", false);
 
