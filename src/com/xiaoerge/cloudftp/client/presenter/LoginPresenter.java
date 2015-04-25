@@ -80,37 +80,57 @@ public class LoginPresenter implements Presenter {
 
     private void doLogin() {
 
-        CommonUtil.showLoadingAnimation(display.getStatusLb());
+        XsrfTokenServiceAsync xsrf = GWT.create(XsrfTokenService.class);
+        ((ServiceDefTarget)xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+        xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
 
-        AsyncCallback<byte[]> callback = new AsyncCallback<byte[]>() {
-            public void onFailure(Throwable caught) {
-                logger.log(Level.SEVERE, "sign in error");
-            }
+            public void onSuccess(XsrfToken token) {
+                ((HasRpcToken) authServiceAsync).setRpcToken(token);
 
-            public void onSuccess(byte[] result) {
-                if (result.length > 0) {
-                    CommonUtil.hideLoadingAnimation(display.getStatusLb());
-                    display.getStatusLb().setText("Success");
-                    display.getStatusLb().setStyleName("alert alert-success");
-                    logger.log(Level.INFO, "Log in success");
+                CommonUtil.showLoadingAnimation(display.getStatusLb());
 
-                    //todo save session
-                    eventBus.fireEvent(new SavePublicKeyEvent(result));
-                    eventBus.fireEvent(new CdEvent());
+                AsyncCallback<byte[]> callback = new AsyncCallback<byte[]>() {
+                    public void onFailure(Throwable caught) {
+                        logger.log(Level.SEVERE, "sign in error");
+                        logger.log(Level.SEVERE, caught.getMessage());
+                    }
 
-                } else {
-                    CommonUtil.hideLoadingAnimation(display.getStatusLb());
-                    display.getStatusLb().setText("Failure");
-                    display.getStatusLb().setStyleName("alert alert-danger");
-                    logger.log(Level.SEVERE, "log in failure");
+                    public void onSuccess(byte[] result) {
+                        if (result.length > 0) {
+                            CommonUtil.hideLoadingAnimation(display.getStatusLb());
+                            display.getStatusLb().setText("Success");
+                            display.getStatusLb().setStyleName("alert alert-success");
+                            logger.log(Level.INFO, "Log in success");
+
+                            //todo save session
+                            eventBus.fireEvent(new SavePublicKeyEvent(result));
+                            eventBus.fireEvent(new CdEvent());
+
+                        } else {
+                            CommonUtil.hideLoadingAnimation(display.getStatusLb());
+                            display.getStatusLb().setText("Failure");
+                            display.getStatusLb().setStyleName("alert alert-danger");
+                            logger.log(Level.SEVERE, "log in failure");
+                        }
+                    }
+                };
+
+                synchronized (this) {
+                    authServiceAsync.authenticate(display.getHostnameTextBox().getText(),
+                            display.getPasswordTextBox().getText().getBytes(),
+                            Integer.parseInt(display.getPortTf().getText()), callback);
                 }
             }
-        };
 
-        synchronized (this) {
-            authServiceAsync.authenticate(display.getHostnameTextBox().getText(),
-                    display.getPasswordTextBox().getText().getBytes(),
-                    Integer.parseInt(display.getPortTf().getText()), callback);
-        }
+            public void onFailure(Throwable caught) {
+                try {
+                    throw caught;
+                } catch (RpcTokenException e) {
+                    e.printStackTrace();
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

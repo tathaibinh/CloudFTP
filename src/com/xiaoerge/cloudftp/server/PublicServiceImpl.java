@@ -22,9 +22,9 @@ public class PublicServiceImpl extends RemoteServiceServlet implements PublicSer
         HttpServletRequest httpServletRequest = this.getThreadLocalRequest();
         HttpSession session = httpServletRequest.getSession(true);
 
-        if (session.getAttribute("JSESSIONID") == null) {
-            session.setAttribute("JSESSIONID", nextSessionId());
-        }
+//        if (session.getAttribute("JSESSIONID") == null) {
+//            session.setAttribute("JSESSIONID", nextSessionId());
+//        }
 
         return (String) session.getAttribute("JSESSIONID");
     }

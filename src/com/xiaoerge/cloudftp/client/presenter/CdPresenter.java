@@ -1,10 +1,11 @@
 package com.xiaoerge.cloudftp.client.presenter;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.*;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.cloudftp.client.ShellServiceAsync;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
@@ -68,32 +69,51 @@ public class CdPresenter implements Presenter {
             @Override
             public void onClick(ClickEvent event) {
 
-                //CommonUtil.showLoadingAnimation(display.getProgressLb());
+                XsrfTokenServiceAsync xsrf = GWT.create(XsrfTokenService.class);
+                ((ServiceDefTarget)xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+                xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
 
-                if (!display.getPathTf().getText().isEmpty()) {
-                    AsyncCallback<Vector<FileEntry>> callback = new AsyncCallback<Vector<FileEntry>>() {
-                        @Override
-                        public void onFailure(Throwable caught) {
-                            display.getStatusLb().setText(caught.getMessage());
-                            //CommonUtil.hideLoadingAnimation(display.getProgressLb());
-                            logger.log(Level.SEVERE, "error cd");
+                    public void onSuccess(XsrfToken token) {
+                        ((HasRpcToken) shellServiceAsync).setRpcToken(token);
+
+                        //CommonUtil.showLoadingAnimation(display.getProgressLb());
+
+                        if (!display.getPathTf().getText().isEmpty()) {
+                            AsyncCallback<Vector<FileEntry>> callback = new AsyncCallback<Vector<FileEntry>>() {
+                                @Override
+                                public void onFailure(Throwable caught) {
+                                    display.getStatusLb().setText(caught.getMessage());
+                                    //CommonUtil.hideLoadingAnimation(display.getProgressLb());
+                                    logger.log(Level.SEVERE, "error cd");
+                                }
+
+                                @Override
+                                public void onSuccess(Vector<FileEntry> result) {
+                                    if (result == null) {
+                                        logger.log(Level.SEVERE, "error cd");
+                                    } else {
+                                        display.setItems(result);
+
+                                        showCwd();
+                                        bindCellClick();
+                                    }
+                                    //CommonUtil.hideLoadingAnimation(display.getProgressLb());
+                                }
+                            };
+                            shellServiceAsync.cd(display.getPathTf().getText(), callback);
                         }
+                    }
 
-                        @Override
-                        public void onSuccess(Vector<FileEntry> result) {
-                            if (result == null) {
-                                logger.log(Level.SEVERE, "error cd");
-                            } else {
-                                display.setItems(result);
-
-                                showCwd();
-                                bindCellClick();
-                            }
-                            //CommonUtil.hideLoadingAnimation(display.getProgressLb());
+                    public void onFailure(Throwable caught) {
+                        try {
+                            throw caught;
+                        } catch (RpcTokenException e) {
+                            e.printStackTrace();
+                        } catch (Throwable e) {
+                            e.printStackTrace();
                         }
-                    };
-                    shellServiceAsync.cd(display.getPathTf().getText(), callback);
-                }
+                    }
+                });
             }
         });
     }

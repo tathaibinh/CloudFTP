@@ -7,8 +7,9 @@
 
     <entry-point class='com.xiaoerge.cloudftp.client.CloudFTP'/>
 
-    <servlet path='/authservice' class='com.xiaoerge.cloudftp.server.AuthServiceImpl'/>
-    <servlet path="/PublicService" class="com.xiaoerge.cloudftp.server.PublicServiceImpl"/>
+    <!--<servlet path='/authservice' class='com.xiaoerge.cloudftp.server.AuthServiceImpl'/>-->
+    <!--<servlet path='/shellservice' class='com.xiaoerge.cloudftp.server.ShellServiceImpl'/>-->
+    <!--<servlet path="/publicservice" class="com.xiaoerge.cloudftp.server.PublicServiceImpl"/>-->
 
     <source path='client'/>
     <source path='shared'/>
