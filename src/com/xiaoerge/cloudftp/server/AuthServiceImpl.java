@@ -22,7 +22,7 @@ public class AuthServiceImpl extends XsrfProtectedServiceServlet implements Auth
     private static String PUBLIC_KEY = "PUBLIC_KEY";
 
     @Override
-    public void authenticate(String hostname, byte[] password, int port) {
+    public boolean authenticate(String hostname, byte[] password, int port) {
 
         try {
             SessionProfile sessionProfile = SessionProfile.getInstance();
@@ -63,18 +63,15 @@ public class AuthServiceImpl extends XsrfProtectedServiceServlet implements Auth
             HttpSession session1 = this.getThreadLocalRequest().getSession(false);
             SessionUtil.saveToSession(session1, "PUBLIC_KEY", key.getPublic());
 
-        } catch (Exception ignored) {}
+            return true;
+
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     @Override
     public String getSessionId() {
         return this.getThreadLocalRequest().getRequestedSessionId();
-    }
-
-    @Override
-    public byte[] authenticateSession() {
-        HttpServletRequest httpServletRequest = this.getThreadLocalRequest();
-        HttpSession session = httpServletRequest.getSession();
-        return ((String) session.getAttribute(PUBLIC_KEY)).getBytes();
     }
 }

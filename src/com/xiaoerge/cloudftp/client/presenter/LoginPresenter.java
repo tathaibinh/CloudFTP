@@ -92,23 +92,30 @@ public class LoginPresenter implements Presenter {
 
                 CommonUtil.showLoadingAnimation(display.getStatusLb());
 
-                AsyncCallback<Void> callback = new AsyncCallback<Void>() {
+                AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
                     public void onFailure(Throwable caught) {
                         logger.log(Level.SEVERE, "sign in error");
                         logger.log(Level.SEVERE, caught.getMessage());
                     }
 
-                    public void onSuccess(Void result) {
+                    public void onSuccess(Boolean result) {
 
-                        display.getStatusLb().setText("Success");
-                        display.getStatusLb().setStyleName("alert alert-success");
-                        logger.log(Level.INFO, "Log in success");
                         CommonUtil.hideLoadingAnimation(display.getStatusLb());
 
-                        //todo save session
-                        //eventBus.fireEvent(new SavePublicKeyEvent(result));
-                        eventBus.fireEvent(new CdEvent());
+                        if (result) {
 
+                            display.getStatusLb().setText("Success");
+                            display.getStatusLb().setStyleName("alert alert-success");
+                            logger.log(Level.INFO, "Log in success");
+
+                            //eventBus.fireEvent(new SavePublicKeyEvent(result));
+                            eventBus.fireEvent(new CdEvent());
+                        }
+                        else {
+                            display.getStatusLb().setText("Failure");
+                            display.getStatusLb().setStyleName("alert alert-danger");
+                            logger.log(Level.INFO, "Log in failure");
+                        }
                     }
                 };
 

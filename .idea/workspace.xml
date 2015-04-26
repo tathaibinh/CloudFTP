@@ -11,9 +11,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthServiceAsync.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthServiceAsync.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/AuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/AuthServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LoginPresenter.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LoginPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/shared/SessionUtil.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/shared/SessionUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="FileCloud.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LoginPresenter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LoginPresenter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LoginPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.4318182">
+              <caret line="116" column="69" selection-start-line="116" selection-start-column="69" selection-end-line="116" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -70,10 +67,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShellServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShellServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.9545455">
+            <state vertical-scroll-proportion="0.0">
               <caret line="123" column="44" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -100,8 +97,11 @@
         <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/AuthServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="59" selection-start-line="63" selection-start-column="49" selection-end-line="63" selection-end-column="59" />
-              <folding />
+              <caret line="68" column="25" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
+              <folding>
+                <element signature="e#2761#2762#0" expanded="true" />
+                <element signature="e#2836#2837#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,7 +110,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+              <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -120,7 +120,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthServiceAsync.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="78" selection-start-line="6" selection-start-column="78" selection-end-line="6" selection-end-column="78" />
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -202,12 +202,12 @@
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/ShellService.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/ShellServiceAsync.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/CdPresenter.java" />
-        <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthService.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/shared/SessionUtil.java" />
-        <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/AuthServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LoginPresenter.java" />
+        <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthService.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthServiceAsync.java" />
+        <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/AuthServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LoginPresenter.java" />
       </list>
     </option>
   </component>
@@ -776,12 +776,12 @@
       <workItem from="1429840135539" duration="1201000" />
       <workItem from="1429926040460" duration="4273000" />
       <workItem from="1430004979399" duration="10946000" />
-      <workItem from="1430067230436" duration="3245000" />
+      <workItem from="1430067230436" duration="3828000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103206000" />
+    <option name="totallyTimeSpent" value="103789000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1295" height="772" extended-state="6" />
@@ -1218,38 +1218,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LoginPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/AuthServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="59" selection-start-line="63" selection-start-column="49" selection-end-line="63" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthServiceAsync.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="78" selection-start-line="6" selection-start-column="78" selection-end-line="6" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/shared/SessionUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1264,11 +1232,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.9545455">
+        <state vertical-scroll-proportion="0.0">
           <caret line="123" column="44" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthServiceAsync.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/AuthServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="68" column="25" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
+          <folding>
+            <element signature="e#2761#2762#0" expanded="true" />
+            <element signature="e#2836#2837#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LoginPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4318182">
+          <caret line="116" column="69" selection-start-line="116" selection-start-column="69" selection-end-line="116" selection-end-column="69" />
+          <folding />
         </state>
       </provider>
     </entry>
