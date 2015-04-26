@@ -7,9 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bae0dc6-cbc1-4aff-b732-d700ebef81cf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/CdPresenter.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/CdPresenter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="FileCloud.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CdPresenter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CdPresenter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/CdPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.18518518">
-              <caret line="161" column="51" selection-start-line="161" selection-start-column="51" selection-end-line="161" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="177" column="33" selection-start-line="177" selection-start-column="33" selection-end-line="177" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -76,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShellServiceImpl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ShellServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.22222222">
+              <caret line="75" column="83" selection-start-line="75" selection-start-column="83" selection-end-line="75" selection-end-column="83" />
               <folding>
                 <element signature="e#2226#2227#0" expanded="true" />
                 <element signature="e#2283#2284#0" expanded="true" />
@@ -169,8 +167,8 @@
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LoginPresenter.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/ShellService.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/ShellServiceAsync.java" />
-        <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/CdPresenter.java" />
+        <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -738,12 +736,12 @@
       <workItem from="1429826743124" duration="3580000" />
       <workItem from="1429840135539" duration="1201000" />
       <workItem from="1429926040460" duration="4273000" />
-      <workItem from="1430004979399" duration="4325000" />
+      <workItem from="1430004979399" duration="4398000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93340000" />
+    <option name="totallyTimeSpent" value="93413000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1295" height="772" extended-state="6" />
@@ -1196,22 +1194,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/CdPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+          <caret line="177" column="33" selection-start-line="177" selection-start-column="33" selection-end-line="177" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/ShellServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22222222">
+          <caret line="75" column="83" selection-start-line="75" selection-start-column="83" selection-end-line="75" selection-end-column="83" />
           <folding>
             <element signature="e#2226#2227#0" expanded="true" />
             <element signature="e#2283#2284#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/CdPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.18518518">
-          <caret line="161" column="51" selection-start-line="161" selection-start-column="51" selection-end-line="161" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -73,7 +73,7 @@ public class ShellServiceImpl extends XsrfProtectedServiceServlet implements She
 
             resp.setContentType("application/x-download");
             resp.setHeader("Content-Disposition", "attachment; filename=" + fileName);
-            resp.setHeader("Content-Length", String.valueOf(10000));//todo right length
+            resp.setHeader("Content-Length", String.valueOf(inputStream.available()));//todo right length
 
             BufferedOutputStream bufferedOutputStream = null;
 
