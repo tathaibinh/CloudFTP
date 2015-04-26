@@ -10,7 +10,12 @@ import com.xiaoerge.cloudftp.server.global.BashProfile;
 import com.xiaoerge.cloudftp.server.global.SessionProfile;
 import org.apache.commons.io.FileUtils;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.Vector;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -53,4 +58,41 @@ public class ShellServiceImpl extends XsrfProtectedServiceServlet implements She
     public String pwd() {
         return BashProfile.getInstance().getCwd();
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        SessionProfile sessionProfile = SessionProfile.getInstance();
+        ChannelSftp channelSftp = sessionProfile.getChannelsftp();
+
+        String fileName = req.getParameter("filename");
+
+        try {
+            InputStream inputStream = channelSftp.get(fileName);
+
+            resp.setContentType("application/x-download");
+            resp.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+            resp.setHeader("Content-Length", String.valueOf(10000));//todo right length
+
+            BufferedOutputStream bufferedOutputStream = null;
+
+            try {
+                bufferedOutputStream = new BufferedOutputStream(resp.getOutputStream());
+
+                byte[] buffer = new byte[8192];
+                for (int length = 0; (length = inputStream.read(buffer)) > 0;) {
+                    bufferedOutputStream.write(buffer, 0, length);
+                }
+            } finally {
+                if (bufferedOutputStream != null) try { bufferedOutputStream.close(); } catch (IOException ignore) {}
+                if (inputStream != null) try { inputStream.close(); } catch (IOException ignore) {}
+            }
+
+            logger.log(Level.SEVERE, fileName);
+        } catch (SftpException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

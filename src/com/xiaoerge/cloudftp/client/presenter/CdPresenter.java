@@ -4,9 +4,11 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.http.client.*;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.*;
 import com.google.gwt.user.client.ui.*;
+import com.google.web.bindery.requestfactory.gwt.rebind.model.RequestMethod;
 import com.xiaoerge.cloudftp.client.ShellServiceAsync;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 import com.xiaoerge.cloudftp.client.shared.BashUtil;
@@ -152,7 +154,31 @@ public class CdPresenter implements Presenter {
                 label.addClickHandler(new ClickHandler() {
                     @Override
                     public void onClick(ClickEvent event) {
-                        Window.alert(label.getText());
+
+                        String url = GWT.getModuleBaseURL() + "shellservice?filename={filename}";
+                        url = url.replace("{filename}", label.getText());
+                        url = URL.encode(url);
+
+                        Window.Location.replace(url);
+
+//                        try {
+//                            RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, url);
+//                            requestBuilder.sendRequest(null, new RequestCallback() {
+//                                @Override
+//                                public void onResponseReceived(Request request, Response response) {
+//                                    //todo
+//                                    logger.log(Level.SEVERE, "request received "+ response);
+//
+//                                }
+//
+//                                @Override
+//                                public void onError(Request request, Throwable exception) {
+//                                    //todo
+//                                }
+//                            });
+//                        } catch (RequestException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 });
             }
