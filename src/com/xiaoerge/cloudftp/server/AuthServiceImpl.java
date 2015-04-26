@@ -8,6 +8,7 @@ import com.xiaoerge.cloudftp.client.AuthService;
 import com.xiaoerge.cloudftp.server.global.UserProfile;
 import com.xiaoerge.cloudftp.server.global.SessionProfile;
 import com.xiaoerge.cloudftp.server.shared.EncryptionUtil;
+import com.xiaoerge.cloudftp.server.shared.SessionUtil;
 
 import javax.crypto.Cipher;
 import javax.servlet.http.Cookie;
@@ -19,13 +20,9 @@ import java.security.KeyPairGenerator;
 public class AuthServiceImpl extends XsrfProtectedServiceServlet implements AuthService {
 
     private static String PUBLIC_KEY = "PUBLIC_KEY";
-    private String username;
-    private String password;
-    private String host;
-    private int port;
 
     @Override
-    public byte[] authenticate(String hostname, byte[] password, int port) {
+    public void authenticate(String hostname, byte[] password, int port) {
 
         try {
             SessionProfile sessionProfile = SessionProfile.getInstance();
@@ -60,13 +57,13 @@ public class AuthServiceImpl extends XsrfProtectedServiceServlet implements Auth
             sessionProfile.setChannel(channel);
             sessionProfile.setChannelsftp(channelsftp);
 
-            storeSessionKey(key.getPublic().toString().getBytes());
+            //storeSessionKey(key.getPublic().toString().getBytes());
 
-            return key.getPublic().getEncoded();
+            //if this is a new session, xsrf token will fail. should not be a new session
+            HttpSession session1 = this.getThreadLocalRequest().getSession(false);
+            SessionUtil.saveToSession(session1, "PUBLIC_KEY", key.getPublic());
 
-        } catch (Exception e) {
-            return new byte[0];
-        }
+        } catch (Exception ignored) {}
     }
 
     @Override
@@ -79,19 +76,5 @@ public class AuthServiceImpl extends XsrfProtectedServiceServlet implements Auth
         HttpServletRequest httpServletRequest = this.getThreadLocalRequest();
         HttpSession session = httpServletRequest.getSession();
         return ((String) session.getAttribute(PUBLIC_KEY)).getBytes();
-    }
-
-    private void storeSessionKey(byte[] publicKey)
-    {
-        HttpServletRequest httpServletRequest = this.getThreadLocalRequest();
-        HttpSession session = httpServletRequest.getSession();
-        session.setAttribute(PUBLIC_KEY, publicKey);
-    }
-
-    private void deleteSessionKey()
-    {
-        HttpServletRequest httpServletRequest = this.getThreadLocalRequest();
-        HttpSession session = httpServletRequest.getSession();
-        session.removeAttribute(PUBLIC_KEY);
     }
 }

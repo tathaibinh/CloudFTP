@@ -1,10 +1,8 @@
 package com.xiaoerge.cloudftp.server;
 
-import com.google.gwt.user.client.rpc.RpcTokenException;
 import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
-import com.sun.deploy.net.cookie.CookieUnavailableException;
 import com.xiaoerge.cloudftp.client.ShellService;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 import com.xiaoerge.cloudftp.server.global.BashProfile;
@@ -19,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.KeyPair;
 import java.security.PublicKey;
+import java.util.Arrays;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +33,7 @@ public class ShellServiceImpl extends XsrfProtectedServiceServlet implements She
     @Override
     public Vector<FileEntry> cd(String path) {
 
-        if (validateCookie()) {
+        if (validateSession()) {
 
             SessionProfile sessionProfile = SessionProfile.getInstance();
             ChannelSftp channelSftp = sessionProfile.getChannelsftp();
@@ -71,7 +69,7 @@ public class ShellServiceImpl extends XsrfProtectedServiceServlet implements She
 
     @Override
     public String pwd() {
-        if (validateCookie()) {
+        if (validateSession()) {
             return BashProfile.getInstance().getCwd();
         }
         else {
@@ -83,7 +81,7 @@ public class ShellServiceImpl extends XsrfProtectedServiceServlet implements She
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        if (validateCookie()) {
+        if (validateSession()) {
             SessionProfile sessionProfile = SessionProfile.getInstance();
             ChannelSftp channelSftp = sessionProfile.getChannelsftp();
 
@@ -117,18 +115,12 @@ public class ShellServiceImpl extends XsrfProtectedServiceServlet implements She
         }
     }
 
-    //validate public key store in cookie
-    private boolean validateCookie() {
+    //validate public key store in session
+    private boolean validateSession() {
         PublicKey publickey = SessionProfile.getInstance().getKey().getPublic();
-        Cookie[] cookies = this.getThreadLocalRequest().getCookies();
-        for (Cookie cookie : cookies) {
-            logger.log(Level.SEVERE, cookie.getValue().toString());
-            logger.log(Level.SEVERE, publickey.toString());
-            if (cookie.getName().equals("PUBLICKEY") && cookie.getValue().equals(publickey.toString())) {
-                return true;
-            }
-        }
-        logger.log(Level.SEVERE, "No public key in cookie");
-        return false;
+        PublicKey publicKey2 = (PublicKey) SessionUtil.getFromSession(
+                this.getThreadLocalRequest().getSession(), "PUBLIC_KEY");
+
+        return publickey.equals(publicKey2);
     }
 }

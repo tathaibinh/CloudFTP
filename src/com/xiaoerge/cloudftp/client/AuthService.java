@@ -7,7 +7,7 @@ import com.google.gwt.user.client.rpc.XsrfProtectedService;
 @RemoteServiceRelativePath("authservice")
 public interface AuthService extends XsrfProtectedService {
 
-    public byte[] authenticate(String host, byte[] passwd, int port);
+    void authenticate(String host, byte[] passwd, int port);
 
     String getSessionId();
 

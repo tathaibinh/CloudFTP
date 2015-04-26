@@ -92,32 +92,23 @@ public class LoginPresenter implements Presenter {
 
                 CommonUtil.showLoadingAnimation(display.getStatusLb());
 
-                AsyncCallback<byte[]> callback = new AsyncCallback<byte[]>() {
+                AsyncCallback<Void> callback = new AsyncCallback<Void>() {
                     public void onFailure(Throwable caught) {
                         logger.log(Level.SEVERE, "sign in error");
                         logger.log(Level.SEVERE, caught.getMessage());
                     }
 
-                    public void onSuccess(byte[] result) {
-                        if (result.length > 0) {
+                    public void onSuccess(Void result) {
 
-                            Cookies.setCookie("PUBLICKEY", Arrays.toString(result));
+                        display.getStatusLb().setText("Success");
+                        display.getStatusLb().setStyleName("alert alert-success");
+                        logger.log(Level.INFO, "Log in success");
+                        CommonUtil.hideLoadingAnimation(display.getStatusLb());
 
-                            display.getStatusLb().setText("Success");
-                            display.getStatusLb().setStyleName("alert alert-success");
-                            logger.log(Level.INFO, "Log in success");
-                            CommonUtil.hideLoadingAnimation(display.getStatusLb());
+                        //todo save session
+                        //eventBus.fireEvent(new SavePublicKeyEvent(result));
+                        eventBus.fireEvent(new CdEvent());
 
-                            //todo save session
-                            eventBus.fireEvent(new SavePublicKeyEvent(result));
-                            eventBus.fireEvent(new CdEvent());
-
-                        } else {
-                            CommonUtil.hideLoadingAnimation(display.getStatusLb());
-                            display.getStatusLb().setText("Failure");
-                            display.getStatusLb().setStyleName("alert alert-danger");
-                            logger.log(Level.SEVERE, "log in failure");
-                        }
                     }
                 };
 
