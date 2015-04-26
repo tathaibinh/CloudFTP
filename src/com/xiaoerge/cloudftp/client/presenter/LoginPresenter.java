@@ -12,6 +12,7 @@ import com.xiaoerge.cloudftp.client.AuthServiceAsync;
 import com.xiaoerge.cloudftp.client.event.background.SavePublicKeyEvent;
 import com.xiaoerge.cloudftp.client.event.foreground.CdEvent;
 import com.xiaoerge.cloudftp.client.shared.CommonUtil;
+import com.xiaoerge.cloudftp.client.shared.GraphicalUtil;
 
 import javax.servlet.http.Cookie;
 import java.util.Arrays;
@@ -91,10 +92,11 @@ public class LoginPresenter implements Presenter {
                 ((HasRpcToken) authServiceAsync).setRpcToken(token);
 
                 CommonUtil.showLoadingAnimation(display.getStatusLb());
+                //GraphicalUtil.showOverlayProgressWindow();
 
                 AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
                     public void onFailure(Throwable caught) {
-                        logger.log(Level.SEVERE, "sign in error");
+                        logger.log(Level.SEVERE, "Log in failure");
                         logger.log(Level.SEVERE, caught.getMessage());
                     }
 

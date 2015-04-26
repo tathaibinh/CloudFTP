@@ -1,24 +1,26 @@
 package com.xiaoerge.cloudftp.server;
 
+import com.google.gwt.user.server.rpc.XsrfProtect;
 import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import com.xiaoerge.cloudftp.client.ShellService;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
+import com.xiaoerge.cloudftp.client.shared.StateConstants;
 import com.xiaoerge.cloudftp.server.global.BashProfile;
 import com.xiaoerge.cloudftp.server.global.SessionProfile;
 import com.xiaoerge.cloudftp.server.shared.SessionUtil;
 import org.apache.commons.io.FileUtils;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.PublicKey;
-import java.util.Arrays;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,50 +79,11 @@ public class ShellServiceImpl extends XsrfProtectedServiceServlet implements She
         }
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-
-        if (validateSession()) {
-            SessionProfile sessionProfile = SessionProfile.getInstance();
-            ChannelSftp channelSftp = sessionProfile.getChannelsftp();
-
-            String fileName = req.getParameter("filename");
-
-            try {
-                InputStream inputStream = channelSftp.get(fileName);
-
-                resp.setContentType("application/x-download");
-                resp.setHeader("Content-Disposition", "attachment; filename=" + fileName);
-                resp.setHeader("Content-Length", String.valueOf(inputStream.available()));//todo right length
-
-                BufferedOutputStream bufferedOutputStream = null;
-
-                try {
-                    bufferedOutputStream = new BufferedOutputStream(resp.getOutputStream());
-
-                    byte[] buffer = new byte[8192];
-                    for (int length = 0; (length = inputStream.read(buffer)) > 0;) {
-                        bufferedOutputStream.write(buffer, 0, length);
-                    }
-                } finally {
-                    if (bufferedOutputStream != null) try { bufferedOutputStream.close(); } catch (IOException ignore) {}
-                    if (inputStream != null) try { inputStream.close(); } catch (IOException ignore) {}
-                }
-
-                logger.log(Level.SEVERE, fileName);
-            } catch (SftpException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     //validate public key store in session
     private boolean validateSession() {
         PublicKey publickey = SessionProfile.getInstance().getKey().getPublic();
-        PublicKey publicKey2 = (PublicKey) SessionUtil.getFromSession(
-                this.getThreadLocalRequest().getSession(), "PUBLIC_KEY");
-
+        HttpSession session = this.getThreadLocalRequest().getSession(false);
+        PublicKey publicKey2 = (PublicKey) SessionUtil.getFromSession(session, StateConstants.PUBLIC_KEY);
         return publickey.equals(publicKey2);
     }
 }

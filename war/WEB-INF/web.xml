@@ -48,4 +48,15 @@
         <servlet-name>publicservice</servlet-name>
         <url-pattern>/cloudftp/publicservice</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetServlet</servlet-name>
+        <servlet-class>com.xiaoerge.cloudftp.server.GetServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetServlet</servlet-name>
+        <url-pattern>/cloudftp/getservice</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -5,6 +5,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 import com.jcraft.jsch.*;
 import com.xiaoerge.cloudftp.client.AuthService;
+import com.xiaoerge.cloudftp.client.shared.StateConstants;
 import com.xiaoerge.cloudftp.server.global.UserProfile;
 import com.xiaoerge.cloudftp.server.global.SessionProfile;
 import com.xiaoerge.cloudftp.server.shared.EncryptionUtil;
@@ -18,8 +19,6 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 
 public class AuthServiceImpl extends XsrfProtectedServiceServlet implements AuthService {
-
-    private static String PUBLIC_KEY = "PUBLIC_KEY";
 
     @Override
     public boolean authenticate(String hostname, byte[] password, int port) {
@@ -61,7 +60,7 @@ public class AuthServiceImpl extends XsrfProtectedServiceServlet implements Auth
 
             //if this is a new session, xsrf token will fail. should not be a new session
             HttpSession session1 = this.getThreadLocalRequest().getSession(false);
-            SessionUtil.saveToSession(session1, "PUBLIC_KEY", key.getPublic());
+            SessionUtil.saveToSession(session1, StateConstants.PUBLIC_KEY, key.getPublic());
 
             return true;
 

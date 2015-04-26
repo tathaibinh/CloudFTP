@@ -1,6 +1,8 @@
 package com.xiaoerge.cloudftp.client.view;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -106,9 +108,13 @@ public class CdView extends Composite implements CdPresenter.Display {
             }
             else {
                 flexTable.setWidget((i + rowOffset), 0, fileIcon);
-                Label label = new Label(fileEntry.getFileName());
-                label.getElement().getStyle().setCursor(Style.Cursor.POINTER);
-                flexTable.setWidget((i + rowOffset), 1, label);
+                Anchor anchor = new Anchor(fileEntry.getFileName());
+
+                String url = GWT.getModuleBaseURL() + "getservice?filename={filename}";
+                url = url.replace("{filename}", fileEntry.getFileName());
+                anchor.setHref(URL.encode(url));
+                anchor.getElement().getStyle().setCursor(Style.Cursor.POINTER);
+                flexTable.setWidget((i + rowOffset), 1, anchor);
             }
 
             flexTable.setText((i + rowOffset), 2, fileEntry.getPermissionString());

@@ -150,16 +150,16 @@ public class CdPresenter implements Presenter {
                 });
             }
             else {
-                final Label label = (Label) widget;
-                label.addClickHandler(new ClickHandler() {
-                    @Override
-                    public void onClick(ClickEvent event) {
-
-                        String url = GWT.getModuleBaseURL() + "shellservice?filename={filename}";
-                        url = url.replace("{filename}", label.getText());
-                        url = URL.encode(url);
-
-                        Window.Location.replace(url);
+//                final Label label = (Label) widget;
+//                label.addClickHandler(new ClickHandler() {
+//                    @Override
+//                    public void onClick(ClickEvent event) {
+//
+//                        String url = GWT.getModuleBaseURL() + "getservice?filename={filename}";
+//                        url = url.replace("{filename}", label.getText());
+//                        url = URL.encode(url);
+//
+//                        Window.Location.replace(url);
 
 //                        try {
 //                            RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, url);
@@ -179,8 +179,8 @@ public class CdPresenter implements Presenter {
 //                        } catch (RequestException e) {
 //                            e.printStackTrace();
 //                        }
-                    }
-                });
+//                    }
+//                });
             }
         }
     }
