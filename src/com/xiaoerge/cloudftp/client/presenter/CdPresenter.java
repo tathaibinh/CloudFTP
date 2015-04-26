@@ -168,7 +168,7 @@ public class CdPresenter implements Presenter {
 //                                public void onResponseReceived(Request request, Response response) {
 //                                    //todo
 //                                    logger.log(Level.SEVERE, "request received "+ response);
-//
+//                                    logger.log(Level.SEVERE, "request received "+ response.getText());
 //                                }
 //
 //                                @Override
