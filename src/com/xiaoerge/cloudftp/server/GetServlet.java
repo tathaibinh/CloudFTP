@@ -32,22 +32,11 @@ public class GetServlet extends HttpServlet {
         String fileName = req.getParameter("filename");
 
         try {
-            BufferedInputStream inputStream = new BufferedInputStream(channelSftp.get(fileName));
-
-            Vector<ChannelSftp.LsEntry> entries = channelSftp.ls(channelSftp.pwd());
-            for (ChannelSftp.LsEntry lsEntry : entries) {
-                if (lsEntry.getFilename().equals(fileName)) {
-                    channelSftp.get(lsEntry.getFilename(), resp.getOutputStream());
-                }
-            }
-
-//            resp.setContentType("application/x-download");
-//            resp.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+            resp.setContentType("application/x-download");
+            resp.setHeader("Content-Disposition", "attachment; filename=" + fileName);
 //            resp.setHeader("Content-Length", String.valueOf(inputStream.available()));
 
-//            IOUtils.copy(inputStream, resp.getWriter());
-//            inputStream.close();
-//            resp.getWriter().close();
+            channelSftp.get(fileName, resp.getOutputStream());
 
             logger.log(Level.SEVERE, fileName);
         } catch (SftpException e) {
