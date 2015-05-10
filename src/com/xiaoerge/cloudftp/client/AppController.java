@@ -94,7 +94,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         eventBus.addHandler(SavePublicKeyEvent.TYPE, new SavePublicKeyEventHandler() {
             @Override
             public void onSavePublicKey(SavePublicKeyEvent key) {
-                doSavePublicKey();
+                doSavePublicKey(key.getKey());
             }
         });
         eventBus.addHandler(CdEvent.TYPE, new CdEventHandler() {
@@ -115,9 +115,9 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         History.newItem(StateConstants.LOGOUT);
     }
 
-    private synchronized void doSavePublicKey() {
-        //todo logic
+    private synchronized void doSavePublicKey(String key) {
         logger.log(Level.SEVERE, "saving public key");
+        Cookies.setCookie(StateConstants.PUBLIC_KEY, key);
     }
 
     private synchronized void doLs() {

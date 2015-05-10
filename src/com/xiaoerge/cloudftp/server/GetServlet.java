@@ -2,17 +2,15 @@ package com.xiaoerge.cloudftp.server;
 
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
-import com.xiaoerge.cloudftp.server.global.BashProfile;
+import com.xiaoerge.cloudftp.client.shared.StateConstants;
 import com.xiaoerge.cloudftp.server.global.SessionProfile;
-import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.util.Vector;
-import java.util.logging.Level;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 /**
@@ -26,23 +24,32 @@ public class GetServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        SessionProfile sessionProfile = SessionProfile.getInstance();
-        ChannelSftp channelSftp = sessionProfile.getChannelsftp();
-
         //these are from http request parameters
         String fileName = req.getParameter("filename");
         String publicKey = req.getParameter("publickey");
         String csrfToken = req.getParameter("csrftoken");
 
-        try {
-            resp.setContentType("application/x-download");
-            resp.setHeader("Content-Disposition", "attachment; filename=" + fileName);
-//            resp.setHeader("Content-Length", fileSize);
+        HttpSession session = req.getSession(false);
+        String pKey = (String) session.getAttribute(StateConstants.PUBLIC_KEY);
 
-            channelSftp.get(fileName, resp.getOutputStream());
+        SessionProfile sessionProfile = SessionProfile.getInstance();
+        ChannelSftp channelSftp = sessionProfile.getChannelsftp();
 
-        } catch (SftpException e) {
-            e.printStackTrace();
+        if (!publicKey.isEmpty() && publicKey.equals(pKey)) {
+
+            try {
+                resp.setContentType("application/x-download");
+                resp.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+                //resp.setHeader("Content-Length", fileSize);
+
+                channelSftp.get(fileName, resp.getOutputStream());
+
+            } catch (SftpException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            throw new ServletException();
         }
     }
 }

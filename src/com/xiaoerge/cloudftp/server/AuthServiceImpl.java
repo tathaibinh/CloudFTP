@@ -17,11 +17,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.*;
+import java.util.logging.Logger;
 
 public class AuthServiceImpl extends XsrfProtectedServiceServlet implements AuthService {
 
+    public static java.util.logging.Logger logger = Logger.getLogger(AuthServiceImpl.class.getName());
+
     @Override
-    public boolean authenticate(String hostname, byte[] password, int port) {
+    public String authenticate(String hostname, byte[] password, int port) {
 
         try {
             SessionProfile sessionProfile = SessionProfile.getInstance();
@@ -56,16 +63,17 @@ public class AuthServiceImpl extends XsrfProtectedServiceServlet implements Auth
             sessionProfile.setChannel(channel);
             sessionProfile.setChannelsftp(channelsftp);
 
-            //storeSessionKey(key.getPublic().toString().getBytes());
+            String pKey = Arrays.toString(key.getPublic().getEncoded());
 
             //if this is a new session, xsrf token will fail. should not be a new session
             HttpSession session1 = this.getThreadLocalRequest().getSession(false);
-            SessionUtil.saveToSession(session1, StateConstants.PUBLIC_KEY, key.getPublic());
+            SessionUtil.saveToSession(session1, StateConstants.PUBLIC_KEY, pKey);
 
-            return true;
+            logger.log(Level.SEVERE, pKey);
+            return pKey;
 
         } catch (Exception ex) {
-            return false;
+            return "";
         }
     }
 

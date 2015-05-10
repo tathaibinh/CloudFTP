@@ -21,6 +21,7 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.PublicKey;
+import java.util.Arrays;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,9 +82,9 @@ public class ShellServiceImpl extends XsrfProtectedServiceServlet implements She
 
     //validate public key store in session
     private boolean validateSession() {
-        PublicKey publickey = SessionProfile.getInstance().getKey().getPublic();
+        String publickey = Arrays.toString(SessionProfile.getInstance().getKey().getPublic().getEncoded());
         HttpSession session = this.getThreadLocalRequest().getSession(false);
-        PublicKey publicKey2 = (PublicKey) SessionUtil.getFromSession(session, StateConstants.PUBLIC_KEY);
+        String publicKey2 = (String) SessionUtil.getFromSession(session, StateConstants.PUBLIC_KEY);
         return publickey.equals(publicKey2);
     }
 }

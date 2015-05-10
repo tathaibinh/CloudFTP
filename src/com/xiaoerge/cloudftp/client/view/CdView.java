@@ -3,6 +3,7 @@ package com.xiaoerge.cloudftp.client.view;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.http.client.URL;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -10,6 +11,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 import com.xiaoerge.cloudftp.client.presenter.CdPresenter;
 import com.xiaoerge.cloudftp.client.shared.CommonUtil;
+import com.xiaoerge.cloudftp.client.shared.StateConstants;
 
 import java.awt.*;
 import java.util.Vector;
@@ -113,11 +115,10 @@ public class CdView extends Composite implements CdPresenter.Display {
 
                 //this url routes to GetServlet
                 String url = GWT.getModuleBaseURL() + "getservice?" +
-                        "filename={filename}&filesize={filesize}&publickey={publickey}&csrftoken={csrftoken}";
+                        "filename={filename}&publickey={publickey}&csrftoken={csrftoken}";
 
                 url = url.replace("{filename}", fileEntry.getFileName());
-                url = url.replace("{publickey}", "random-public-key");
-                url = url.replace("{csrftoken}", "random-csrf-token");
+                url = url.replace("{publickey}", Cookies.getCookie(StateConstants.PUBLIC_KEY));
 
                 anchor.setHref(URL.encode(url));
                 anchor.getElement().getStyle().setCursor(Style.Cursor.POINTER);

@@ -9,10 +9,12 @@ import com.google.gwt.event.shared.GwtEvent;
 public class SavePublicKeyEvent extends GwtEvent<SavePublicKeyEventHandler> {
     public static Type<SavePublicKeyEventHandler> TYPE = new Type<>();
 
-    private byte[] key;
-    public SavePublicKeyEvent(byte[] k) {
+    private String key;
+    public SavePublicKeyEvent(String k) {
         key = k;
     }
+
+    public String getKey() { return key; }
 
     @Override
     public Type getAssociatedType() {

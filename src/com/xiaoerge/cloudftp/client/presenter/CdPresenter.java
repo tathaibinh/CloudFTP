@@ -149,7 +149,7 @@ public class CdPresenter implements Presenter {
                     }
                 });
             }
-            else {
+//            else {
 //                final Label label = (Label) widget;
 //                label.addClickHandler(new ClickHandler() {
 //                    @Override
@@ -181,7 +181,7 @@ public class CdPresenter implements Presenter {
 //                        }
 //                    }
 //                });
-            }
+//            }
         }
     }
 }

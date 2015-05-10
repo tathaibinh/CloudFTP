@@ -16,6 +16,7 @@ import com.xiaoerge.cloudftp.client.shared.GraphicalUtil;
 
 import javax.servlet.http.Cookie;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -94,23 +95,23 @@ public class LoginPresenter implements Presenter {
                 CommonUtil.showLoadingAnimation(display.getStatusLb());
                 //GraphicalUtil.showOverlayProgressWindow();
 
-                AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
+                AsyncCallback<String> callback = new AsyncCallback<String>() {
                     public void onFailure(Throwable caught) {
                         logger.log(Level.SEVERE, "Log in failure");
                         logger.log(Level.SEVERE, caught.getMessage());
                     }
 
-                    public void onSuccess(Boolean result) {
+                    public void onSuccess(String result) {
 
                         CommonUtil.hideLoadingAnimation(display.getStatusLb());
 
-                        if (result) {
+                        if (!result.isEmpty()) {
 
                             display.getStatusLb().setText("Success");
                             display.getStatusLb().setStyleName("alert alert-success");
                             logger.log(Level.INFO, "Log in success");
 
-                            //eventBus.fireEvent(new SavePublicKeyEvent(result));
+                            eventBus.fireEvent(new SavePublicKeyEvent(result));
                             eventBus.fireEvent(new CdEvent());
                         }
                         else {
