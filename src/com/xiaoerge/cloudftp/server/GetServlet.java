@@ -2,15 +2,15 @@ package com.xiaoerge.cloudftp.server;
 
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
+import com.xiaoerge.cloudftp.server.global.BashProfile;
 import com.xiaoerge.cloudftp.server.global.SessionProfile;
+import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,25 +31,31 @@ public class GetServlet extends HttpServlet {
         String fileName = req.getParameter("filename");
 
         try {
+            logger.log(Level.SEVERE, channelSftp.pwd());
+            logger.log(Level.SEVERE, BashProfile.getInstance().getCwd());
+
             BufferedInputStream inputStream = new BufferedInputStream(channelSftp.get(fileName));
+
+            logger.log(Level.SEVERE, inputStream.toString());
 
             resp.setContentType("application/x-download");
             resp.setHeader("Content-Disposition", "attachment; filename=" + fileName);
             resp.setHeader("Content-Length", String.valueOf(inputStream.available()));
 
-            BufferedOutputStream bufferedOutputStream = null;
-
-            try {
-                bufferedOutputStream = new BufferedOutputStream(resp.getOutputStream());
-
-                byte[] buffer = new byte[8192];
-                for (int length = 0; (length = inputStream.read(buffer)) > 0;) {
-                    bufferedOutputStream.write(buffer, 0, length);
-                }
-            } finally {
-                if (bufferedOutputStream != null) try { bufferedOutputStream.close(); } catch (IOException ignore) {}
-                if (inputStream != null) try { inputStream.close(); } catch (IOException ignore) {}
-            }
+            IOUtils.copy(inputStream, resp.getOutputStream());
+//            BufferedOutputStream bufferedOutputStream = null;
+//
+//            try {
+//                bufferedOutputStream = new BufferedOutputStream(resp.getOutputStream());
+//
+//                byte[] buffer = new byte[8192];
+//                for (int length = 0; (length = inputStream.read(buffer)) > 0;) {
+//                    bufferedOutputStream.write(buffer, 0, length);
+//                }
+//            } finally {
+//                if (bufferedOutputStream != null) try { bufferedOutputStream.close(); } catch (IOException ignore) {}
+//                if (inputStream != null) try { inputStream.close(); } catch (IOException ignore) {}
+//            }
 
             logger.log(Level.SEVERE, fileName);
         } catch (SftpException e) {
