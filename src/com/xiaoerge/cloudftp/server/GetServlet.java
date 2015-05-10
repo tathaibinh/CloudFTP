@@ -29,16 +29,18 @@ public class GetServlet extends HttpServlet {
         SessionProfile sessionProfile = SessionProfile.getInstance();
         ChannelSftp channelSftp = sessionProfile.getChannelsftp();
 
+        //these are from http request parameters
         String fileName = req.getParameter("filename");
+        String publicKey = req.getParameter("publickey");
+        String csrfToken = req.getParameter("csrftoken");
 
         try {
             resp.setContentType("application/x-download");
             resp.setHeader("Content-Disposition", "attachment; filename=" + fileName);
-//            resp.setHeader("Content-Length", String.valueOf(inputStream.available()));
+//            resp.setHeader("Content-Length", fileSize);
 
             channelSftp.get(fileName, resp.getOutputStream());
 
-            logger.log(Level.SEVERE, fileName);
         } catch (SftpException e) {
             e.printStackTrace();
         }

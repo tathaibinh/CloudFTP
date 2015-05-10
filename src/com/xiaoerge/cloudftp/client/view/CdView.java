@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 import com.xiaoerge.cloudftp.client.presenter.CdPresenter;
+import com.xiaoerge.cloudftp.client.shared.CommonUtil;
 
 import java.awt.*;
 import java.util.Vector;
@@ -110,8 +111,14 @@ public class CdView extends Composite implements CdPresenter.Display {
                 flexTable.setWidget((i + rowOffset), 0, fileIcon);
                 Anchor anchor = new Anchor(fileEntry.getFileName());
 
-                String url = GWT.getModuleBaseURL() + "getservice?filename={filename}";
+                //this url routes to GetServlet
+                String url = GWT.getModuleBaseURL() + "getservice?" +
+                        "filename={filename}&filesize={filesize}&publickey={publickey}&csrftoken={csrftoken}";
+
                 url = url.replace("{filename}", fileEntry.getFileName());
+                url = url.replace("{publickey}", "random-public-key");
+                url = url.replace("{csrftoken}", "random-csrf-token");
+
                 anchor.setHref(URL.encode(url));
                 anchor.getElement().getStyle().setCursor(Style.Cursor.POINTER);
                 flexTable.setWidget((i + rowOffset), 1, anchor);
