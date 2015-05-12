@@ -26,8 +26,11 @@ public class CdView extends Composite implements CdPresenter.Display {
     private Button cdBt;
     private FlexTable flexTable;
     private Label statusLb, progressLb;
+    private Button logoutBt;
 
     public CdView() {
+
+        VerticalPanel verticalPanel = new VerticalPanel();
 
         flexTable = new FlexTable();
         fileEntries = new Vector<>();
@@ -35,14 +38,22 @@ public class CdView extends Composite implements CdPresenter.Display {
         cdBt = new Button("Show");
         statusLb = new Label();
         progressLb = new Label();
+        logoutBt = new Button("Logout");
 
-        initWidget(flexTable);
-
+        flexTable.getElement().setAttribute("id", "dataTable");
         flexTable.setStyleName("table table-responsive table-bordered table-hover");
         pathTf.setStyleName("form-control");
-        cdBt.setStyleName("btn btn-primary");
+        cdBt.setStyleName("btn btn-primary btn-block");
+
+        logoutBt.setStyleName("btn btn-danger");
+
+        verticalPanel.setStyleName("table table-responsive table-bordered table-hover");
+        verticalPanel.add(logoutBt);
+        verticalPanel.add(flexTable);
 
         setItems(fileEntries);
+
+        initWidget(verticalPanel);
     }
 
     @Override
@@ -83,6 +94,9 @@ public class CdView extends Composite implements CdPresenter.Display {
     public Button getCdBt() {
         return cdBt;
     }
+
+    @Override
+    public Button getLogoutBt() {return logoutBt;}
 
     private void refresh() {
         flexTable.removeAllRows();

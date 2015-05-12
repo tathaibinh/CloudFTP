@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.Label;
 public interface Presenter {
     void refresh(final HasWidgets widgets);
 
-    interface CommonDisplay {
+    public interface CommonDisplay {
         Label getStatusLb();
         Label getProgressLb();
     }

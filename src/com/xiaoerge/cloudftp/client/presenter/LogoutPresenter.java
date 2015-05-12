@@ -25,12 +25,6 @@ public class LogoutPresenter implements Presenter {
         Button getLogoutButton();
         Label getLogoutStatusLabel();
         Widget asWidget();
-
-        @Override
-        Label getStatusLb();
-
-        @Override
-        Label getProgressLb();
     }
 
     public LogoutPresenter(AuthServiceAsync authServiceAsync, HandlerManager eventBus, Display display) {

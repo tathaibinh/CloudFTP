@@ -4,15 +4,12 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.http.client.*;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.*;
 import com.google.gwt.user.client.ui.*;
-import com.google.web.bindery.requestfactory.gwt.rebind.model.RequestMethod;
 import com.xiaoerge.cloudftp.client.ShellServiceAsync;
+import com.xiaoerge.cloudftp.client.event.foreground.LogoutEvent;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 import com.xiaoerge.cloudftp.client.shared.BashUtil;
-import com.xiaoerge.cloudftp.client.shared.CommonUtil;
 
 import java.util.Vector;
 import java.util.logging.Level;
@@ -32,6 +29,7 @@ public class CdPresenter implements Presenter {
         TextBox getPathTf();
         Button getCdBt();
         FlexTable getListTable();
+        Button getLogoutBt();
 
         @Override
         Label getStatusLb();
@@ -116,6 +114,13 @@ public class CdPresenter implements Presenter {
                         }
                     }
                 });
+            }
+        });
+
+        display.getLogoutBt().addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                eventBus.fireEvent(new LogoutEvent());
             }
         });
     }
