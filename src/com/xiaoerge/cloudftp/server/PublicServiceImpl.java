@@ -26,6 +26,8 @@ public class PublicServiceImpl extends RemoteServiceServlet implements PublicSer
 //            session.setAttribute("JSESSIONID", nextSessionId());
 //        }
 
+        logger.log(Level.SEVERE, System.getProperty("java.version"));
+
         return (String) session.getAttribute("JSESSIONID");
     }
 
