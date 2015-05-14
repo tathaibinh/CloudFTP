@@ -81,4 +81,16 @@ public class AuthServiceImpl extends XsrfProtectedServiceServlet implements Auth
     public String getSessionId() {
         return this.getThreadLocalRequest().getRequestedSessionId();
     }
+
+    @Override
+    public void disconnect() {
+        SessionProfile sessionProfile = SessionProfile.getInstance();
+        sessionProfile.dispose();
+        sessionProfile = null;
+
+        HttpSession session1 = this.getThreadLocalRequest().getSession(false);
+        SessionUtil.removeFromSession(session1, StateConstants.PUBLIC_KEY);
+
+        System.gc();
+    }
 }

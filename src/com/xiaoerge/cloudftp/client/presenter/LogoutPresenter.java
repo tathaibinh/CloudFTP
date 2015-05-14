@@ -3,6 +3,7 @@ package com.xiaoerge.cloudftp.client.presenter;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.cloudftp.client.AuthServiceAsync;
 import com.xiaoerge.cloudftp.client.event.foreground.LoginEvent;
@@ -46,7 +47,20 @@ public class LogoutPresenter implements Presenter {
             public void onClick(ClickEvent event) {
                 //todo clear session
                 logger.log(Level.INFO, "Logging out");
-                eventBus.fireEvent(new LoginEvent());
+
+                AsyncCallback callback = new AsyncCallback() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        eventBus.fireEvent(new LoginEvent());
+                    }
+
+                    @Override
+                    public void onSuccess(Object result) {
+                        eventBus.fireEvent(new LoginEvent());
+                    }
+                };
+
+                authServiceAsync.disconnect(callback);
             }
         });
     }

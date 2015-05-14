@@ -11,4 +11,5 @@ public interface AuthService extends XsrfProtectedService {
 
     String authenticate(String host, byte[] passwd, int port);
     String getSessionId();
+    void disconnect();
 }

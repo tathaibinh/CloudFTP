@@ -5,15 +5,11 @@ import com.google.gwt.dom.client.Style;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.ui.*;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 import com.xiaoerge.cloudftp.client.presenter.CdPresenter;
-import com.xiaoerge.cloudftp.client.shared.CommonUtil;
+import com.xiaoerge.cloudftp.client.shared.DocumentReady;
 import com.xiaoerge.cloudftp.client.shared.StateConstants;
 
-import java.awt.*;
 import java.util.Vector;
 
 /**

@@ -10,6 +10,7 @@ import com.xiaoerge.cloudftp.client.ShellServiceAsync;
 import com.xiaoerge.cloudftp.client.event.foreground.LogoutEvent;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 import com.xiaoerge.cloudftp.client.shared.BashUtil;
+import com.xiaoerge.cloudftp.client.shared.CommonUtil;
 
 import java.util.Vector;
 import java.util.logging.Level;
@@ -77,15 +78,15 @@ public class CdPresenter implements Presenter {
                     public void onSuccess(XsrfToken token) {
                         ((HasRpcToken) shellServiceAsync).setRpcToken(token);
 
-                        //CommonUtil.showLoadingAnimation(display.getProgressLb());
+                        CommonUtil.showLoadingAnimation(display.getProgressLb());
 
                         if (!display.getPathTf().getText().isEmpty()) {
                             AsyncCallback<Vector<FileEntry>> callback = new AsyncCallback<Vector<FileEntry>>() {
                                 @Override
                                 public void onFailure(Throwable caught) {
                                     display.getStatusLb().setText(caught.getMessage());
-                                    //CommonUtil.hideLoadingAnimation(display.getProgressLb());
                                     logger.log(Level.SEVERE, "error cd");
+                                    CommonUtil.hideLoadingAnimation(display.getProgressLb());
                                 }
 
                                 @Override
@@ -98,7 +99,7 @@ public class CdPresenter implements Presenter {
                                         showCwd();
                                         bindCellClick();
                                     }
-                                    //CommonUtil.hideLoadingAnimation(display.getProgressLb());
+                                    CommonUtil.hideLoadingAnimation(display.getProgressLb());
                                 }
                             };
                             shellServiceAsync.cd(display.getPathTf().getText(), callback);
@@ -155,39 +156,6 @@ public class CdPresenter implements Presenter {
                     }
                 });
             }
-//            else {
-//                final Label label = (Label) widget;
-//                label.addClickHandler(new ClickHandler() {
-//                    @Override
-//                    public void onClick(ClickEvent event) {
-//
-//                        String url = GWT.getModuleBaseURL() + "getservice?filename={filename}";
-//                        url = url.replace("{filename}", label.getText());
-//                        url = URL.encode(url);
-//
-//                        Window.Location.replace(url);
-
-//                        try {
-//                            RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, url);
-//                            requestBuilder.sendRequest(null, new RequestCallback() {
-//                                @Override
-//                                public void onResponseReceived(Request request, Response response) {
-//                                    //todo
-//                                    logger.log(Level.SEVERE, "request received "+ response);
-//                                    logger.log(Level.SEVERE, "request received "+ response.getText());
-//                                }
-//
-//                                @Override
-//                                public void onError(Request request, Throwable exception) {
-//                                    //todo
-//                                }
-//                            });
-//                        } catch (RequestException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
-//            }
         }
     }
 }

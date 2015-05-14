@@ -60,14 +60,17 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         if (token != null) {
             Presenter presenter = null;
 
-            if (token.equals(StateConstants.LOGIN)) {
-                presenter = new LoginPresenter(authServiceAsync, eventBus, new LoginView());
-            }
-            else if (token.equals(StateConstants.LOGOUT)) {
-                presenter = new LogoutPresenter(authServiceAsync, eventBus, new LogoutView());
-            }
-            else if (token.equals(StateConstants.LIST_DIRECTORY)) {
-                presenter = new CdPresenter(shellServiceAsync, eventBus, new CdView());
+            switch (token) {
+                case StateConstants.LOGIN:
+                    presenter = new LoginPresenter(authServiceAsync, eventBus, new LoginView());
+                    break;
+                case StateConstants.LOGOUT:
+                    //todo  real logout
+                    presenter = new LogoutPresenter(authServiceAsync, eventBus, new LogoutView());
+                    break;
+                case StateConstants.LIST_DIRECTORY:
+                    presenter = new CdPresenter(shellServiceAsync, eventBus, new CdView());
+                    break;
             }
 
             if (presenter != null) {
