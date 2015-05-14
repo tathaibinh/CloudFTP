@@ -31,6 +31,7 @@ public class CdView extends Composite implements CdPresenter.Display {
     public CdView() {
 
         VerticalPanel verticalPanel = new VerticalPanel();
+        FlexTable innerTable = new FlexTable();
 
         flexTable = new FlexTable();
         fileEntries = new Vector<>();
@@ -47,9 +48,20 @@ public class CdView extends Composite implements CdPresenter.Display {
 
         logoutBt.setStyleName("btn btn-danger");
 
-        verticalPanel.setStyleName("table table-responsive table-bordered table-hover");
+
+        innerTable.setWidget(0, 0, statusLb);
+        innerTable.setWidget(0, 1, progressLb);
+        innerTable.setWidget(1, 0, pathTf);
+        innerTable.setWidget(1, 1, cdBt);
+        innerTable.getFlexCellFormatter().setColSpan(0, 0, 3);
+        innerTable.getFlexCellFormatter().setColSpan(1, 0, 3);
+
+        innerTable.setStyleName("table table-responsive table-bordered table-hover");
+
         verticalPanel.add(logoutBt);
+        verticalPanel.add(innerTable);
         verticalPanel.add(flexTable);
+        verticalPanel.setStyleName("col-md-12");
 
         setItems(fileEntries);
 
@@ -98,17 +110,19 @@ public class CdView extends Composite implements CdPresenter.Display {
     @Override
     public Button getLogoutBt() {return logoutBt;}
 
+    @Override
+    public int getRowOffset() { return 1; }
+
     private void refresh() {
         flexTable.removeAllRows();
         flexTable.clear();
-        flexTable.setWidget(0, 0, statusLb);
-        flexTable.setWidget(0, 1, progressLb);
-        flexTable.setWidget(1, 0, pathTf);
-        flexTable.setWidget(1, 1, cdBt);
-        flexTable.getFlexCellFormatter().setColSpan(0, 0, 3);
-        flexTable.getFlexCellFormatter().setColSpan(1, 0, 3);
 
-        int rowOffset = 2;
+        flexTable.setWidget(0, 0, new HTML("<i class=\"fa fa-file\"></i>"));
+        flexTable.setWidget(0, 1, new HTML("Name"));
+        flexTable.setWidget(0, 2, new HTML("Permission"));
+        flexTable.setWidget(0, 3, new HTML("Size"));
+
+        int rowOffset = getRowOffset();
 
         for (int i = 0; i < fileEntries.size(); i++) {
             FileEntry fileEntry = fileEntries.get(i);

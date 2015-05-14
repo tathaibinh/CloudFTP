@@ -30,6 +30,7 @@ public class CdPresenter implements Presenter {
         Button getCdBt();
         FlexTable getListTable();
         Button getLogoutBt();
+        int getRowOffset();
 
         @Override
         Label getStatusLb();
@@ -143,7 +144,7 @@ public class CdPresenter implements Presenter {
     private void bindCellClick() {
         Vector<FileEntry> items = display.getItems();
         for (int i = 0; i < items.size(); i++) {
-            final Widget widget = display.getListTable().getWidget((i+2), 1);
+            final Widget widget = display.getListTable().getWidget((i+display.getRowOffset()), 1);
             if (items.get(i).isDir()){
                 final Button button = (Button) widget;
                 button.addClickHandler(new ClickHandler() {
