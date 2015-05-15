@@ -80,11 +80,16 @@ public class ShellServiceImpl extends XsrfProtectedServiceServlet implements She
         }
     }
 
-    //validate public key store in session
+    //validate session
     private boolean validateSession() {
         String publickey = Arrays.toString(SessionProfile.getInstance().getKey().getPublic().getEncoded());
+
+        //can't be a new session
         HttpSession session = this.getThreadLocalRequest().getSession(false);
+
         String publicKey2 = (String) SessionUtil.getFromSession(session, StateConstants.PUBLIC_KEY);
-        return publickey.equals(publicKey2);
+        boolean is_authenticated = (boolean) SessionUtil.getFromSession(session, StateConstants.IS_AUTHENTICATED);
+
+        return is_authenticated && publickey.equals(publicKey2);
     }
 }

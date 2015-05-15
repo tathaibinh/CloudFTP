@@ -23,7 +23,7 @@ public class BashProfile {
 
     public static synchronized BashProfile getInstance() {
         if (bashProfile == null)
-            return new BashProfile();
+            bashProfile = new BashProfile();
         return bashProfile;
     }
 }

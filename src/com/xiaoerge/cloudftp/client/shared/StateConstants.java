@@ -8,4 +8,5 @@ public class StateConstants {
     public static final String LOGOUT = "LOGOUT";
     public static final String LIST_DIRECTORY = "LIST_DIRECTORY";
     public static final String PUBLIC_KEY = "PUBLIC_KEY";
+    public static final String IS_AUTHENTICATED = "IS_AUTHENTICATED";
 }

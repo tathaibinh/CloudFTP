@@ -68,8 +68,10 @@ public class AuthServiceImpl extends XsrfProtectedServiceServlet implements Auth
             //if this is a new session, xsrf token will fail. should not be a new session
             HttpSession session1 = this.getThreadLocalRequest().getSession(false);
             SessionUtil.saveToSession(session1, StateConstants.PUBLIC_KEY, pKey);
+            SessionUtil.saveToSession(session1, StateConstants.IS_AUTHENTICATED, true);
 
             logger.log(Level.SEVERE, pKey);
+            logger.log(Level.SEVERE, "Authenticated successfully");
             return pKey;
 
         } catch (Exception ex) {
@@ -86,11 +88,9 @@ public class AuthServiceImpl extends XsrfProtectedServiceServlet implements Auth
     public void disconnect() {
         SessionProfile sessionProfile = SessionProfile.getInstance();
         sessionProfile.dispose();
-        sessionProfile = null;
 
         HttpSession session1 = this.getThreadLocalRequest().getSession(false);
         SessionUtil.removeFromSession(session1, StateConstants.PUBLIC_KEY);
-
-        System.gc();
+        SessionUtil.removeFromSession(session1, StateConstants.IS_AUTHENTICATED);
     }
 }

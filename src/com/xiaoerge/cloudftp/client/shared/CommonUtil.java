@@ -22,6 +22,7 @@ public class CommonUtil
         widget.getElement().setInnerHTML("");
     }
 
+    //this is not used
     public static synchronized void setCookie(String sessionId) {
         final int DURATION = 1000 * 60 * 60;
         Date expires = new Date(System.currentTimeMillis() + DURATION);

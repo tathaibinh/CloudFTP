@@ -34,7 +34,7 @@ public class SessionProfile
 
     public static synchronized SessionProfile getInstance() {
         if (sessionProfile == null)
-            return new SessionProfile();
+            sessionProfile = new SessionProfile();
         return sessionProfile;
     }
 
@@ -113,5 +113,7 @@ public class SessionProfile
         cipher = null;
 
         sessionProfile = null;
+
+        System.gc();
     }
 }

@@ -48,14 +48,14 @@ public class LogoutPresenter implements Presenter {
                 //todo clear session
                 logger.log(Level.INFO, "Logging out");
 
-                AsyncCallback callback = new AsyncCallback() {
+                AsyncCallback<Void> callback = new AsyncCallback<Void>() {
                     @Override
                     public void onFailure(Throwable caught) {
                         eventBus.fireEvent(new LoginEvent());
                     }
 
                     @Override
-                    public void onSuccess(Object result) {
+                    public void onSuccess(Void result) {
                         eventBus.fireEvent(new LoginEvent());
                     }
                 };

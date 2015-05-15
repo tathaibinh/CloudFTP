@@ -15,8 +15,9 @@ public class EncryptionUtil
 
     public static synchronized byte[] encrypt(byte[] plainText) {
         try {
-            KeyPair key = SessionProfile.getInstance().getKey();
-            Cipher cipher = SessionProfile.getInstance().getCipher();
+            SessionProfile sessionProfile = SessionProfile.getInstance();
+            KeyPair key = sessionProfile.getKey();
+            Cipher cipher = sessionProfile.getCipher();
             cipher.init(Cipher.ENCRYPT_MODE, key.getPublic());
             return cipher.doFinal(plainText);
         } catch (Exception e) {
