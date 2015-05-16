@@ -7,7 +7,6 @@ import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
 import com.xiaoerge.cloudftp.client.presenter.CdPresenter;
-import com.xiaoerge.cloudftp.client.shared.DocumentReady;
 import com.xiaoerge.cloudftp.client.shared.StateConstants;
 
 import java.util.Vector;
