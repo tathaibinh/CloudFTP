@@ -9,5 +9,5 @@
 * Download file from server to local
 * Upload file from local to server
 
-#### Work demo [https://cloudftp.emz.us/cloudftp/#LOGIN] (Work in Progress, will have bugs)
+#### [Work demo] (https://cloudftp.emz.us/cloudftp/#LOGIN) (Work in Progress, will have bugs)
 #### Credentials {'hostname': 'cloudftpdemo@ssh.emz.us',  'password': 'cloudftpdemo'}
