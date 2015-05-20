@@ -7,7 +7,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bae0dc6-cbc1-4aff-b732-d700ebef81cf" name="Default" comment="" />
+    <list default="true" id="1bae0dc6-cbc1-4aff-b732-d700ebef81cf" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/CdView.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/CdView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CloudFTP.iml" afterPath="$PROJECT_DIR$/CloudFTP.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/GetServlet.java" afterPath="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/GetServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="FileCloud.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,28 +34,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AuthServiceAsync.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/AuthServiceAsync.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AuthServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/AuthServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="55" column="58" selection-start-line="55" selection-start-column="58" selection-end-line="55" selection-end-column="58" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#3205#3206#0" expanded="false" />
-                <element signature="e#3280#3281#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -60,9 +49,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -72,11 +59,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#700#701#0" expanded="false" />
-                <element signature="e#744#745#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,26 +69,29 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CdView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/CdView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="151" column="55" selection-start-line="151" selection-start-column="55" selection-end-line="151" selection-end-column="55" />
               <folding>
-                <element signature="e#233#234#0" expanded="false" />
-                <element signature="e#257#258#0" expanded="false" />
-                <element signature="e#287#288#0" expanded="false" />
-                <element signature="e#313#314#0" expanded="false" />
-                <element signature="e#351#352#0" expanded="false" />
-                <element signature="e#381#382#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CdView.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/CdView.java">
+      <file leaf-file-name="GetServlet.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/GetServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41561714">
-              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.8765743">
+              <caret line="75" column="23" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -115,9 +101,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -137,41 +121,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#992#993#0" expanded="false" />
-                <element signature="e#1019#1020#0" expanded="false" />
-                <element signature="e#1057#1058#0" expanded="false" />
-                <element signature="e#1089#1090#0" expanded="false" />
-                <element signature="e#1124#1125#0" expanded="false" />
-                <element signature="e#1154#1155#0" expanded="false" />
-                <element signature="e#1201#1202#0" expanded="false" />
-                <element signature="e#1239#1240#0" expanded="false" />
-                <element signature="e#1274#1275#0" expanded="false" />
-                <element signature="e#1304#1305#0" expanded="false" />
-                <element signature="e#1351#1352#0" expanded="false" />
-                <element signature="e#1389#1390#0" expanded="false" />
-                <element signature="e#1432#1433#0" expanded="false" />
-                <element signature="e#1466#1467#0" expanded="false" />
-                <element signature="e#1525#1526#0" expanded="false" />
-                <element signature="e#1571#1572#0" expanded="false" />
-                <element signature="e#1611#1612#0" expanded="false" />
-                <element signature="e#1645#1646#0" expanded="false" />
-                <element signature="e#1701#1702#0" expanded="false" />
-                <element signature="e#1747#1748#0" expanded="false" />
-                <element signature="e#1790#1791#0" expanded="false" />
-                <element signature="e#1819#1820#0" expanded="false" />
-                <element signature="e#1873#1874#0" expanded="false" />
-                <element signature="e#1909#1910#0" expanded="false" />
-                <element signature="e#1940#1941#0" expanded="false" />
-                <element signature="e#1966#1967#0" expanded="false" />
-                <element signature="e#2005#2006#0" expanded="false" />
-                <element signature="e#2035#2036#0" expanded="false" />
-                <element signature="e#2068#2069#0" expanded="false" />
-                <element signature="e#2097#2098#0" expanded="false" />
-                <element signature="e#2141#2142#0" expanded="false" />
-                <element signature="e#2177#2178#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -181,19 +131,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#343#344#0" expanded="false" />
-                <element signature="e#376#377#0" expanded="false" />
-                <element signature="e#427#428#0" expanded="false" />
-                <element signature="e#463#464#0" expanded="false" />
-                <element signature="e#750#751#0" expanded="false" />
-                <element signature="e#777#778#0" expanded="false" />
-                <element signature="e#840#841#0" expanded="false" />
-                <element signature="e#867#868#0" expanded="false" />
-                <element signature="e#925#926#0" expanded="false" />
-                <element signature="e#952#953#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -250,7 +188,6 @@
         <option value="$PROJECT_DIR$/war/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/LoginPresenter.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/event/background/SavePublicKeyEvent.java" />
-        <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/GetServlet.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/Presenter.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/global/UserProfile.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/PublicServiceImpl.java" />
@@ -270,6 +207,7 @@
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/global/SessionProfile.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/global/BashProfile.java" />
         <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/CdView.java" />
+        <option value="$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/GetServlet.java" />
       </list>
     </option>
   </component>
@@ -319,6 +257,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -547,7 +486,6 @@
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -555,8 +493,8 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jcterm-0.0.11" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/zip4j_1.3.2.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="OverrideImplement.combined" value="true" />
@@ -898,11 +836,12 @@
       <workItem from="1431651937168" duration="2175000" />
       <workItem from="1431816320635" duration="123000" />
       <workItem from="1431986999313" duration="1009000" />
+      <workItem from="1432074112596" duration="6073000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136491000" />
+    <option name="totallyTimeSpent" value="142564000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -915,7 +854,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1295" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -986,7 +925,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1178,13 +1117,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/GetServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/presenter/Presenter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1293,9 +1225,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1311,9 +1241,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1321,11 +1249,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="55" column="58" selection-start-line="55" selection-start-column="58" selection-end-line="55" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3205#3206#0" expanded="false" />
-            <element signature="e#3280#3281#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1333,9 +1257,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1343,11 +1265,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#700#701#0" expanded="false" />
-            <element signature="e#744#745#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1355,41 +1273,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#992#993#0" expanded="false" />
-            <element signature="e#1019#1020#0" expanded="false" />
-            <element signature="e#1057#1058#0" expanded="false" />
-            <element signature="e#1089#1090#0" expanded="false" />
-            <element signature="e#1124#1125#0" expanded="false" />
-            <element signature="e#1154#1155#0" expanded="false" />
-            <element signature="e#1201#1202#0" expanded="false" />
-            <element signature="e#1239#1240#0" expanded="false" />
-            <element signature="e#1274#1275#0" expanded="false" />
-            <element signature="e#1304#1305#0" expanded="false" />
-            <element signature="e#1351#1352#0" expanded="false" />
-            <element signature="e#1389#1390#0" expanded="false" />
-            <element signature="e#1432#1433#0" expanded="false" />
-            <element signature="e#1466#1467#0" expanded="false" />
-            <element signature="e#1525#1526#0" expanded="false" />
-            <element signature="e#1571#1572#0" expanded="false" />
-            <element signature="e#1611#1612#0" expanded="false" />
-            <element signature="e#1645#1646#0" expanded="false" />
-            <element signature="e#1701#1702#0" expanded="false" />
-            <element signature="e#1747#1748#0" expanded="false" />
-            <element signature="e#1790#1791#0" expanded="false" />
-            <element signature="e#1819#1820#0" expanded="false" />
-            <element signature="e#1873#1874#0" expanded="false" />
-            <element signature="e#1909#1910#0" expanded="false" />
-            <element signature="e#1940#1941#0" expanded="false" />
-            <element signature="e#1966#1967#0" expanded="false" />
-            <element signature="e#2005#2006#0" expanded="false" />
-            <element signature="e#2035#2036#0" expanded="false" />
-            <element signature="e#2068#2069#0" expanded="false" />
-            <element signature="e#2097#2098#0" expanded="false" />
-            <element signature="e#2141#2142#0" expanded="false" />
-            <element signature="e#2177#2178#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1397,19 +1281,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#343#344#0" expanded="false" />
-            <element signature="e#376#377#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#463#464#0" expanded="false" />
-            <element signature="e#750#751#0" expanded="false" />
-            <element signature="e#777#778#0" expanded="false" />
-            <element signature="e#840#841#0" expanded="false" />
-            <element signature="e#867#868#0" expanded="false" />
-            <element signature="e#925#926#0" expanded="false" />
-            <element signature="e#952#953#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1417,24 +1289,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#233#234#0" expanded="false" />
-            <element signature="e#257#258#0" expanded="false" />
-            <element signature="e#287#288#0" expanded="false" />
-            <element signature="e#313#314#0" expanded="false" />
-            <element signature="e#351#352#0" expanded="false" />
-            <element signature="e#381#382#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/client/view/CdView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41561714">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="151" column="55" selection-start-line="151" selection-start-column="55" selection-end-line="151" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/xiaoerge/cloudftp/server/GetServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8765743">
+          <caret line="75" column="23" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1497,6 +1370,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -1516,7 +1390,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>gwt-user</last-edited>
+          <last-edited>zip4j_1.3.2</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

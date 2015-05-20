@@ -114,42 +114,53 @@ public class CdView extends Composite implements CdPresenter.Display {
 
         flexTable.setWidget(0, 0, new HTML("<i class=\"fa fa-file\"></i>"));
         flexTable.setWidget(0, 1, new HTML("Name"));
-        flexTable.setWidget(0, 2, new HTML("Permission"));
-        flexTable.setWidget(0, 3, new HTML("Size"));
+        flexTable.setWidget(0, 2, new HTML("Download"));
+        flexTable.setWidget(0, 3, new HTML("Permission"));
+        flexTable.setWidget(0, 4, new HTML("Size"));
 
         int rowOffset = getRowOffset();
 
         for (int i = 0; i < fileEntries.size(); i++) {
-            FileEntry fileEntry = fileEntries.get(i);
 
+            FileEntry fileEntry = fileEntries.get(i);
             HTML fileIcon = new HTML("<i class=\"fa fa-file-o fa-2x\"></i>");
             HTML folderIcon = new HTML("<i class=\"fa fa-folder-o fa-2x\"></i>");
+            Widget widget = null;
+            Anchor download = new Anchor();
+
+            //this url routes to GetServlet
+            String url = GWT.getModuleBaseURL() + "getservice?" +
+                    "filename={filename}&publickey={publickey}&csrftoken={csrftoken}&zipper={zipper}";
+            url = url.replace("{filename}", fileEntry.getFileName());
+            url = url.replace("{publickey}", Cookies.getCookie(StateConstants.PUBLIC_KEY));
 
             if (fileEntry.isDir()) {
                 flexTable.setWidget((i + rowOffset), 0, folderIcon);
                 Button button = new Button(fileEntry.getFileName());
                 button.setStyleName("btn btn-link");
-                button.getElement().getStyle().setCursor(Style.Cursor.POINTER);
-                flexTable.setWidget((i + rowOffset), 1, button);
+                widget = button;
+
+                url = url.replace("{zipper}", "true");
             }
             else {
                 flexTable.setWidget((i + rowOffset), 0, fileIcon);
                 Anchor anchor = new Anchor(fileEntry.getFileName());
 
-                //this url routes to GetServlet
-                String url = GWT.getModuleBaseURL() + "getservice?" +
-                        "filename={filename}&publickey={publickey}&csrftoken={csrftoken}";
+                anchor.setHref(url);
+                widget = anchor;
 
-                url = url.replace("{filename}", fileEntry.getFileName());
-                url = url.replace("{publickey}", Cookies.getCookie(StateConstants.PUBLIC_KEY));
-
-                anchor.setHref(URL.encode(url));
-                anchor.getElement().getStyle().setCursor(Style.Cursor.POINTER);
-                flexTable.setWidget((i + rowOffset), 1, anchor);
+                url = url.replace("{zipper}", "false");
             }
 
-            flexTable.setText((i + rowOffset), 2, fileEntry.getPermissionString());
-            flexTable.setText((i + rowOffset), 3, fileEntry.getSizeString());
+            widget.getElement().getStyle().setCursor(Style.Cursor.POINTER);
+            download.setHTML("<i class=\"fa fa-arrow-circle-o-down fa-2x\"></i>");
+            download.setHref(URL.encode(url));
+            download.setStyleName("btn btn-link");
+
+            flexTable.setWidget((i + rowOffset), 1, widget);
+            flexTable.setWidget((i + rowOffset), 2, download);
+            flexTable.setText((i + rowOffset), 3, fileEntry.getPermissionString());
+            flexTable.setText((i + rowOffset), 4, fileEntry.getSizeString());
         }
     }
 }
