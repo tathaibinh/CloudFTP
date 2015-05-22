@@ -8,6 +8,10 @@ import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.util.Zip4jConstants;
+import org.apache.commons.compress.archivers.ArchiveException;
+import org.apache.commons.compress.archivers.ArchiveInputStream;
+import org.apache.commons.compress.archivers.ArchiveStreamFactory;
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
@@ -16,12 +20,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Vector;
 import java.util.logging.Logger;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * Created by xiaoerge on 4/26/15.
@@ -57,7 +60,7 @@ public class GetServlet extends HttpServlet {
 
                     channelSftp.get(fileName, resp.getOutputStream());
                 } else {
-                    resp.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+                    resp.setHeader("Content-Disposition", "attachment; filename=" + fileName+".zip");
 
                     Vector<ChannelSftp.LsEntry> entries = channelSftp.ls(channelSftp.pwd());
                     ChannelSftp.LsEntry entry = null;
@@ -69,38 +72,69 @@ public class GetServlet extends HttpServlet {
                     }
 
                     String tempPath = "/tmp";
-                    get(tempPath, entry);
 
-                    try {
-                        // Initiate ZipFile object with the path/name of the zip file.
-                        String tempFile = tempPath+"/"+fileName;
-                        ZipFile zipFile = new ZipFile(tempFile+".zip");
+                    //it is okay for lcd to remain /tmp
+                    channelSftp.lcd(tempPath);
 
-                        ZipParameters parameters = new ZipParameters();
-                        parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
-                        parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
+                    get(channelSftp.pwd(), entry);
 
-                        zipFile.addFolder(tempFile, parameters);
+                    zipFolder(tempPath + "/" + fileName, tempPath + "/" + fileName + ".zip");
 
-                        String pwd = channelSftp.pwd();
-
-                        channelSftp.cd(tempPath);
-
-                        channelSftp.get(zipFile.getFile().getName(), resp.getOutputStream());
-                        channelSftp.cd(pwd);
-
-                        FileUtils.forceDelete(zipFile.getFile());
-
-                    } catch (ZipException e) {
-                        e.printStackTrace();
-                    }
+                    String pwd = channelSftp.pwd();
+                    channelSftp.cd(tempPath);
+                    channelSftp.get(fileName+".zip", resp.getOutputStream());
+                    channelSftp.cd(pwd);
                 }
 
             } catch (SftpException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
             throw new ServletException();
+        }
+    }
+
+    private void zipFolder(String srcFolder, String destZipFile) throws Exception {
+        ZipOutputStream zip = null;
+        FileOutputStream fileWriter = null;
+
+        fileWriter = new FileOutputStream(destZipFile);
+        zip = new ZipOutputStream(fileWriter);
+
+        addFolderToZip("", srcFolder, zip);
+        zip.flush();
+        zip.close();
+    }
+
+    private void addFileToZip(String path, String srcFile, ZipOutputStream zip)
+            throws Exception {
+
+        File folder = new File(srcFile);
+        if (folder.isDirectory()) {
+            addFolderToZip(path, srcFile, zip);
+        } else {
+            byte[] buf = new byte[1024];
+            int len;
+            FileInputStream in = new FileInputStream(srcFile);
+            zip.putNextEntry(new ZipEntry(path + "/" + folder.getName()));
+            while ((len = in.read(buf)) > 0) {
+                zip.write(buf, 0, len);
+            }
+        }
+    }
+
+    private void addFolderToZip(String path, String srcFolder, ZipOutputStream zip)
+            throws Exception {
+        File folder = new File(srcFolder);
+
+        for (String fileName : folder.list()) {
+            if (path.equals("")) {
+                addFileToZip(folder.getName(), srcFolder + "/" + fileName, zip);
+            } else {
+                addFileToZip(path + "/" + folder.getName(), srcFolder + "/" + fileName, zip);
+            }
         }
     }
 
