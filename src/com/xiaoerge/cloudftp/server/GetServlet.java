@@ -78,12 +78,12 @@ public class GetServlet extends HttpServlet {
 
                     get(channelSftp.pwd(), entry);
 
-                    zipFolder(tempPath + "/" + fileName, tempPath + "/" + fileName + ".zip");
+                    String destPath = tempPath + "/" + fileName + ".zip";
+                    zipFolder(tempPath + "/" + fileName, destPath);
 
-                    String pwd = channelSftp.pwd();
-                    channelSftp.cd(tempPath);
-                    channelSftp.get(fileName+".zip", resp.getOutputStream());
-                    channelSftp.cd(pwd);
+                    BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(destPath));
+
+                    IOUtils.copy(inputStream, resp.getOutputStream());
                 }
 
             } catch (SftpException e) {
