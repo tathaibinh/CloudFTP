@@ -2,6 +2,8 @@ package com.xiaoerge.cloudftp.client.view;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.ui.*;
@@ -22,11 +24,15 @@ public class CdView extends Composite implements CdPresenter.Display {
     private FlexTable flexTable;
     private Label statusLb, progressLb;
     private Button logoutBt;
+    private Button uploadBt;
+    private FormPanel uploadForm;
 
     public CdView() {
 
         VerticalPanel verticalPanel = new VerticalPanel();
         FlexTable innerTable = new FlexTable();
+        VerticalPanel panel = new VerticalPanel();
+        FileUpload upload = new FileUpload();
 
         flexTable = new FlexTable();
         fileEntries = new Vector<>();
@@ -35,6 +41,8 @@ public class CdView extends Composite implements CdPresenter.Display {
         statusLb = new Label();
         progressLb = new Label();
         logoutBt = new Button("Logout");
+        uploadBt = new Button("Upload");
+        uploadForm = new FormPanel();
 
         flexTable.getElement().setAttribute("id", "dataTable");
         flexTable.setStyleName("table table-responsive table-bordered table-hover");
@@ -43,17 +51,27 @@ public class CdView extends Composite implements CdPresenter.Display {
 
         logoutBt.setStyleName("btn btn-danger");
 
-
         innerTable.setWidget(0, 0, statusLb);
         innerTable.setWidget(0, 1, progressLb);
         innerTable.setWidget(1, 0, pathTf);
         innerTable.setWidget(1, 1, cdBt);
         innerTable.getFlexCellFormatter().setColSpan(0, 0, 3);
         innerTable.getFlexCellFormatter().setColSpan(1, 0, 3);
-
         innerTable.setStyleName("table table-responsive table-bordered table-hover");
 
+        uploadForm.setAction("/putservlet");
+        uploadForm.setEncoding(FormPanel.ENCODING_MULTIPART);
+        uploadForm.setMethod(FormPanel.METHOD_POST);
+        uploadForm.setWidget(panel);
+
+        upload.setName("fileupload");
+        uploadBt.setStyleName("btn btn-success");;
+
+        panel.add(upload);
+        panel.add(uploadBt);
+
         verticalPanel.add(logoutBt);
+        verticalPanel.add(panel);
         verticalPanel.add(innerTable);
         verticalPanel.add(flexTable);
         verticalPanel.setStyleName("col-md-12");
@@ -107,6 +125,14 @@ public class CdView extends Composite implements CdPresenter.Display {
 
     @Override
     public int getRowOffset() { return 1; }
+
+    @Override
+    public Button getUploadBt() { return uploadBt; }
+
+    @Override
+    public FormPanel getUploadForm() {
+        return uploadForm;
+    }
 
     private void refresh() {
         flexTable.removeAllRows();

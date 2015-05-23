@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.http.client.*;
 import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.*;
 import com.google.gwt.user.client.ui.*;
 import com.xiaoerge.cloudftp.client.AuthService;
@@ -99,6 +100,8 @@ public class LoginPresenter implements Presenter {
                     public void onFailure(Throwable caught) {
                         logger.log(Level.SEVERE, "Log in failure");
                         logger.log(Level.SEVERE, caught.getMessage());
+
+                        CommonUtil.hideLoadingAnimation(display.getStatusLb());
                     }
 
                     public void onSuccess(String result) {

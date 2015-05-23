@@ -32,6 +32,8 @@ public class CdPresenter implements Presenter {
         FlexTable getListTable();
         Button getLogoutBt();
         int getRowOffset();
+        Button getUploadBt();
+        FormPanel getUploadForm();
 
         @Override
         Label getStatusLb();
