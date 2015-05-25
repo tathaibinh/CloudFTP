@@ -2,8 +2,6 @@ package com.xiaoerge.cloudftp.client.view;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.ui.*;

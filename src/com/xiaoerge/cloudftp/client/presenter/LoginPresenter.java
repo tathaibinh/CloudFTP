@@ -3,21 +3,13 @@ package com.xiaoerge.cloudftp.client.presenter;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.http.client.*;
-import com.google.gwt.user.client.Cookies;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.*;
 import com.google.gwt.user.client.ui.*;
-import com.xiaoerge.cloudftp.client.AuthService;
 import com.xiaoerge.cloudftp.client.AuthServiceAsync;
 import com.xiaoerge.cloudftp.client.event.background.SavePublicKeyEvent;
 import com.xiaoerge.cloudftp.client.event.foreground.CdEvent;
 import com.xiaoerge.cloudftp.client.shared.CommonUtil;
-import com.xiaoerge.cloudftp.client.shared.GraphicalUtil;
 
-import javax.servlet.http.Cookie;
-import java.util.Arrays;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -94,7 +86,6 @@ public class LoginPresenter implements Presenter {
                 ((HasRpcToken) authServiceAsync).setRpcToken(token);
 
                 CommonUtil.showLoadingAnimation(display.getStatusLb());
-                //GraphicalUtil.showOverlayProgressWindow();
 
                 AsyncCallback<String> callback = new AsyncCallback<String>() {
                     public void onFailure(Throwable caught) {

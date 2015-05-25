@@ -1,13 +1,10 @@
 package com.xiaoerge.cloudftp.client.shared;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Widget;
 import com.xiaoerge.cloudftp.client.ShellService;
 import com.xiaoerge.cloudftp.client.ShellServiceAsync;
 
-import java.util.Date;
 import java.util.logging.Logger;
 
 /**

@@ -3,9 +3,8 @@ package com.xiaoerge.cloudftp.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.client.Cookies;
-import com.google.gwt.user.client.rpc.*;
-import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.RootPanel;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

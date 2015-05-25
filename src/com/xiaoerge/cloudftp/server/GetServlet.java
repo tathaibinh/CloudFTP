@@ -4,15 +4,6 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 import com.xiaoerge.cloudftp.client.shared.StateConstants;
 import com.xiaoerge.cloudftp.server.global.SessionProfile;
-import net.lingala.zip4j.core.ZipFile;
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.util.Zip4jConstants;
-import org.apache.commons.compress.archivers.ArchiveException;
-import org.apache.commons.compress.archivers.ArchiveInputStream;
-import org.apache.commons.compress.archivers.ArchiveStreamFactory;
-import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;

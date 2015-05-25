@@ -1,6 +1,5 @@
 package com.xiaoerge.cloudftp.server;
 
-import com.google.gwt.user.server.rpc.XsrfProtect;
 import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
@@ -12,15 +11,7 @@ import com.xiaoerge.cloudftp.server.global.SessionProfile;
 import com.xiaoerge.cloudftp.server.shared.SessionUtil;
 import org.apache.commons.io.FileUtils;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.PublicKey;
 import java.util.Arrays;
 import java.util.Vector;
 import java.util.logging.Level;
