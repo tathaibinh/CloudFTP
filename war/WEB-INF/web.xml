@@ -53,10 +53,18 @@
         <servlet-name>GetServlet</servlet-name>
         <servlet-class>com.xiaoerge.cloudftp.server.GetServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PutService</servlet-name>
+        <servlet-class>com.xiaoerge.cloudftp.server.PutServiceImpl</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>GetServlet</servlet-name>
         <url-pattern>/cloudftp/getservice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PutService</servlet-name>
+        <url-pattern>/cloudftp/putservice</url-pattern>
     </servlet-mapping>
 
 </web-app>

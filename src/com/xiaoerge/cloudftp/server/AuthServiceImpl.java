@@ -1,26 +1,20 @@
 package com.xiaoerge.cloudftp.server;
 
-import com.google.gwt.user.client.Cookies;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 import com.jcraft.jsch.*;
 import com.xiaoerge.cloudftp.client.AuthService;
 import com.xiaoerge.cloudftp.client.shared.StateConstants;
-import com.xiaoerge.cloudftp.server.global.UserProfile;
 import com.xiaoerge.cloudftp.server.global.SessionProfile;
+import com.xiaoerge.cloudftp.server.global.UserProfile;
 import com.xiaoerge.cloudftp.server.shared.EncryptionUtil;
 import com.xiaoerge.cloudftp.server.shared.SessionUtil;
 
 import javax.crypto.Cipher;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AuthServiceImpl extends XsrfProtectedServiceServlet implements AuthService {

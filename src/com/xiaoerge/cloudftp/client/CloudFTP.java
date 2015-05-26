@@ -18,10 +18,6 @@ public class CloudFTP implements EntryPoint {
 
     public void onModuleLoad() {
 
-        //todo use cryptographic safe string
-//        double sid = System.currentTimeMillis() * Random.nextDouble();
-//        Cookies.setCookie("CLOUDFTPSESSIONID", Double.toString(sid), null, null, "/", false);
-
         PublicServiceAsync publicServiceAsync = GWT.create(PublicService.class);
         AsyncCallback<String> stringAsyncCallback = new AsyncCallback<String>() {
             @Override

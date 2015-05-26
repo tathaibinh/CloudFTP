@@ -130,7 +130,7 @@ public class GetServlet extends HttpServlet {
     }
 
     /*
-    * this block is from
+    * this block is from github
     * https://github.com/xiaoerge/File-UI/blob/master/src/fileui/GUI.java#L364
     * */
     private void get(String path, ChannelSftp.LsEntry entry) throws SftpException {

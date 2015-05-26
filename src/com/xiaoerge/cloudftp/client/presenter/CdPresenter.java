@@ -6,6 +6,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.rpc.*;
 import com.google.gwt.user.client.ui.*;
+import com.xiaoerge.cloudftp.client.PutService;
+import com.xiaoerge.cloudftp.client.PutServiceAsync;
 import com.xiaoerge.cloudftp.client.ShellServiceAsync;
 import com.xiaoerge.cloudftp.client.event.foreground.LogoutEvent;
 import com.xiaoerge.cloudftp.client.model.FileEntry;
@@ -125,6 +127,49 @@ public class CdPresenter implements Presenter {
             @Override
             public void onClick(ClickEvent event) {
                 eventBus.fireEvent(new LogoutEvent());
+            }
+        });
+
+        display.getUploadBt().addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+
+                final FormPanel uploadForm = display.getUploadForm();
+
+                final PutServiceAsync putServiceAsync = GWT.create(PutService.class);
+
+                XsrfTokenServiceAsync xsrf = GWT.create(XsrfTokenService.class);
+                ((ServiceDefTarget)xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+                xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
+
+                    public void onSuccess(XsrfToken token) {
+                        ((HasRpcToken) putServiceAsync).setRpcToken(token);
+
+                        AsyncCallback<Void> callback = new AsyncCallback<Void>() {
+                            @Override
+                            public void onFailure(Throwable caught) {
+
+                            }
+
+                            @Override
+                            public void onSuccess(Void result) {
+                                logger.log(Level.SEVERE, uploadForm.getTarget());
+                            }
+                        };
+
+                        putServiceAsync.put(callback);
+                    }
+
+                    public void onFailure(Throwable caught) {
+                        try {
+                            throw caught;
+                        } catch (RpcTokenException e) {
+                            e.printStackTrace();
+                        } catch (Throwable e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }
