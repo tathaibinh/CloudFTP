@@ -42,7 +42,6 @@ public class CdView extends Composite implements CdPresenter.Display {
         uploadBt = new Button("Upload");
         uploadForm = new FormPanel();
 
-        flexTable.getElement().setAttribute("id", "dataTable");
         flexTable.setStyleName("table table-responsive table-bordered table-hover");
         pathTf.setStyleName("form-control");
         cdBt.setStyleName("btn btn-primary btn-block");
@@ -65,8 +64,8 @@ public class CdView extends Composite implements CdPresenter.Display {
         upload.setName("fileupload");
         uploadBt.setStyleName("btn btn-success");;
 
-        panel.add(upload);
-        panel.add(uploadBt);
+//        panel.add(upload);
+//        panel.add(uploadBt);
 
         verticalPanel.add(logoutBt);
         verticalPanel.add(panel);
